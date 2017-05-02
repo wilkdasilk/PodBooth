@@ -1,0 +1,22 @@
+{
+  "name": "podbooth",
+  "description": "App for live feedback while podcasting",
+  "main": "server.js",
+  "authors": [
+    "Auston Wilkinson"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/wilkdasilk/PodBooth",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.6.4",
+    "angular": "^1.6.4",
+    "materialize": "^0.98.2"
+  }
+}

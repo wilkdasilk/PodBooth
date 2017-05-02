@@ -1,0 +1,26 @@
+{
+  "name": "podbooth",
+  "version": "1.0.0",
+  "description": "App for live feedback while podcasting",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilkdasilk/PodBooth.git"
+  },
+  "author": "Auston Wilkinson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wilkdasilk/PodBooth/issues"
+  },
+  "homepage": "https://github.com/wilkdasilk/PodBooth#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "bower": "^1.8.0",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.7",
+    "passport": "^0.3.2"
+  }
+}
