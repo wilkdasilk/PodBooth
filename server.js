@@ -27,6 +27,11 @@ app.get('/templates/:name', function templates (req, res) {
  * JSON API Endpoints
  */
 
+app.get('/api', controllers.api.index);
+
+app.get('/api/podcasts', controllers.podcasts.index);
+app.get('/api/podcasts/:podcastId', controllers.podcasts.show);
+
 // All others go to index
 app.get('*', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
