@@ -3,6 +3,32 @@ body {
   text-align: center;
 }
 
+.logo {
+  height:75px;
+  vertical-align: bottom;
+}
+
+.title {
+  margin: 35px auto;
+}
+
+h1 {
+  display: inline;
+}
+
 .brand-logo {
   left:0;
+}
+
+nav .logo {
+  height: 55px;
+  vertical-align: middle;
+}
+
+nav {
+  background-color: rgba(0,0,0,.8);
+}
+
+nav ul a:hover {
+    background-color: rgba(0,200,170,1);
 }
