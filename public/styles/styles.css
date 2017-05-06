@@ -1,4 +1,8 @@
 body {
-  background: black;
-  color:white;
+  color:black;
+  text-align: center;
+}
+
+.brand-logo {
+  left:0;
 }
