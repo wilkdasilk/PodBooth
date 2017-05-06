@@ -1,17 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="podBooth">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PodBooth</title>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/materialize/dist/css/materialize.min.css">
     <link rel="stylesheet" href="/styles/styles.css">
     <!-- VENDOR SCRIPTS -->
     <script src="/vendor/angular/angular.min.js"></script>
     <script src="/vendor/angular-route/angular-route.min.js"></script>
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/materialize/dist/js/materialize.min.js"></script>
     <!-- APPLICATION SCRIPTS -->
     <script src="/scripts/app.js"></script>
+    <script src="/scripts/services/authentication.service.js"></script>
+    <script src="/scripts/services/data.service.js"></script>
+    <script src="/scripts/directives/navigation.directive.js"></script>
+    <script src="/scripts/controllers/home.controller.js"></script>
+    <script src="/scripts/controllers/login.controller.js"></script>
+    <script src="/scripts/controllers/navigation.controller.js"></script>
+    <script src="/scripts/controllers/profile.controller.js"></script>
+    <script src="/scripts/controllers/register.controller.js"></script>
+    <script src="/scripts/controllers/logout.controller.js"></script>
   </head>
   <body>
-    <h1>Hello world</h1>
+    <navigation></navigation>
+    <h1>PodBooth</h1>
+    <div ng-view></div>
   </body>
 </html>

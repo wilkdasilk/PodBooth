@@ -1,15 +1,26 @@
+var dotenv = require('dotenv').config();
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var controllers = require('./controllers');
+//var passport = require('config/passport');
+var jwt = require('express-jwt');
+var auth = jwt({secret: process.env.POD_SECRET, userProperty: 'payload'});
+
+require('./config/passport');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/vendor', express.static(__dirname + '/bower_components'));
-
-var controllers = require('./controllers');
-
-
+app.use(passport.initialize());
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
 /*
  * HTML Endpoints
  */
@@ -28,7 +39,9 @@ app.get('/templates/:name', function templates (req, res) {
  */
 
 app.get('/api', controllers.api.index);
-
+app.post('/api/register', controllers.authentication.register);
+app.post('/api/login', controllers.authentication.login);
+app.get('/api/profile', auth, controllers.users.profile);
 app.get('/api/podcasts', controllers.podcasts.index);
 app.get('/api/podcasts/:podcastId', controllers.podcasts.show);
 
