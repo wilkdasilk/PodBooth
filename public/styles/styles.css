@@ -37,3 +37,7 @@ nav ul a:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.left {
+  text-align: left; 
+}

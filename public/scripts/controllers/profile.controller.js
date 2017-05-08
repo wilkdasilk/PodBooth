@@ -4,13 +4,13 @@
     .module('podBooth')
     .controller('profileCtrl', profileCtrl);
 
-  profileCtrl.$inject = ['$location', 'podBoothData'];
-  function profileCtrl(   $location,   podBoothData) {
+  profileCtrl.$inject = ['$location', 'podBoothData', 'authentication'];
+  function profileCtrl(   $location,   podBoothData,   authentication ) {
 
     authentication.requireLogin();
 
     var vm = this;
-    vm.user = {};  
+    vm.user = {};
 
     podBoothData.getProfile()
       .then(function(response) {

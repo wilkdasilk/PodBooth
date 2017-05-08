@@ -2,20 +2,20 @@
   <div class="col m6 offset-m3">
     <h2>Create a Podcast</h2>
     <form ng-submit="vm.createPodcast()">
-      <div class="input-field">
-        <label for="name">Name</label>
+      <div>
+        <label for="name" class="left">Name</label>
         <input type="text" id="name" placeholder="What's your podcast called?" ng-model="vm.newPodcast.name">
       </div>
-      <div class="input-field">
-        <label for="description">Description</label>
+      <div>
+        <label for="description" class="left">Description</label>
         <textarea type="text" class="materialize-textarea" id="description" placeholder="What's your podcast about?" ng-model="vm.newPodcast.description"></textarea>
       </div>
-      <div class="input-field">
-        <label for="website">Website</label>
+      <div>
+        <label for="website" class="left">Website</label>
         <input type="url" id="website" placeholder="What's your podcast's website?" ng-model="vm.newPodcast.website">
       </div>
-      <div class="input-field">
-        <label for="image">Image</label>
+      <div>
+        <label for="image" class="left">Image</label>
         <input type="text" id="image" placeholder="Give your podcast an image" ng-model="vm.newPodcast.image">
       </div>
       <button type="submit" class="btn btn-default">Create Podcast</button>
