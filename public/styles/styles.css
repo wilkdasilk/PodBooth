@@ -32,3 +32,8 @@ nav {
 nav ul a:hover {
     background-color: rgba(0,200,170,1);
 }
+
+.short-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
