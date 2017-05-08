@@ -19,7 +19,7 @@
       vm.podcast = [res.data];
       if (vm.podcast[0] == null) {
         //no podcast found
-        $location.path('podcasts');
+        $location.path('/podcasts');
       };
     }, function (err) {
       console.log('There was an error getting the data', err);

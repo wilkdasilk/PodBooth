@@ -6,9 +6,11 @@
 
   profileCtrl.$inject = ['$location', 'podBoothData'];
   function profileCtrl(   $location,   podBoothData) {
-    var vm = this;
 
-    vm.user = {};
+    authentication.requireLogin();
+
+    var vm = this;
+    vm.user = {};  
 
     podBoothData.getProfile()
       .then(function(response) {

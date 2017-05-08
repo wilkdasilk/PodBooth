@@ -14,9 +14,17 @@ function show(req, res) {
   });
 }
 
+function create(req, res) {
+  db.Podcast.create(req.body, function(err, podcast) {
+    if (err) { console.log('error', err); }
+    res.json(podcast);
+  });
+}
+
 
 // export public methods here
 module.exports = {
   index: index,
-  show: show
+  show: show,
+  create: create
 };
