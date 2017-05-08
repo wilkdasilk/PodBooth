@@ -8,8 +8,8 @@
       <p class="short-description">{{podcast.description}}</p>
     </div>
     <div class="card-action">
-      <a ng-href="podcasts/{{podcast._id}}" ng-show="vm.clickThru">See Page</a>
-      <a ng-href="{{podcast.website}}" target="_blank">View Website</a>
+      <a ng-show="vm.clickThru" ng-href="podcasts/{{podcast._id}}">See Page</a>
+      <a ng-hide="vm.clickThru" ng-href="{{podcast.website}}" target="_blank">View Website</a>
     </div>
   </div>
 </div>
