@@ -7,6 +7,7 @@
   podcastsCtrl.$inject = ['$http'];
   function podcastsCtrl(   $http ) {
     var vm = this;
+    vm.clickThru = true;
 
     vm.podcasts = [];
 
