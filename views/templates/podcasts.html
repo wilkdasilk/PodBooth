@@ -1,0 +1,9 @@
+<h2>Discover podcasts</h2>
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <input type="text" class="form-control" ng-model="searchText" placeholder="Search Podcasts">
+    <div ng-repeat="podcast in vm.podcasts | filter: searchText">
+      <podcast></podcast>
+    </div>
+  </div>
+</div>

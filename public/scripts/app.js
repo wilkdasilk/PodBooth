@@ -31,6 +31,11 @@ console.log("Sanity check, we're connected!");
         controller: 'logoutCtrl',
         controllerAs: 'vm'
       })
+      .when('/podcasts', {
+        templateUrl: '/templates/podcasts',
+        controller: 'podcastsCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({redirectTo: '/'});
 
     $locationProvider.html5Mode({
