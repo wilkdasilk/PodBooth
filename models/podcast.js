@@ -1,12 +1,16 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var User = require('./user');
+
 
 var PodcastSchema = new Schema({
   name: String,
   description: String,
   website: String,
-  image: String //,
-  //owner: User.schema
+  image: String,
+  _owner : {
+    type: Schema.Types.ObjectId,
+    ref: 'User' }
   //subscribers: [User.schema]
 });
 

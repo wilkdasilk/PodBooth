@@ -9,7 +9,6 @@
     var vm = this;
     vm.clickThru = false;
 
-
     vm.podcast = [];
 
     $http({
@@ -17,6 +16,7 @@
       url: `/api/podcasts/${$routeParams.id}`
     }).then(function (res) {
       vm.podcast = [res.data];
+      console.log(vm.podcast);
       if (vm.podcast[0] == null) {
         //no podcast found
         $location.path('/podcasts');

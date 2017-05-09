@@ -11,6 +11,7 @@
 
     var vm = this;
     vm.user = {};
+    vm.clickThru = true;
 
     podBoothData.getProfile()
       .then(function(response) {

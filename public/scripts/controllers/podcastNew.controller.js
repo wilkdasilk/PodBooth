@@ -19,16 +19,19 @@
     };
 
     vm.createPodcast = function () {
-        $http({
-          method: 'POST',
-          url: '/api/podcasts',
-          data: vm.newPodcast,
-        }).then(function (res) {
-          $location.path(`/podcasts/${res.data._id}`);
-        }, function (err) {
-          console.log('There was an error posting the data', err);
-        });
-      }
+      $http({
+        method: 'POST',
+        url: '/api/podcasts',
+        data: vm.newPodcast,
+        headers: {
+          Authorization: 'Bearer ' + authentication.getToken()
+        }
+      }).then(function (res) {
+        $location.path(`/podcasts/${res.data._id}`);
+      }, function (err) {
+        console.log('There was an error posting the data', err);
+      });
+    }
 
   }
 
