@@ -36,6 +36,11 @@ console.log("Sanity check, we're connected!");
         controller: 'podcastsCtrl',
         controllerAs: 'vm'
       })
+      .when('/podcast/new', {
+        templateUrl: '/templates/podcastNew',
+        controller: 'podcastNewCtrl',
+        controllerAs: 'vm'
+      })
       .when('/podcasts/:id', {
         templateUrl: '/templates/podcastShow',
         controller: 'podcastShowCtrl',

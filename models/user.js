@@ -2,6 +2,8 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
+var db  = require('../models');
+
 
 var UserSchema = new Schema({
   email: {
@@ -13,6 +15,9 @@ var UserSchema = new Schema({
     type: String,
     required: true
   },
+  ownedPodcasts : [{
+    type: Schema.Types.ObjectId,
+    ref: 'Podcast' }],
   hash: String,
   salt: String
 });
@@ -38,6 +43,11 @@ UserSchema.methods.generateJwt = function () {
     exp: parseInt(expiry.getTime() / 1000)
   }, process.env.POD_SECRET);
 };
+
+UserSchema.methods.getOwnedPodcasts = function() {
+  return db.Podcast
+  .find({ _owner: this._id }).exec();
+}
 
 var User = mongoose.model('User', UserSchema);
 module.exports = User;

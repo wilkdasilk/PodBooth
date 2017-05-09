@@ -1,4 +1,5 @@
 <h3 class="header">{{podcast.name}}</h3>
+<h4>by {{podcast._owner.name}}</h4>
 <div class="card horizontal">
   <div class="card-image">
     <img ng-src="{{podcast.image}}">
@@ -8,8 +9,8 @@
       <p class="short-description">{{podcast.description}}</p>
     </div>
     <div class="card-action">
-      <a ng-href="podcasts/{{podcast._id}}" ng-show="vm.clickThru">See Page</a>
-      <a ng-href="{{podcast.website}}" target="_blank">View Website</a>
+      <a ng-show="vm.clickThru" ng-href="podcasts/{{podcast._id}}">See Page</a>
+      <a ng-hide="vm.clickThru" ng-href="{{podcast.website}}" target="_blank">View Website</a>
     </div>
   </div>
 </div>

@@ -1,2 +1,6 @@
 <h2>{{ vm.user.name }}'s Profile</h2>
 <p>{{ vm.user.email }}</p>
+<h3>Your podcasts</h3>
+<div ng-repeat="podcast in vm.user.ownedPodcasts">
+  <podcast></podcast>
+</div>

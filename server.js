@@ -44,6 +44,7 @@ app.post('/api/login', controllers.authentication.login);
 app.get('/api/profile', auth, controllers.users.profile);
 app.get('/api/podcasts', controllers.podcasts.index);
 app.get('/api/podcasts/:podcastId', controllers.podcasts.show);
+app.post('/api/podcasts', auth, controllers.podcasts.create);
 
 // All others go to index
 app.get('*', function homepage (req, res) {

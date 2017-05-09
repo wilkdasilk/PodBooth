@@ -6,17 +6,33 @@ function profile (req, res) {
       "message" : "UnauthorizedError: private profile"
     });
   } else {
-    db.User
-    .findById(req.payload._id)
-    .exec(function(err, user) {
-      if(err) { console.log('usersController.show error', err); }
-      res.status(200).json(user);
-    })
+    currentUser(req)
+    .then(function(user) {
+      user.getOwnedPodcasts()
+        .then(function(podcasts){
+          user.ownedPodcasts = podcasts;
+          res.status(200).json(user)
+        }, function(err){
+          console.log("Error finding owned podcasts", err);
+        });
+    }, function(err) {
+      console.log('usersController.show error', err);
+    });
   }
-  
+
+}
+
+function currentUser (req) {
+  if (!req.payload._id) {
+    return null
+  } else {
+    var promise = db.User.findById(req.payload._id).exec();
+    return promise;
+  }
 }
 
 // export public methods here
 module.exports = {
-  profile: profile
+  profile: profile,
+  currentUser : currentUser
 };

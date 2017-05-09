@@ -4,8 +4,8 @@
     .module('podBooth')
     .service('authentication', authentication);
 
-  authentication.$inject = ['$http', '$window'];
-  function authentication (  $http,   $window ) {
+  authentication.$inject = ['$http', '$window', '$location'];
+  function authentication (  $http,   $window,   $location ) {
 
     var saveToken = function (token) {
       $window.localStorage['podbooth-token'] = token;
@@ -43,6 +43,12 @@
       }
     };
 
+    var requireLogin = function() {
+      if (!isLoggedIn()) {
+        $location.path('/');
+      }
+    }
+
     register = function(user) {
       return $http.post('/api/register', user).then(function(response){
         saveToken(response.data.token);
@@ -70,7 +76,8 @@
       isLoggedIn : isLoggedIn,
       register : register,
       login : login,
-      logout : logout
+      logout : logout,
+      requireLogin : requireLogin
     };
   }
 

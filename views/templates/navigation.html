@@ -4,6 +4,10 @@
   <li ng-show="navvm.isLoggedIn"><a ng-href="/profile">{{ navvm.currentUser.name }}'s Profile</a></li>
   <li ng-show="navvm.isLoggedIn"><a ng-href="/logout">Logout</a></li>
 </ul>
+<ul id="dropdown2" class="dropdown-content">
+  <li><a ng-href="/podcasts">Discover</a></li>
+  <li ng-show="navvm.isLoggedIn"><a ng-href="/podcast/new">Create Podcast</a></li>
+</ul>
 <nav>
   <div class="nav-wrapper">
     <a href="/home" class="brand-logo">
@@ -11,7 +15,7 @@
       PodBooth
     </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a ng-href="/podcasts">Discover</a></li>
+      <li><a class="dropdown-button" href="#" data-activates="dropdown2">Podcasts<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a class="dropdown-button" href="#" data-activates="dropdown1"><i class="material-icons">perm_identity</i><i class="material-icons right">arrow_drop_down</i></a></li>
     </ul>
   </div>
