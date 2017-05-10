@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('podcastNewCtrl', podcastNewCtrl);
 
-  podcastNewCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication'];
-  function podcastNewCtrl(   $http,   $routeParams,   $location,   authentication ) {
+  podcastNewCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication', 'Upload'];
+  function podcastNewCtrl(   $http,   $routeParams,   $location,   authentication,   Upload ) {
 
     authentication.requireLogin();
 
@@ -19,8 +19,13 @@
     };
 
     vm.createPodcast = function () {
-      $http({
-        method: 'POST',
+      vm.fileSelected = function(files) {
+        if (files && files.length) {
+          vm.newPodcast.image = files[0];
+        }
+      }
+      console.log(vm.newPodcast);
+      Upload.upload({
         url: '/api/podcasts',
         data: vm.newPodcast,
         headers: {
