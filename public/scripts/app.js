@@ -2,7 +2,7 @@ console.log("Sanity check, we're connected!");
 
 (function() {
 
-  angular.module('podBooth', ['ngRoute']);
+  angular.module('podBooth', ['ngRoute', 'ngFileUpload']);
 
   function config(   $routeProvider,   $locationProvider) {
     $routeProvider

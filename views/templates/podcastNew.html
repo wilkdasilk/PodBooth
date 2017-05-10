@@ -16,7 +16,7 @@
       </div>
       <div>
         <label for="image" class="left">Image</label>
-        <input type="text" id="image" placeholder="Give your podcast an image" ng-model="vm.newPodcast.image">
+        <input type="file" id="image" ngf-select="vm.fileSelected($files)" accept="'image/*'" placeholder="Give your podcast an image" ng-model="vm.newPodcast.image">
       </div>
       <button type="submit" class="btn btn-default">Create Podcast</button>
     </form>
