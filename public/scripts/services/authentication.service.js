@@ -4,8 +4,8 @@
     .module('podBooth')
     .service('authentication', authentication);
 
-  authentication.$inject = ['$http', '$window', '$location'];
-  function authentication (  $http,   $window,   $location ) {
+  authentication.$inject = ['$http', '$window', '$location', 'Upload'];
+  function authentication (  $http,   $window,   $location,   Upload ) {
 
     var saveToken = function (token) {
       $window.localStorage['podbooth-token'] = token;
@@ -50,11 +50,12 @@
     }
 
     register = function(user) {
-      return $http.post('/api/register', user).then(function(response){
-        saveToken(response.data.token);
-      }, function(error){
-        console.log(error);
-      });
+      return Upload.upload({url: '/api/register', data: user})
+                   .then(function(response){
+                     saveToken(response.data.token);
+                   }, function(error){
+                     console.log(error);
+                   });
     };
 
     login = function(user) {

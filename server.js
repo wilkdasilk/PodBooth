@@ -41,7 +41,7 @@ app.get('/templates/:name', function templates (req, res) {
  */
 
 app.get('/api', controllers.api.index);
-app.post('/api/register', controllers.authentication.register);
+app.post('/api/register', upload.single('avatar'), controllers.authentication.register);
 app.post('/api/login', controllers.authentication.login);
 app.get('/api/profile', auth, controllers.users.profile);
 app.get('/api/podcasts', controllers.podcasts.index);

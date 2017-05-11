@@ -18,6 +18,7 @@ var UserSchema = new Schema({
   ownedPodcasts : [{
     type: Schema.Types.ObjectId,
     ref: 'Podcast' }],
+  avatar: String,
   hash: String,
   salt: String
 });
@@ -46,7 +47,8 @@ UserSchema.methods.generateJwt = function () {
 
 UserSchema.methods.getOwnedPodcasts = function() {
   return db.Podcast
-  .find({ _owner: this._id }).exec();
+  .find({ _owner: this._id })
+  .populate('_owner').exec();
 }
 
 var User = mongoose.model('User', UserSchema);
