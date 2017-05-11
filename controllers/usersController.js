@@ -11,10 +11,17 @@ function profile (req, res) {
       user.getOwnedPodcasts()
         .then(function(podcasts){
           user.ownedPodcasts = podcasts;
-          console.log(user);
-          res.status(200).json(user)
         }, function(err){
           console.log("Error finding owned podcasts", err);
+        })
+        .then(function(){
+          user.getSubscribedPodcasts()
+            .then(function(subscribed){
+              user.subscribedPodcasts = subscribed;
+              res.status(200).json(user)
+            }, function(err){
+              console.log("Error getting subscribed podcasts");
+            });
         });
     }, function(err) {
       console.log('usersController.show error', err);

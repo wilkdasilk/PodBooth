@@ -18,6 +18,9 @@ var UserSchema = new Schema({
   ownedPodcasts : [{
     type: Schema.Types.ObjectId,
     ref: 'Podcast' }],
+  subscribedPodcasts : [{
+    type: Schema.Types.ObjectId,
+    ref: 'Podcast' }],
   avatar: String,
   hash: String,
   salt: String
@@ -54,6 +57,7 @@ UserSchema.methods.getOwnedPodcasts = function() {
 UserSchema.methods.getSubscribedPodcasts = function() {
   return db.Podcast
   .find({ subscribers: this._id })
+  .populate('_owner').exec();
 }
 
 var User = mongoose.model('User', UserSchema);
