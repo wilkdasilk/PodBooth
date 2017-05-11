@@ -47,6 +47,8 @@ app.get('/api/profile', auth, controllers.users.profile);
 app.get('/api/podcasts', controllers.podcasts.index);
 app.get('/api/podcasts/:podcastId', controllers.podcasts.show);
 app.post('/api/podcasts', auth, upload.single('image'), controllers.podcasts.create);
+app.post('/api/podcasts/:podcastId/subscribe', auth, controllers.podcasts.subscribe);
+
 
 // All others go to index
 app.get('*', function homepage (req, res) {

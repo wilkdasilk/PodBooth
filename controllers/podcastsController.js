@@ -29,6 +29,7 @@ function show(req, res) {
 function create(req, res) {
   req.body.image = "";
   req.body._owner ="";
+  req.body.subscribers = [];
   controllers.users.currentUser(req)
     .then(function(user) {
       req.body._owner = user._id;
@@ -61,10 +62,25 @@ function create(req, res) {
     })
 }
 
+function subscribe(req, res) {
+  controllers.users.currentUser(req)
+    .then(function(user) {
+      db.Podcast.update({_id: req.params.podcastId}, { $addToSet: { subscribers: user.id }})
+      .then(function(doc){
+        res.sendStatus(204);
+      }, function(err) {
+        console.log('error updating podcast subscribers', err)
+      });
+    }, function(err) {
+      console.log('usersController.show error', err);
+    });
+}
+
 
 // export public methods here
 module.exports = {
   index: index,
   show: show,
-  create: create
+  create: create,
+  subscribe: subscribe
 };

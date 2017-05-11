@@ -51,5 +51,10 @@ UserSchema.methods.getOwnedPodcasts = function() {
   .populate('_owner').exec();
 }
 
+UserSchema.methods.getSubscribedPodcasts = function() {
+  return db.Podcast
+  .find({ subscribers: this._id })
+}
+
 var User = mongoose.model('User', UserSchema);
 module.exports = User;

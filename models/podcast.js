@@ -10,8 +10,10 @@ var PodcastSchema = new Schema({
   image: String,
   _owner : {
     type: Schema.Types.ObjectId,
-    ref: 'User' }
-  //subscribers: [User.schema]
+    ref: 'User' },
+  subscribers: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User' }]
 });
 
 var Podcast = mongoose.model('Podcast', PodcastSchema);
