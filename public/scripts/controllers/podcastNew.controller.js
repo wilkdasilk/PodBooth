@@ -23,7 +23,7 @@
         if (files && files.length) {
           vm.newPodcast.image = files[0];
         }
-      }
+      };
       console.log(vm.newPodcast);
       Upload.upload({
         url: '/api/podcasts',

@@ -5,9 +5,13 @@ var del = require('delete');
 
 // GET /api/podcasts
 function index(req, res) {
-  db.Podcast.find({}, function(err, allPodcasts) {
-    res.json(allPodcasts);
-  });
+  db.Podcast.find({})
+    .populate('_owner').exec()
+    .then(function(allPodcasts) {
+       res.json(allPodcasts);
+     }, function(err) {
+       console.log('podcastsController.index error', err);
+     });
 }
 
 function show(req, res) {
