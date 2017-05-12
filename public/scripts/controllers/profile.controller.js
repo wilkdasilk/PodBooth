@@ -16,6 +16,7 @@
     podBoothData.getProfile()
       .then(function(response) {
         vm.user = response.data;
+        console.log(vm.user);
       }, function(e) {
         console.log(e);
       });
