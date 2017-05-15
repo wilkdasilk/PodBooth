@@ -32,6 +32,17 @@
       })
     }
 
+    vm.unsubscribe = function(podcast) {
+      $http({
+        method: 'DELETE',
+        url: `/api/podcasts/${podcast._id}/subscribe`,
+        headers: {
+          Authorization: 'Bearer ' + authentication.getToken()
+        }
+      }). then(function(res){
+      })
+    }
+
     vm.subscribed = function(podcast) {
       return podcast.subscribers.includes(authentication.currentUser()._id);
     }
