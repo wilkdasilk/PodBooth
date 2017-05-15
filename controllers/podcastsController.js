@@ -72,7 +72,21 @@ function subscribe(req, res) {
         console.log('error updating podcast subscribers', err)
       });
     }, function(err) {
-      console.log('usersController.show error', err);
+      console.log('usersController.subscribe error', err);
+    });
+}
+
+function unsubscribe(req, res) {
+  controllers.users.currentUser(req)
+    .then(function(user) {
+      db.Podcast.update({_id: req.params.podcastId}, { $pull: { subscribers: user.id }})
+      .then(function(doc){
+        res.sendStatus(204);
+      }, function(err) {
+        console.log('error removing podcast subscriber', err)
+      });
+    }, function(err) {
+      console.log('usersController.unsubscribe error', err);
     });
 }
 
@@ -82,5 +96,6 @@ module.exports = {
   index: index,
   show: show,
   create: create,
-  subscribe: subscribe
+  subscribe: subscribe,
+  unsubscribe: unsubscribe
 };
