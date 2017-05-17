@@ -8,6 +8,11 @@ var jwt = require('express-jwt');
 var auth = jwt({secret: process.env.POD_SECRET, userProperty: 'payload'});
 var multer = require('multer');
 var upload = multer({dest: './uploads'});
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+io.on('connection', function(socket) {
+  controllers.socket.connect(io, socket);
+});
 
 require('./config/passport');
 
@@ -58,6 +63,6 @@ app.get('*', function homepage (req, res) {
 });
 
 // listen on port 3000
-app.listen(process.env.PORT || 3000, function () {
+server.listen(process.env.PORT || 3000, function () {
   console.log('Express server is running on http://localhost:3000/');
 });
