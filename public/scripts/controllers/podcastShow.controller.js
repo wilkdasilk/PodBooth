@@ -11,6 +11,14 @@
 
     vm.podcast = [];
     vm.messages = [];
+    vm.comment = {
+      body: ''
+    }
+    vm.sendComment = function() {
+      socket.emit('event', { message: vm.comment.body });
+      vm.messages.push(vm.comment.body);
+      vm.comment.body = '';
+    }
 
 
     $http({
@@ -27,7 +35,6 @@
       socket.on('announcements', function(data) {
         console.log('Got announcement:', data.message);
       });
-      socket.emit('event', { message: "Hey it's a message!" });
       socket.on('stats', function(data) {
         console.log('Connected clients:', data.numClients);
       });

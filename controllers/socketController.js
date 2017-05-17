@@ -18,6 +18,7 @@ function connect (io, socket) {
   socket.on('event', function(data){
     console.log('A client sent us this message:', data.message);
     socket.broadcast.to(socket.room).emit('message', { message: data.message });
+    socket.emit('message', {message: `You said... ${data.message}`} );
   });
 
   socket.on('disconnect', function(){
