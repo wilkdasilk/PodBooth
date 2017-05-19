@@ -4,20 +4,26 @@
     .module('podBooth')
     .controller('podcastShowCtrl', podcastShowCtrl);
 
-  podcastShowCtrl.$inject = ['$http', '$routeParams', '$location', 'socket'];
-  function podcastShowCtrl(   $http,   $routeParams,   $location,   socket ) {
+  podcastShowCtrl.$inject = ['$http', '$routeParams', '$location', 'socket', 'authentication'];
+  function podcastShowCtrl(   $http,   $routeParams,   $location,   socket,   authentication ) {
     var vm = this;
     vm.clickThru = false;
 
     vm.podcast = [];
-    vm.messages = [];
-    vm.comment = {
-      body: ''
+    vm.comments = [];
+    vm.newComment = {
+      time: Date.now(),
+      body: '',
+      user: {
+         _id: authentication.currentUser()._id,
+        name: authentication.currentUser().name
+      }
     }
     vm.sendComment = function() {
-      socket.emit('event', { message: vm.comment.body });
-      vm.messages.push(vm.comment.body);
-      vm.comment.body = '';
+      vm.newComment.time = Date.now();
+      socket.emit('event', { message: vm.newComment });
+      vm.comments.push(angular.copy(vm.newComment));
+      vm.newComment.body = '';
     }
 
 
@@ -32,6 +38,12 @@
         $location.path('/podcasts');
       }
       socket.emit('room', $routeParams.id);
+      socket.on('loadComments', function(data) {
+        console.log('got saved comments:', data.comments);
+        data.comments.forEach(function(comment) {
+          vm.comments.push(data.comment);
+        });
+      });
       socket.on('announcements', function(data) {
         console.log('Got announcement:', data.message);
       });
@@ -40,7 +52,7 @@
       });
       socket.on('message', function(data) {
         console.log('got a message:', data.message);
-        vm.messages.push(data.message);
+        vm.comments.push(data.message);
       });
     }, function (err) {
       console.log('There was an error getting the data', err);

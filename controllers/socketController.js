@@ -1,3 +1,5 @@
+var controllers = require('../controllers');
+
 var numClients ={};
 
 function connect (io, socket) {
@@ -10,6 +12,10 @@ function connect (io, socket) {
       numClients[room]++;
     }
     io.sockets.in(room).emit('stats', { numClients: numClients[room] });
+    controllers.comments.index()
+      .then(function(savedComments) {
+        socket.emit('loadComments', { comments: savedComments });
+      });
     console.log(`connection in room ${room}!`);
     console.log('Connected clients:', numClients[room]);
     socket.broadcast.to(socket.room).emit('announcements', { message: 'A new user has joined!' });
@@ -18,7 +24,7 @@ function connect (io, socket) {
   socket.on('event', function(data){
     console.log('A client sent us this message:', data.message);
     socket.broadcast.to(socket.room).emit('message', { message: data.message });
-    socket.emit('message', {message: `You said... ${data.message}`} );
+    socket.emit('message', {message: {body: `You said... ${data.message.body}`, user: {name: "Server echo" }, time: Date.now()}} );
   });
 
   socket.on('disconnect', function(){
