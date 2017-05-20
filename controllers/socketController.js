@@ -12,10 +12,6 @@ function connect (io, socket) {
       numClients[room]++;
     }
     io.sockets.in(room).emit('stats', { numClients: numClients[room] });
-    controllers.comments.index()
-      .then(function(savedComments) {
-        socket.emit('loadComments', { comments: savedComments });
-      });
     console.log(`connection in room ${room}!`);
     console.log('Connected clients:', numClients[room]);
     socket.broadcast.to(socket.room).emit('announcements', { message: 'A new user has joined!' });
@@ -23,8 +19,12 @@ function connect (io, socket) {
 
   socket.on('event', function(data){
     console.log('A client sent us this message:', data.message);
-    socket.broadcast.to(socket.room).emit('message', { message: data.message });
-    socket.emit('message', {message: {body: `You said... ${data.message.body}`, user: {name: "Server echo" }, time: Date.now()}} );
+    controllers.comments.create(data.message)
+      .then(function(comment) {
+        console.log(comment);
+        socket.broadcast.to(socket.room).emit('message', { message: comment });
+        socket.emit('message', {message: {body: `You said... ${comment.body}`, _owner: {name: "Server echo"}, created_at: comment.created_at}} );
+      });
   });
 
   socket.on('disconnect', function(){
