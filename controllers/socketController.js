@@ -1,3 +1,5 @@
+var controllers = require('../controllers');
+
 var numClients ={};
 
 function connect (io, socket) {
@@ -17,8 +19,31 @@ function connect (io, socket) {
 
   socket.on('event', function(data){
     console.log('A client sent us this message:', data.message);
-    socket.broadcast.to(socket.room).emit('message', { message: data.message });
-    socket.emit('message', {message: `You said... ${data.message}`} );
+    controllers.comments.create(data.message)
+      .then(function(comment) {
+        console.log(comment);
+        socket.broadcast.to(socket.room).emit('message', { message: comment });
+        socket.emit('message', {message: {body: `You said... ${comment.body}`, _owner: {name: "Server echo"}, created_at: comment.created_at}} );
+      });
+  });
+
+  socket.on('upvote', function(data){
+    console.log('A client sent us this upvote:', data.upvote);
+    controllers.comments.upvote(data.upvote)
+      .then(function(upvote) {
+        console.log(upvote);
+        socket.broadcast.to(socket.room).emit('upvote', { upvote: upvote });
+        socket.emit('upvote', { upvote: upvote } );
+      });
+  });
+  socket.on('unvote', function(data){
+    console.log('A client sent us this unvote:', data.unvote);
+    controllers.comments.unvote(data.unvote)
+      .then(function(comment) {
+        console.log(comment);
+        socket.broadcast.to(socket.room).emit('unvote', { unvote: comment });
+        socket.emit('unvote', { unvote: comment } );
+      });
   });
 
   socket.on('disconnect', function(){
