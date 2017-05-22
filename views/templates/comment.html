@@ -1,0 +1,5 @@
+<h5>{{comment._owner.name}}</h5>
+<p>{{comment.body}}</p>
+<p><span am-time-ago="comment.created_at"></p>
+<button ng-hide="false" ng-click="commentvm.upvote(comment)" class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>{{comment.upvoters.length}}</a>
+<button ng-show="false" ng-click="commentvm.unvote(comment)" class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>{{comment.upvoters.length}}</a>

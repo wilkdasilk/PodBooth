@@ -1,20 +1,4 @@
 <div ng-repeat="podcast in vm.podcast">
   <podcast></podcast>
 </div>
-<div ng-repeat="comment in vm.comments | orderBy: '-created_at'">
-  <h5>{{comment._owner.name}}</h5>
-  <p>{{comment.body}}</p>
-  <p><span am-time-ago="comment.created_at"></p>
-</div>
-<div class="row">
-  <div class="col m6 offset-m3">
-    <h2>Comment</h2>
-    <form ng-submit="vm.sendComment()">
-      <div>
-        <label for="body" class="left">Comment</label>
-        <textarea type="text" class="materialize-textarea" id="comment" placeholder="What do you have to say?" ng-model="vm.newComment.body"></textarea>
-      </div>
-      <button type="submit" class="btn btn-default">Comment!</button>
-    </form>
-  </div>
-</div>
+<comments></comments>

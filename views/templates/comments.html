@@ -1,0 +1,15 @@
+<div ng-repeat="comment in commentsvm.comments | orderBy: '-created_at'">
+  <comment></comment>
+</div>
+<div class="row">
+  <div class="col m6 offset-m3">
+    <h2>Comment</h2>
+    <form ng-submit="commentsvm.sendComment()">
+      <div>
+        <label for="body" class="left">Comment</label>
+        <textarea type="text" class="materialize-textarea" id="comment" placeholder="What do you have to say?" ng-model="commentsvm.newComment.body"></textarea>
+      </div>
+      <button type="submit" class="btn btn-default">Comment!</button>
+    </form>
+  </div>
+</div>
