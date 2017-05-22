@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('commentsCtrl', commentsCtrl);
 
-  commentsCtrl.$inject = ['$http', '$routeParams', '$location', 'socket', 'authentication'];
-  function commentsCtrl(   $http,   $routeParams,   $location,   socket,   authentication ) {
+  commentsCtrl.$inject = ['$http', '$routeParams', '$location', 'socket', 'authentication', '$timeout'];
+  function commentsCtrl(   $http,   $routeParams,   $location,   socket,   authentication,   $timeout ) {
     var vm = this;
 
     vm.comments = [];
@@ -50,6 +50,22 @@
       socket.on('message', function(data) {
         console.log('got a message:', data.message);
         vm.comments.push(data.message);
+      });
+      socket.on('upvote', function(data) {
+        var index = vm.comments.findIndex(function(comment) {
+          return comment._id == data.upvote._id
+        });
+        $timeout(function() {
+          vm.comments[index] = data.upvote;
+        });
+      });
+      socket.on('unvote', function(data) {
+        var index = vm.comments.findIndex(function(comment) {
+          return comment._id == data.unvote._id
+        });
+        $timeout(function() {
+          vm.comments[index] = data.unvote;
+        });
       });
     });
   }

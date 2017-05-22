@@ -37,11 +37,21 @@ function create(comment) {
   return db.Comment.create(comment)
 }
 
+function upvote(upvote) {
+  return db.Comment.findOneAndUpdate({_id: upvote.comment}, { $addToSet: { upvoters: upvote.user }}, { new: true })
+  .populate('_owner').exec();
+}
+
+function unvote(unvote) {
+  return db.Comment.findOneAndUpdate({_id: unvote.comment}, { $pull: { upvoters: unvote.user }}, { new: true })
+  .populate('_owner').exec();
+}
+
 
 // export public methods here
 module.exports = {
   index: index,
-  create: create
-  // upvote: upvote,
-  // unvote: unvote
+  create: create,
+  upvote: upvote,
+  unvote: unvote
 };

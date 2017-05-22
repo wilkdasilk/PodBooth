@@ -27,6 +27,25 @@ function connect (io, socket) {
       });
   });
 
+  socket.on('upvote', function(data){
+    console.log('A client sent us this upvote:', data.upvote);
+    controllers.comments.upvote(data.upvote)
+      .then(function(upvote) {
+        console.log(upvote);
+        socket.broadcast.to(socket.room).emit('upvote', { upvote: upvote });
+        socket.emit('upvote', { upvote: upvote } );
+      });
+  });
+  socket.on('unvote', function(data){
+    console.log('A client sent us this unvote:', data.unvote);
+    controllers.comments.unvote(data.unvote)
+      .then(function(comment) {
+        console.log(comment);
+        socket.broadcast.to(socket.room).emit('unvote', { unvote: comment });
+        socket.emit('unvote', { unvote: comment } );
+      });
+  });
+
   socket.on('disconnect', function(){
     socket.leave(socket.room);
     numClients[socket.room]--;
