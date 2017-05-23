@@ -4,9 +4,9 @@
     .module('podBooth')
     .controller('registerCtrl', registerCtrl);
 
-  registerCtrl.$inject = ['$location', 'authentication'];
+  registerCtrl.$inject = ['$location', 'authentication', '$rootScope'];
 
-  function registerCtrl(  $location,    authentication) {
+  function registerCtrl(  $location,    authentication,   $rootScope) {
     var vm = this;
 
     vm.credentials = {
@@ -25,6 +25,8 @@
       authentication
         .register(vm.credentials)
         .then(function(){
+          $rootScope.isLoggedIn = true;
+          $rootScope.currentUser = authentication.currentUser();
           $location.path('profile');
         }, function(err){
           alert(err);

@@ -4,12 +4,9 @@
     .module('podBooth')
     .controller('navigationCtrl', navigationCtrl);
 
-  navigationCtrl.$inject = ['$location', 'authentication'];
-  function navigationCtrl(   $location,   authentication) {
+  navigationCtrl.$inject = ['$location', 'authentication', '$scope'];
+  function navigationCtrl(   $location,   authentication,   $scope) {
     var vm = this;
-
-    vm.isLoggedIn = authentication.isLoggedIn();
-    vm.currentUser = authentication.currentUser();
 
     vm.dropDownConfig = function() {
       return {

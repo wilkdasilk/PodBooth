@@ -59,7 +59,11 @@ console.log("Sanity check, we're connected!");
       if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
         $location.path('/');
       }
-    });
+    })
+    $rootScope.currentUser = authentication.currentUser();
+    if ($rootScope.currentUser) {
+      $rootScope.isLoggedIn = true;
+    }
   }
 
   angular

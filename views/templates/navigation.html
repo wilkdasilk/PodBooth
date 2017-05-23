@@ -1,12 +1,12 @@
 <ul id="dropdown1" class="dropdown-content">
-  <li ng-hide="navvm.isLoggedIn"><a ng-href="/login">Login</a></li>
-  <li ng-hide="navvm.isLoggedIn"><a ng-href="/register">Sign Up</a></li>
-  <li ng-show="navvm.isLoggedIn"><a ng-href="/profile">{{ navvm.currentUser.name }}'s Profile</a></li>
-  <li ng-show="navvm.isLoggedIn"><a ng-href="/logout">Logout</a></li>
+  <li ng-hide="isLoggedIn"><a ng-href="/login">Login</a></li>
+  <li ng-hide="isLoggedIn"><a ng-href="/register">Sign Up</a></li>
+  <li ng-show="isLoggedIn"><a ng-href="/profile">{{ currentUser.name }}'s Profile</a></li>
+  <li ng-show="isLoggedIn"><a ng-href="/logout">Logout</a></li>
 </ul>
 <ul id="dropdown2" class="dropdown-content">
   <li><a ng-href="/podcasts">Discover</a></li>
-  <li ng-show="navvm.isLoggedIn"><a ng-href="/podcast/new">Create Podcast</a></li>
+  <li ng-show="isLoggedIn"><a ng-href="/podcast/new">Create Podcast</a></li>
 </ul>
 <nav>
   <div class="nav-wrapper">
