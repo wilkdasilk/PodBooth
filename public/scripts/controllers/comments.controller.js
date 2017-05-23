@@ -7,6 +7,17 @@
   commentsCtrl.$inject = ['$http', '$routeParams', '$location', 'socket', 'authentication', '$timeout'];
   function commentsCtrl(   $http,   $routeParams,   $location,   socket,   authentication,   $timeout ) {
     var vm = this;
+    vm.sort = '-upvoters.length';
+    vm.sortByTime = function(){
+      if (vm.sort == '-upvoters.length') {
+        vm.sort = '-created_at'
+      }
+    };
+    vm.sortByVote = function(){
+      if(vm.sort == '-created_at') {
+        vm.sort = '-upvoters.length'
+      }
+    };
 
     vm.comments = [];
     vm.newComment = {
