@@ -23,7 +23,7 @@ function connect (io, socket) {
       .then(function(comment) {
         console.log(comment);
         socket.broadcast.to(socket.room).emit('message', { message: comment });
-        socket.emit('message', {message: {body: `You said... ${comment.body}`, _owner: {name: "Server echo"}, created_at: comment.created_at}} );
+        socket.emit('message', {message: {body: `You said... ${comment.body}`, _owner: {name: "Server echo"}, created_at: comment.created_at, broadcast: comment.broadcast }} );
       });
   });
 

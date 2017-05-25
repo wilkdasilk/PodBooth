@@ -12,9 +12,9 @@ var CommentSchema = new Schema({
   upvoters: [{
     type: Schema.Types.ObjectId,
     ref: 'User' }],
-  podcast: {
+  broadcast: {
     type: Schema.Types.ObjectId,
-    ref: 'Podcast' }
+    ref: 'Broadcast' },
 });
 
 var Comment = mongoose.model('Comment', CommentSchema);

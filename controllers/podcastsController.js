@@ -6,7 +6,9 @@ var del = require('delete');
 // GET /api/podcasts
 function index(req, res) {
   db.Podcast.find({})
-    .populate('_owner').exec()
+    .populate('_owner')
+    .populate('latestBroadcast')
+    .exec()
     .then(function(allPodcasts) {
        res.json(allPodcasts);
      }, function(err) {
@@ -17,7 +19,9 @@ function index(req, res) {
 function show(req, res) {
   console.log(req.params.podcastId);
   db.Podcast.findById(req.params.podcastId)
-    .populate('_owner').exec()
+    .populate('_owner')
+    .populate('latestBroadcast')
+    .exec()
     .then(function(foundPodcast) {
       console.log(foundPodcast);
       res.json(foundPodcast);

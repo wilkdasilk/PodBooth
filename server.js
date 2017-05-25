@@ -55,8 +55,8 @@ app.post('/api/podcasts', auth, upload.single('image'), controllers.podcasts.cre
 app.post('/api/podcasts/:podcastId/subscribe', auth, controllers.podcasts.subscribe);
 app.delete('/api/podcasts/:podcastId/subscribe', auth, controllers.podcasts.unsubscribe);
 app.get('/api/podcasts/:podcastId/comments', auth, controllers.comments.index);
-
-
+app.post('/api/broadcasts', auth, controllers.broadcasts.create);
+app.put('/api/broadcasts/:id', auth, controllers.broadcasts.close);
 
 // All others go to index
 app.get('*', function homepage (req, res) {

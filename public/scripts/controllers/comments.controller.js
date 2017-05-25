@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('commentsCtrl', commentsCtrl);
 
-  commentsCtrl.$inject = ['$http', '$routeParams', '$location', 'socket', 'authentication', '$timeout'];
-  function commentsCtrl(   $http,   $routeParams,   $location,   socket,   authentication,   $timeout ) {
+  commentsCtrl.$inject = ['$http', '$routeParams', '$location', 'socket', 'authentication', '$timeout', '$scope'];
+  function commentsCtrl(   $http,   $routeParams,   $location,   socket,   authentication,   $timeout,   $scope ) {
     var vm = this;
     vm.sort = '-upvoters.length';
     vm.sortByTime = function(){
@@ -24,11 +24,15 @@
       body: '',
       _owner: {
          _id: authentication.currentUser()._id
-      },
-      podcast: {
-        _id: $routeParams.id
       }
     };
+    $scope.$watch('podcast', function(podcast) {
+      if (!!podcast) {
+        vm.newComment.broadcast = {
+          _id: podcast.latestBroadcast._id
+        }
+      }
+    });
     vm.sendComment = function() {
       socket.emit('event', { message: vm.newComment });
       vm.newComment._owner.name = authentication.currentUser().name;
@@ -46,12 +50,18 @@
         Authorization: 'Bearer ' + authentication.getToken()
       }
     }).then(function(comments) {
-      vm.comments = comments.data;
+
+      if (comments.status != 204) {
+        vm.comments = comments.data;
+      } else {
+        console.log("broadcast has no comments");
+      }
       }, function(err) {
         console.log("error loading comments", err);
     })
     .then(function(){
-      socket.emit('room', $routeParams.id);
+      console.log("scope.podcast is", $scope.podcast.latestBroadcast);
+      socket.emit('room', $scope.podcast.latestBroadcast._id);
       socket.on('announcements', function(data) {
         console.log('Got announcement:', data.message);
       });
