@@ -11,19 +11,28 @@ function index(req,res) {
   controllers.users.currentUser(req)
     .then(function(user) {
       //update to if user isn't subscribed or not live
-      db.Podcast.find({_id: req.params.podcastId, subscribers: user._id})
+      db.Podcast.findOne({_id: req.params.podcastId, subscribers: user._id})
         .then(function(podcast){
-          db.Comment.find({podcast: req.params.podcastId})
-            .populate('_owner').exec()
-            .then(function(allComments) {
-               res.json(allComments);
-             }, function(err) {
-               console.log('commentsController.index error', err);
-             });
-          }, function(err) {
+          if (podcast.length == 0) {
             res.status(401).json({
               "message" : "UnauthorizedError: must be subscribed"
             });
+          }
+          else if (!podcast.latestBroadcast) {
+            //no broadcast yet, therefore no comments
+            res.sendStatus(204);
+          } else {
+            console.log("index found podcast with broadcast",podcast);
+            db.Comment.find({broadcast: podcast.latestBroadcast})
+              .populate('_owner').exec()
+              .then(function(allComments) {
+                 res.json(allComments);
+               }, function(err) {
+                 console.log('commentsController.index error', err);
+               });
+          }
+        }, function(err) {
+            console.log("error finding Podcast", err);
           })
       }, function(err){
         console.log("error finding podcast in commentsController.index", err)
@@ -33,7 +42,7 @@ function index(req,res) {
 
 function create(comment) {
   comment.created_at = Date.now();
-  console.log(comment.room);
+  console.log("inside create comment is", comment);
   return db.Comment.create(comment)
 }
 

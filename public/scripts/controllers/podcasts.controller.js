@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('podcastsCtrl', podcastsCtrl);
 
-  podcastsCtrl.$inject = ['$http', 'authentication'];
-  function podcastsCtrl(   $http,   authentication ) {
+  podcastsCtrl.$inject = ['$http', 'authentication', '$rootScope'];
+  function podcastsCtrl(   $http,   authentication, $rootScope ) {
     var vm = this;
     vm.clickThru = true;
 
@@ -44,7 +44,7 @@
     }
 
     vm.subscribed = function(podcast) {
-      return podcast.subscribers.includes(authentication.currentUser()._id);
+      return podcast.subscribers.includes($rootScope.currentUser._id);
     }
 
   }
