@@ -10,9 +10,11 @@
     vm.clickThru = false;
 
     vm.podcast = [];
-    vm.isOwner = function() {
-      return vm.podcast._owner == $rootScope.currentUser._id;
-    };
+    vm.isOwner = (function() {
+      if (vm.podcast[0]){
+        return vm.podcast[0]._owner._id == $rootScope.currentUser._id;
+      }
+    })();
     vm.subscribed = function(podcast) {
       return podcast.subscribers.includes($rootScope.currentUser._id);
     };
@@ -26,10 +28,24 @@
           Authorization: 'Bearer ' + authentication.getToken()
         }
       }).then(function(res){
-        vm.podcast.latestBroadcast = res.data;
+        vm.podcast[0].latestBroadcast = res.data;
         vm.isLive = vm.podcast[0].latestBroadcast.active;
       }, function(err) {
         console.log("error creating broadcast,", err);
+      });
+    }
+
+    vm.endBroadcast = function(){
+      $http({
+        method: 'PUT',
+        url: `/api/broadcasts/${vm.podcast[0].latestBroadcast._id}`,
+        headers: {
+          Authorization: 'Bearer ' + authentication.getToken()
+        }
+      }).then(function(res){
+        vm.isLive = res.data.active;
+      }, function(err) {
+        console.log("error ending broadcast,", err);
       });
     }
 
@@ -38,6 +54,7 @@
       url: `/api/podcasts/${$routeParams.id}`
     }).then(function (res) {
       vm.podcast = [res.data];
+      vm.isOwner = vm.podcast[0]._owner._id == $rootScope.currentUser._id;
       if (!!vm.podcast[0].latestBroadcast) {
         vm.isLive = vm.podcast[0].latestBroadcast.active;
       } else {

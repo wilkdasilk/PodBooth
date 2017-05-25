@@ -40,17 +40,31 @@ function close(req,res) {
   controllers.users.currentUser(req)
     .then(function(user) {
       //ensure request comes from owner
-      db.Podcast.find({_id: req.params.podcastId, _owner: user._id})
-        .then(function(podcast){
-          db.Broadcast.findOneAndUpdate({_id: req.params.id, active: false}, {new: true})
-            .then(function(broadcast){
-              res.json(broadcast);
-            }, function(err){
-              console.log("Error closing broadcast,", err);
-            })
+      db.Broadcast.findById(req.params.id)
+        .populate({
+          path: 'podcast',
+          populate: { path: '_owner'}
+        }).exec()
+        .then(function(broadcast){
+          if (broadcast.podcast._owner._id.toString() == user._id.toString()) {
+            broadcast.active = false;
+            broadcast.save(function(err, broadcast){
+              if (err) {
+                console.log("Error closing broadcast,", err);
+                res.sendStatus(500);
+              } else {
+                res.json(broadcast);
+              }
+            });
+          } else {
+            res.sendStatus(401).json({
+              "message" : "UnauthorizedError: must be podcast owner to close broadcast"
+            });
+          }
         }, function(err){
-          res.status(401).json({
-            "message" : "UnauthorizedError: must be podcast owner to close broadcast"
+          console.log("error finding broadcast", err);
+          res.sendStatus(404).json({
+            "message" : "Bad Request: cannot find Broadcast by Id provided"
           });
         });
     });

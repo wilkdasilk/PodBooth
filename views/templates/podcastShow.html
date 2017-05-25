@@ -1,6 +1,7 @@
 <div ng-repeat="podcast in vm.podcast">
   <podcast></podcast>
 </div>
-<button ng-show="vm.isOwner() && !vm.isLive" ng-click="vm.createBroadcast()" class="waves-effect waves-light btn">Go live!</button>
+<button ng-show="vm.isOwner && !vm.isLive" ng-click="vm.createBroadcast()" class="waves-effect waves-light btn">Go live!</button>
 <p ng-show="vm.isLive"><i class="material-icons">flash_on</i>live</p>
+<button ng-hide="vm.isOwner && !vm.isLive" ng-click="vm.endBroadcast()" class="waves-effect waves-light btn">End Broadcast</button>
 <comments ng-if="vm.isLive && vm.subscribed(vm.podcast[0])" podcast="vm.podcast[0]"></comments>
