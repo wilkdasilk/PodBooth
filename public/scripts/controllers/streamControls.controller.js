@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('streamControlsCtrl', streamControlsCtrl);
 
-  streamControlsCtrl.$inject = ['$http', 'socket', '$scope', '$location'];
-  function streamControlsCtrl(   $http,   socket,   $scope,   $location) {
+  streamControlsCtrl.$inject = ['$http', 'socket', '$scope'];
+  function streamControlsCtrl(   $http,   socket,   $scope) {
 
     var vm = this;
 
@@ -27,7 +27,7 @@
         analyser.connect(gainNode);
         gainNode.connect(audioCtx.destination);
 
-        $scope.$on('$locationChangeStart', function(event) {
+        $scope.$on('$destroy', function() {
           var track = stream.getTracks()[0];  // only one media track
             track.stop();
         });
