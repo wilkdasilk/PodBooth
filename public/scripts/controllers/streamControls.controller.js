@@ -8,6 +8,16 @@
   function streamControlsCtrl(   $http,   socket,   $scope) {
 
     var vm = this;
+    vm.muted = false;
+    vm.toggleMute = function() {
+      if(vm.muted) {
+        gainNode.gain.value = 1; // gain set to 0 to mute sound
+        vm.muted = false;
+      } else {
+        gainNode.gain.value = 0; // gain set to 1 to unmute sound
+        vm.muted = true;
+      }
+    };
 
     navigator.getUserMedia = (navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
@@ -17,6 +27,8 @@
     var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     var analyser = audioCtx.createAnalyser();
     var gainNode = audioCtx.createGain();
+
+
 
     navigator.getUserMedia(
       { audio: true },
