@@ -6,5 +6,5 @@
   <button ng-show="vm.isOwner && vm.isLive" ng-click="vm.endBroadcast()" class="waves-effect waves-light btn">End Broadcast</button>
   <p ng-show="vm.isLive"><i class="material-icons">flash_on</i>live</p>
 </div>
-<stream ng-if="vm.isOwner && vm.isLive"></stream>
+<stream ng-if="vm.isOwner && vm.isLive" podcast="vm.podcast[0]"></stream>
 <comments ng-if="vm.isLive && vm.subscribed(vm.podcast[0])" podcast="vm.podcast[0]"></comments>

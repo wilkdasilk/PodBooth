@@ -34,13 +34,22 @@
       { audio: true },
       function(stream){
         console.log("inside successful stream callback");
+        var streamDestination = audioCtx.createMediaStreamDestination();
         source = audioCtx.createMediaStreamSource(stream);
         source.connect(analyser);
         analyser.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
+        gainNode.connect(streamDestination);
+        //gainNode.connect(audioCtx.destination);
+        var mediaRecorder = new MediaStreamRecorder(streamDestination.stream);
+        mediaRecorder.mimeType = 'audio/wav';
+        mediaRecorder.start(2000);
+        mediaRecorder.ondataavailable = function(blob) {
+          socket.emit('streamSource', blob);
+        };
 
         $scope.$on('$destroy', function() {
           var track = stream.getTracks()[0];  // only one media track
+            mediaRecorder.stop();
             track.stop();
         });
       },
