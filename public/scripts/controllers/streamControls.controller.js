@@ -39,7 +39,7 @@
         source.connect(analyser);
         analyser.connect(gainNode);
         gainNode.connect(streamDestination);
-        //gainNode.connect(audioCtx.destination);
+        gainNode.connect(audioCtx.destination);
         var mediaRecorder = new MediaStreamRecorder(streamDestination.stream);
         mediaRecorder.mimeType = 'audio/wav';
         mediaRecorder.start(2000);
