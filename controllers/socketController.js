@@ -3,6 +3,7 @@ var controllers = require('../controllers');
 var numClients ={};
 
 function connect (io, socket) {
+  socket.chunks = [];
   socket.on('room', function(room){
     socket.room = room;
     socket.join(room);
@@ -44,6 +45,10 @@ function connect (io, socket) {
         socket.broadcast.to(socket.room).emit('unvote', { unvote: comment });
         socket.emit('unvote', { unvote: comment } );
       });
+  });
+  socket.on('streamSource', function(data) {
+    socket.broadcast.to(socket.room).emit('liveStream', { liveStream: data });
+    socket.emit('liveStream', { liveStream: data });
   });
 
   socket.on('disconnect', function(){

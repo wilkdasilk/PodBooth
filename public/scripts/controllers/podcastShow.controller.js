@@ -16,7 +16,12 @@
       }
     })();
     vm.subscribed = function(podcast) {
-      return podcast.subscribers.includes($rootScope.currentUser._id);
+      if (podcast){
+        return podcast.subscribers.includes($rootScope.currentUser._id);
+      }
+      else {
+        return false;
+      }
     };
 
     vm.createBroadcast = function(){
