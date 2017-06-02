@@ -13,7 +13,7 @@ function index(req,res) {
       //update to if user isn't subscribed or not live
       db.Podcast.findOne({_id: req.params.podcastId, subscribers: user._id})
         .then(function(podcast){
-          if (podcast.length == 0) {
+          if (!podcast) {
             res.status(401).json({
               "message" : "UnauthorizedError: must be subscribed"
             });
