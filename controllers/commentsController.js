@@ -10,10 +10,10 @@ function index(req,res) {
   }
   controllers.users.currentUser(req)
     .then(function(user) {
-      //update to if user isn't subscribed or not live
-      db.Podcast.findOne({_id: req.params.podcastId, subscribers: user._id})
+      //update to error if not live
+      db.Podcast.findOne({_id: req.params.podcastId, $or: [{subscribers: user._id},{_owner: user._id}]})
         .then(function(podcast){
-          if (podcast.length == 0) {
+          if (!podcast) {
             res.status(401).json({
               "message" : "UnauthorizedError: must be subscribed"
             });
