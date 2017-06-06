@@ -7,6 +7,11 @@
   podcastsCtrl.$inject = ['$http', 'authentication', '$rootScope'];
   function podcastsCtrl(   $http,   authentication, $rootScope ) {
     var vm = this;
+    vm.showAmount = 10;
+    vm.showMore = function (){
+      vm.showAmount +=10;
+    };
+
     vm.clickThru = true;
 
     vm.podcasts = [];
