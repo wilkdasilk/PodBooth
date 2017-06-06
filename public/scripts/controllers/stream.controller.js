@@ -18,9 +18,9 @@
 
     socket.on('liveStream', handoffAudio);
 
-    // $scope.$on('$destroy', function(){
-    //   socket.off();
-    // });
+    $scope.$on('$destroy', function(){
+      audioCtx.close();
+    });
 
     function handoffAudio(data) {
       var currentChunk = data.liveStream;

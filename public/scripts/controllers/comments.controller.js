@@ -33,6 +33,7 @@
         }
       }
     });
+
     vm.sendComment = function() {
       socket.emit('event', { message: vm.newComment });
       vm.newComment._owner.name = authentication.currentUser().name;
