@@ -4,8 +4,8 @@
     .module('podBooth')
     .service('authentication', authentication);
 
-  authentication.$inject = ['$http', '$window', '$location', 'Upload'];
-  function authentication (  $http,   $window,   $location,   Upload ) {
+  authentication.$inject = ['$http', '$window', '$location', 'Upload', '$rootScope'];
+  function authentication (  $http,   $window,   $location,   Upload,   $rootScope ) {
 
     var saveToken = function (token) {
       $window.localStorage['podbooth-token'] = token;
@@ -54,6 +54,8 @@
       return Upload.upload({url: '/api/register', data: user})
                    .then(function(response){
                      saveToken(response.data.token);
+                     $rootScope.isLoggedIn = true;
+                     $rootScope.currentUser = currentUser();
                    }, function(error){
                      console.log(error);
                    });
@@ -62,6 +64,8 @@
     login = function(user) {
       return $http.post('/api/login', user).then(function(response) {
         saveToken(response.data.token);
+        $rootScope.isLoggedIn = true;
+        $rootScope.currentUser = currentUser();
       }, function(error){
         console.log(error);
       });
@@ -69,6 +73,8 @@
 
     logout = function() {
       $window.localStorage.removeItem('podbooth-token');
+      $rootScope.isLoggedIn = false;
+      $rootScope.currentUser = undefined;
     };
 
     return {

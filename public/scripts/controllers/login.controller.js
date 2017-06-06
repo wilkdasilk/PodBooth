@@ -17,8 +17,6 @@
       authentication
         .login(vm.credentials)
         .then(function() {
-          $rootScope.isLoggedIn = true;
-          $rootScope.currentUser = authentication.currentUser();
           $location.path('profile');
         }, function(err) {
           alert(err);

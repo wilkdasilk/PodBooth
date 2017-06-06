@@ -8,9 +8,7 @@
   function logoutCtrl(   $location,   authentication,   $rootScope) {
 
     authentication
-      .logout();
-      $rootScope.isLoggedIn = false;
-      $rootScope.currentUser = undefined;
+      .logout()
       $location.path('home');
   };
 
