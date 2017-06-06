@@ -41,6 +41,9 @@
       return podcast.subscribers.includes($rootScope.currentUser._id);
     }
 
+    vm.isOwner = function(podcast) {
+      return podcast._owner._id == $rootScope.currentUser._id;
+    }
   }
 
 })();
