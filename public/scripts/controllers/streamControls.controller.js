@@ -51,6 +51,7 @@
           var track = stream.getTracks()[0];  // only one media track
             mediaRecorder.stop();
             track.stop();
+            audioCtx.close();
         });
       },
       function(err) {
