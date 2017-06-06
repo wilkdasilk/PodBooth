@@ -69,9 +69,13 @@ function create(req, res) {
 function subscribe(req, res) {
   controllers.users.currentUser(req)
     .then(function(user) {
-      db.Podcast.update({_id: req.params.podcastId}, { $addToSet: { subscribers: user.id }})
+      db.Podcast.update({_id: req.params.podcastId, _owner: {$ne: user.id}}, { $addToSet: { subscribers: user.id }})
       .then(function(doc){
-        res.sendStatus(204);
+        if (doc.nModified >0){
+          res.sendStatus(204);
+        } else {
+          res.status(401).send({error: "Cannot subscribe to your own podcast"});
+        }
       }, function(err) {
         console.log('error updating podcast subscribers', err)
       });

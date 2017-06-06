@@ -16,9 +16,9 @@
           Authorization: 'Bearer ' + authentication.getToken()
         }
       }). then(function(res){
-        if (res.status == 204) {
-          $scope.podcast.subscribers.push($rootScope.currentUser._id);
-        }
+        $scope.podcast.subscribers.push($rootScope.currentUser._id);
+      }, function(err){
+        console.log(err);
       })
     }
 
