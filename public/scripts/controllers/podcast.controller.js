@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('podcastCtrl', podcastCtrl);
 
-  podcastCtrl.$inject = ['$http', 'authentication', '$rootScope'];
-  function podcastCtrl(   $http,   authentication, $rootScope ) {
+  podcastCtrl.$inject = ['$http', 'authentication', '$rootScope', '$scope'];
+  function podcastCtrl(   $http,   authentication,   $rootScope,   $scope ) {
     var vm = this;
 
     vm.subscribe = function(podcast) {
@@ -16,6 +16,9 @@
           Authorization: 'Bearer ' + authentication.getToken()
         }
       }). then(function(res){
+        if (res.status == 204) {
+          $scope.podcast.subscribers.push($rootScope.currentUser._id);
+        }
       })
     }
 
@@ -27,6 +30,10 @@
           Authorization: 'Bearer ' + authentication.getToken()
         }
       }). then(function(res){
+        var index = $scope.podcast.subscribers.indexOf($rootScope.currentUser._id);
+        if (index > -1) {
+          $scope.podcast.subscribers.splice(index,1);
+        }
       })
     }
 
