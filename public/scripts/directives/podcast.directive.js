@@ -8,7 +8,7 @@
     return {
       restrict: 'E',
       templateUrl: '/templates/podcast',
-      controller: 'podcastsCtrl as podcastvm'
+      controller: 'podcastCtrl as podcastvm'
     };
   }
 
