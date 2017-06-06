@@ -2,8 +2,9 @@
 <div class="row">
   <div class="col s12">
     <input type="text" class="form-control" ng-model="searchText" placeholder="Search Podcasts">
-    <div ng-repeat="podcast in vm.podcasts | filter: searchText">
+    <div ng-repeat="podcast in vm.podcasts | filter: searchText | limitTo:vm.showAmount">
       <podcast></podcast>
     </div>
+    <button ng-click="vm.showMore()" ng-show="vm.showAmount<vm.podcasts.length" class="waves-effect waves-light btn">Show more</button>
   </div>
 </div>
