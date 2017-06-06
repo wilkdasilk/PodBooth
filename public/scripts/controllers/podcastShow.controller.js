@@ -59,7 +59,11 @@
       url: `/api/podcasts/${$routeParams.id}`
     }).then(function (res) {
       vm.podcast = [res.data];
-      vm.isOwner = vm.podcast[0]._owner._id == $rootScope.currentUser._id;
+      if ($rootScope.currentUser){
+        vm.isOwner = vm.podcast[0]._owner._id == $rootScope.currentUser._id;
+      } else {
+        vm.isOwner = false;
+      }
       if (!!vm.podcast[0].latestBroadcast) {
         vm.isLive = vm.podcast[0].latestBroadcast.active;
       } else {

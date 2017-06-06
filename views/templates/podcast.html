@@ -7,8 +7,8 @@
   <div class="card-stacked">
     <div class="card-content">
       <p class="short-description">{{podcast.description}}</p>
-      <button ng-hide="podcastvm.subscribed(podcast)" ng-click="podcastvm.subscribe(podcast)" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
-      <button ng-show="podcastvm.subscribed(podcast)" ng-click="podcastvm.unsubscribe(podcast)" class="btn-floating waves-effect waves-light red"><i class="material-icons">clear</i></a>
+      <button ng-if="currentUser" ng-hide="podcastvm.subscribed(podcast) || podcastvm.isOwner(podcast)" ng-click="podcastvm.subscribe(podcast)" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
+      <button ng-if="currentUser" ng-show="podcastvm.subscribed(podcast)" ng-click="podcastvm.unsubscribe(podcast)" class="btn-floating waves-effect waves-light red"><i class="material-icons">clear</i></a>
     </div>
     <div class="card-action">
       <a ng-show="vm.clickThru" ng-href="/podcasts/{{podcast._id}}">See Page</a>
