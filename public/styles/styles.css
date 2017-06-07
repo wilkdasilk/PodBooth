@@ -56,3 +56,11 @@ nav ul a:hover {
 .dragover {
     border: 5px dashed blue;
 }
+
+ .card.horizontal .card-image img.pod-image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  overflow: hidden;
+
+}
