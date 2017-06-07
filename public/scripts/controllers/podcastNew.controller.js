@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('podcastNewCtrl', podcastNewCtrl);
 
-  podcastNewCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication', 'Upload'];
-  function podcastNewCtrl(   $http,   $routeParams,   $location,   authentication,   Upload ) {
+  podcastNewCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication', 'Upload', '$scope'];
+  function podcastNewCtrl(   $http,   $routeParams,   $location,   authentication,   Upload,   $scope) {
 
     authentication.requireLogin();
 
@@ -14,17 +14,27 @@
     vm.newPodcast = {
       name: '',
       description: '',
-      website: '',
-      image: ''
+      website: ''
     };
 
+    $scope.$watch('files', function(){
+      if ($scope.files != undefined) {
+        vm.fileSelected($scope.files)
+      }
+    });
+
+    vm.fileSelected = function(files) {
+      if (files && files.length) {
+        vm.newPodcast.image = files[0];
+      }
+    };
+
+    vm.removeFile = function($event){
+      $event.preventDefault();
+      $scope.files = undefined;
+    }
+
     vm.createPodcast = function () {
-      vm.fileSelected = function(files) {
-        if (files && files.length) {
-          vm.newPodcast.image = files[0];
-        }
-      };
-      console.log(vm.newPodcast);
       Upload.upload({
         url: '/api/podcasts',
         data: vm.newPodcast,
