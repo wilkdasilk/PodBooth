@@ -16,6 +16,8 @@
       password : ""
     };
 
+
+
     vm.onSubmit = function() {
       vm.fileSelected = function(files) {
         if (files && files.length) {
