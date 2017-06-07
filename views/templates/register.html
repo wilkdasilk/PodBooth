@@ -4,21 +4,21 @@
     <form ng-submit="vm.onSubmit()">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="What's your name?" ng-model="vm.credentials.name">
+        <input type="text" class="form-control" id="name" placeholder="What's your name?" ng-model="vm.credentials.name" ng-required="true">
       </div>
-      <div class="form-group">
+      <div name="newUser" class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="What's your email?" ng-model="vm.credentials.email">
+        <input type="email" class="form-control" id="email" placeholder="What's your email?" ng-model="vm.credentials.email" ng-required="true">
       </div>
       <div>
         <label for="avatar" class="left">Profile Picture</label>
-        <input type="file" id="avatar" ngf-select="vm.fileSelected($files)" accept="'image/*'" placeholder="Give your podcast an image" ng-model="vm.credentials.avatar">
+        <input type="file" id="avatar" ngf-select="vm.fileSelected($files)" accept="'image/*'" placeholder="Give your podcast an image" ng-model="vm.credentials.avatar" ng-required="true">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Choose a password" ng-model="vm.credentials.password">
+        <input type="password" class="form-control" id="password" placeholder="Choose a password" ng-model="vm.credentials.password" ng-required="true">
       </div>
-      <button type="submit" class="btn btn-default">Register</button>
+      <button ng-disabled="!newUser.$valid" type="submit" class="btn btn-default">Register</button>
     </form>
   </div>
 </div>

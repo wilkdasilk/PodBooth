@@ -28,8 +28,6 @@
         .register(vm.credentials)
         .then(function(){
           $location.path('profile');
-        }, function(err){
-          alert(err);
         });
     };
   }
