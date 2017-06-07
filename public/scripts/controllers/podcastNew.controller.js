@@ -45,6 +45,8 @@
         $location.path(`/podcasts/${res.data._id}`);
       }, function (err) {
         console.log('There was an error posting the data', err);
+        $location.path(`/podcasts/`);
+        //flash message
       });
     }
 

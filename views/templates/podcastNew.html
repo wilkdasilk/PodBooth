@@ -1,28 +1,28 @@
 <div class="row">
   <div class="col m6 offset-m3">
     <h2>Create a Podcast</h2>
-    <form ng-submit="vm.createPodcast()">
+    <form name="newPodcast" ng-submit="vm.createPodcast()">
       <div>
         <label for="name" class="left">Name</label>
-        <input type="text" id="name" placeholder="What's your podcast called?" ng-model="vm.newPodcast.name">
+        <input type="text" id="name" placeholder="What's your podcast called?" ng-model="vm.newPodcast.name" ng-required="true">
       </div>
       <div>
         <label for="description" class="left">Description</label>
-        <textarea type="text" class="materialize-textarea" id="description" placeholder="What's your podcast about?" ng-model="vm.newPodcast.description"></textarea>
+        <textarea type="text" class="materialize-textarea" id="description" placeholder="What's your podcast about?" ng-model="vm.newPodcast.description" ng-required="true"></textarea>
       </div>
       <div>
         <label for="website" class="left">Website</label>
-        <input type="url" id="website" placeholder="What's your podcast's website?" ng-model="vm.newPodcast.website">
+        <input type="url" id="website" placeholder="What's your podcast's website?" ng-model="vm.newPodcast.website" ng-required="true">
       </div>
       <div>
         <label for="image" class="left">Image</label>
-        <div ng-hide="files" ngf-drop="vm.fileSelected($files)" ngf-max-size="20MB" ngf-min-height="250" ngf-resize="{width:250, height: 250, centerCrop: true}" id="image" class="drop-box" ngf-drag-over-class="'dragover'" accept="'image/*'" ng-model="files">
+        <div ng-hide="files" ngf-drop="vm.fileSelected($files)" ngf-max-size="20MB" ngf-min-height="250" ngf-resize="{width:250, height: 250, centerCrop: true}" id="image" class="drop-box" ngf-drag-over-class="'dragover'" accept="'image/*'" ng-model="files" ng-required="true">
           Drag image or click to select
         </div>
         <img ng-if="files" ngf-thumbnail="files">
         <button ng-show="files" class="btn btn-default" ng-click="vm.removeFile($event)">Remove</button>
       </div>
-      <button type="submit" class="btn btn-default">Create Podcast</button>
+      <button ng-disabled="!newPodcast.$valid" type="submit" class="btn btn-default">Create Podcast</button>
     </form>
   </div>
 </div>
