@@ -58,6 +58,7 @@
                      $rootScope.currentUser = currentUser();
                    }, function(error){
                      console.log(error);
+                     //flash message
                    });
     };
 

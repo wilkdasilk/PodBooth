@@ -9,7 +9,7 @@ var register = function (req, res) {
 
   user.name = req.body.name;
   user.email = req.body.email;
-  user.avatar = "";
+  user.avatar;
 
   user.setPassword(req.body.password);
 
@@ -26,23 +26,19 @@ var register = function (req, res) {
     })
     .then(function(){
       user.save(function(err) {
-        var token;
-        token = user.generateJwt();
-        res.status(200);
-        res.json({
-          "token" : token
-        });
+        if (err) {
+          res.status(406).json(err);
+        } else {
+          var token;
+          token = user.generateJwt();
+          res.status(200).json({
+            "token" : token
+          });
+        }
       });
     });
    } else {
-     user.save(function(err) {
-       var token;
-       token = user.generateJwt();
-       res.status(200);
-       res.json({
-         "token" : token
-       });
-     });
+      res.status(406).json({ "message" : "Error: User image is required"});
    }
 };
 

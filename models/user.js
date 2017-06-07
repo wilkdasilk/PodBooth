@@ -21,7 +21,10 @@ var UserSchema = new Schema({
   subscribedPodcasts : [{
     type: Schema.Types.ObjectId,
     ref: 'Podcast' }],
-  avatar: String,
+  avatar: {
+    type: String,
+    required: true
+  },
   hash: String,
   salt: String
 });
