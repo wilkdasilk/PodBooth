@@ -4,10 +4,22 @@ var User = require('./user');
 
 
 var PodcastSchema = new Schema({
-  name: String,
-  description: String,
-  website: String,
-  image: String,
+  name: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  website: {
+    type: String,
+    required: true
+  },
+  image: {
+    type: String,
+    required: true
+  },
   _owner: {
     type: Schema.Types.ObjectId,
     ref: 'User' },
