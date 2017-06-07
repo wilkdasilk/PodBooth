@@ -31,7 +31,7 @@ var register = function (req, res) {
         } else {
           var token;
           token = user.generateJwt();
-          res.status(200)json({
+          res.status(200).json({
             "token" : token
           });
         }
