@@ -39,6 +39,7 @@ function create(req, res) {
       req.body._owner = user._id;
     }, function(err) {
       console.log('usersController.show error', err);
+      req.status(401).json({"message" : "UnauthorizedError: Must be logged in to create Podcast"});
     })
     .then(function(){
       if (req.file) {
@@ -48,19 +49,27 @@ function create(req, res) {
             req.body.image = result.url;
             del.sync([req.file.path]);
           } else {
-            res.json(error);
+            console.log(error);
           }
         })
         .then(function(){
           db.Podcast.create(req.body, function(err, podcast) {
-          if (err) { console.log('error', err); }
-          res.json(podcast);
+          if (err) {
+             console.log('error', err);
+             res.status(406).json(err);
+           } else {
+             res.json(podcast);
+           }
           });
         });
      } else {
        db.Podcast.create(req.body, function(err, podcast) {
-       if (err) { console.log('error', err); }
-       res.json(podcast);
+       if (err) {
+         console.log('error', err);
+         res.status(406).json(err);
+       } else {
+         res.json(podcast);
+       }
        });
      }
     })
