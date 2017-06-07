@@ -16,7 +16,11 @@
       </div>
       <div>
         <label for="image" class="left">Image</label>
-        <input type="file" id="image" ngf-select="vm.fileSelected($files)" accept="'image/*'" placeholder="Give your podcast an image" ng-model="vm.newPodcast.image">
+        <div ng-hide="files" ngf-drop="vm.fileSelected($files)" id="image" class="drop-box" ngf-drag-over-class="'dragover'" accept="'image/*'" ng-model="files">
+          Drag image or click to select
+        </div>
+        <img ng-if="files" ngf-thumbnail="files">
+        <button ng-show="files" class="btn btn-default" ng-click="vm.removeFile($event)">Remove</button>
       </div>
       <button type="submit" class="btn btn-default">Create Podcast</button>
     </form>
