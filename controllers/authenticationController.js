@@ -84,12 +84,13 @@ var update = function (req, res) {
                "token" : token
              });
            }
-          }
+         });
         }
       }, function(err) {
       console.log('authenticationController.update error', err);
       req.status(401).json({"message" : "UnauthorizedError: Can only update your own account when logged in"});
     });
+}
 
 
 var login = function (req, res) {
