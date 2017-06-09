@@ -75,6 +75,25 @@ function create(req, res) {
     })
 }
 
+function destroy(req, res) {
+  controllers.users.currentUser(req)
+    .then(function(user) {
+      db.Podcast.findOneAndRemove({_id: req.params.podcastId, _owner: user.id})
+      .then(function(doc){
+        console.log(doc);
+        if (doc.nModified >0){
+          res.sendStatus(204);
+        } else {
+          res.status(401).send({"message" : "UnauthorizedError: Must be owner to delete Podcast"});
+        }
+      }, function(err) {
+        console.log('error updating podcast subscribers', err)
+      });
+    }, function(err) {
+      console.log('usersController.subscribe error', err);
+    });
+}
+
 function subscribe(req, res) {
   controllers.users.currentUser(req)
     .then(function(user) {
@@ -112,6 +131,7 @@ module.exports = {
   index: index,
   show: show,
   create: create,
+  destroy: destroy,
   subscribe: subscribe,
   unsubscribe: unsubscribe
 };
