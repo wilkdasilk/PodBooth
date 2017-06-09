@@ -20,8 +20,8 @@
       method: 'GET',
       url: '/api/podcasts'
     }).then(function (res) {
-      console.log("got data");
       vm.podcasts = res.data;
+      console.log(vm.podcasts);
     }, function (err) {
       console.log('There was an error getting the data', err);
     });
