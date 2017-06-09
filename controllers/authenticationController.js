@@ -1,3 +1,4 @@
+var controllers = require('../controllers');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
@@ -42,6 +43,61 @@ var register = function (req, res) {
    }
 };
 
+var update = function (req, res) {
+  controllers.users.currentUser(req)
+    .then(function(user) {
+      user.name = req.body.name;
+      user.email = req.body.email;
+      if (!user.validPassword(req.body.password)){
+        return res.status(401).json({"message" : "UnauthorizedError: Incorrect current password"});
+      }
+      if (req.body.newPassword){
+        user.setPassword(req.body.newPassword);
+      }
+
+      if (req.file) {
+        cloudinary.uploader.upload(req.file.path)
+        .then(function(result, error){
+          if (result.url) {
+            user.avatar = result.url;
+            console.log(result.url);
+            del.sync([req.file.path]);
+          } else {
+            res.json(error);
+          }
+        }).then(function(){
+          user.save(function(err) {
+            if (err) {
+              res.status(406).json(err);
+            } else {
+              var token;
+              token = user.generateJwt();
+              res.status(200).json({
+                "token" : token
+              });
+            }
+          });
+        });
+       } else {
+         user.save(function(err) {
+           if (err) {
+             res.status(406).json(err);
+           } else {
+             var token;
+             token = user.generateJwt();
+             res.status(200).json({
+               "token" : token
+             });
+           }
+         });
+        }
+      }, function(err) {
+      console.log('authenticationController.update error', err);
+      res.status(401).json({"message" : "UnauthorizedError: Can only update your own account when logged in"});
+    });
+}
+
+
 var login = function (req, res) {
   passport.authenticate('local', function(err, user, info) {
     var token;
@@ -66,5 +122,6 @@ var login = function (req, res) {
 
 module.exports = {
   register: register,
+  update: update,
   login: login
 }

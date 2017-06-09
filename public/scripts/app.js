@@ -16,6 +16,11 @@ console.log("Sanity check, we're connected!");
         controller: 'registerCtrl',
         controllerAs: 'vm'
       })
+      .when('/updateaccount', {
+        templateUrl: '/templates/registerUpdate',
+        controller: 'registerUpdateCtrl',
+        controllerAs: 'vm'
+      })
       .when('/login', {
         templateUrl: '/templates/login',
         controller: 'loginCtrl',
