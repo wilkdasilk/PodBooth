@@ -14,8 +14,6 @@
     vm.credentials.name = $rootScope.currentUser.name;
     vm.credentials.email = $rootScope.currentUser.email;
     vm.credentials.avatar = $rootScope.currentUser.avatar;
-    console.log(vm.credentials.avatar);
-
 
     $scope.$watch('files', function(){
       if ($scope.files != undefined) {

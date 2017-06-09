@@ -48,7 +48,10 @@ var update = function (req, res) {
     .then(function(user) {
       user.name = req.body.name;
       user.email = req.body.email;
-      user.setPassword(req.body.password);
+      if (!user.validPassword(req.body.password)){
+        return res.status(401).json({"message" : "UnauthorizedError: Incorrect current password"});
+      }
+      user.setPassword(req.body.newPassword);
 
       if (req.file) {
         cloudinary.uploader.upload(req.file.path)
@@ -88,7 +91,7 @@ var update = function (req, res) {
         }
       }, function(err) {
       console.log('authenticationController.update error', err);
-      req.status(401).json({"message" : "UnauthorizedError: Can only update your own account when logged in"});
+      res.status(401).json({"message" : "UnauthorizedError: Can only update your own account when logged in"});
     });
 }
 

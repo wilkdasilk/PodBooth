@@ -78,7 +78,7 @@
         saveToken(response.data.token);
         $rootScope.currentUser = currentUser();
       }, function(error){
-        console.log(error);
+        console.log("error updating account",error);
         //flash message
       });
 
