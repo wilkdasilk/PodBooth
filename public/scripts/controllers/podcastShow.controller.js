@@ -49,6 +49,7 @@
         }
       }).then(function(res){
         vm.isLive = res.data.active;
+        vm.podcast[0].latestBroadcast.active = res.data.active;
       }, function(err) {
         console.log("error ending broadcast,", err);
       });

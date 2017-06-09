@@ -37,6 +37,14 @@
       })
     }
 
+    vm.isLive = function() {
+      if ($scope.podcast.latestBroadcast) {
+        return $scope.podcast.latestBroadcast.active;
+      } else {
+        return false;
+      }
+    }
+
     vm.subscribed = function(podcast) {
       return podcast.subscribers.includes($rootScope.currentUser._id);
     }
