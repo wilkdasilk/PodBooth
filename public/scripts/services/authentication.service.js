@@ -39,6 +39,7 @@
         return {
           email : payload.email,
           name : payload.name,
+          avatar : payload.avatar,
           _id : payload._id
         };
       }
@@ -51,15 +52,36 @@
     }
 
     register = function(user) {
-      return Upload.upload({url: '/api/register', data: user})
-                   .then(function(response){
-                     saveToken(response.data.token);
-                     $rootScope.isLoggedIn = true;
-                     $rootScope.currentUser = currentUser();
-                   }, function(error){
-                     console.log(error);
-                     //flash message
-                   });
+      return Upload.upload(
+        {url: '/api/register',
+        data: user
+      }).then(function(response){
+        saveToken(response.data.token);
+        $rootScope.isLoggedIn = true;
+        $rootScope.currentUser = currentUser();
+      }, function(error){
+        console.log(error);
+        //flash message
+      });
+
+    };
+
+    update = function(user) {
+      return Upload.upload({
+        url: '/api/register',
+        data: user,
+        method: 'PUT',
+        headers: {
+          Authorization: 'Bearer ' + getToken()
+        }
+      }).then(function(response){
+        saveToken(response.data.token);
+        $rootScope.currentUser = currentUser();
+      }, function(error){
+        console.log(error);
+        //flash message
+      });
+
     };
 
     login = function(user) {
@@ -84,6 +106,7 @@
       getToken : getToken,
       isLoggedIn : isLoggedIn,
       register : register,
+      update : update,
       login : login,
       logout : logout,
       requireLogin : requireLogin

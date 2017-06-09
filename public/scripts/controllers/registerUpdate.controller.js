@@ -9,6 +9,14 @@
   function registerUpdateCtrl(  $location,    authentication,   $rootScope,   $scope) {
     var vm = this;
 
+    authentication.requireLogin();
+    vm.credentials = {};
+    vm.credentials.name = $rootScope.currentUser.name;
+    vm.credentials.email = $rootScope.currentUser.email;
+    vm.credentials.avatar = $rootScope.currentUser.avatar;
+    console.log(vm.credentials.avatar);
+
+
     $scope.$watch('files', function(){
       if ($scope.files != undefined) {
         vm.fileSelected($scope.files)
@@ -24,11 +32,12 @@
     vm.removeFile = function($event){
       $event.preventDefault();
       $scope.files = undefined;
+      vm.credentials.avatar = undefined;
     }
 
     vm.onSubmit = function() {
       authentication
-        .register(vm.credentials)
+        .update(vm.credentials)
         .then(function(){
           $location.path('profile');
         });
