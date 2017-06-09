@@ -35,6 +35,7 @@
     vm.removeFile = function($event){
       $event.preventDefault();
       $scope.files = undefined;
+      vm.revisedPodcast.image = undefined;
     }
 
     vm.updatePodcast = function () {
