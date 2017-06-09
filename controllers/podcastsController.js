@@ -78,18 +78,43 @@ function create(req, res) {
 function update(req, res) {
   controllers.users.currentUser(req)
     .then(function(user) {
-      db.Podcast.update({_id: req.params.podcastId, _owner: user.id}, req.body)
-      .then(function(doc){
-        if (doc.nModified >0){
-          res.sendStatus(204);
-        } else {
-          res.status(401).send({"message" : "UnauthorizedError: Must be owner to update Podcast"});
-        }
-      }, function(err) {
-        console.log('error updating podcast', err)
-      });
+      if (req.file) {
+        cloudinary.uploader.upload(req.file.path)
+        .then(function(result, error){
+          if (result.url) {
+            req.body.image = result.url;
+            del.sync([req.file.path]);
+          } else {
+            console.log(error);
+          }
+        }).then(function(){
+          db.Podcast.update({_id: req.params.podcastId, _owner: user.id}, req.body)
+          .then(function(doc){
+            if (doc.nModified >0){
+              res.sendStatus(204);
+            } else {
+              res.status(401).send({"message" : "UnauthorizedError: Must be owner to update Podcast"});
+            }
+          }, function(err) {
+            console.log('error updating podcast', err)
+          });
+        }, function(err) {
+          console.log('error uploading image', err);
+        });
+      } else {
+        db.Podcast.update({_id: req.params.podcastId, _owner: user.id}, req.body)
+        .then(function(doc){
+          if (doc.nModified >0){
+            res.sendStatus(204);
+          } else {
+            res.status(401).send({"message" : "UnauthorizedError: Must be owner to update Podcast"});
+          }
+        }, function(err) {
+          console.log('err updating podcast', err);
+        });
+      }
     }, function(err) {
-      console.log('podcastsController.update error', err);
+      console.log('err retreiving current user', err);
     });
 }
 
