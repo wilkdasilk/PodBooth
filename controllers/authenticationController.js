@@ -51,7 +51,9 @@ var update = function (req, res) {
       if (!user.validPassword(req.body.password)){
         return res.status(401).json({"message" : "UnauthorizedError: Incorrect current password"});
       }
-      user.setPassword(req.body.newPassword);
+      if (req.body.newPassword){
+        user.setPassword(req.body.newPassword);
+      }
 
       if (req.file) {
         cloudinary.uploader.upload(req.file.path)
