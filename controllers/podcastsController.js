@@ -38,7 +38,7 @@ function create(req, res) {
     .then(function(user) {
       req.body._owner = user._id;
     }, function(err) {
-      console.log('usersController.show error', err);
+      console.log('podcastsController.create error', err);
       req.status(401).json({"message" : "UnauthorizedError: Must be logged in to create Podcast"});
     })
     .then(function(){
@@ -75,6 +75,24 @@ function create(req, res) {
     })
 }
 
+function update(req, res) {
+  controllers.users.currentUser(req)
+    .then(function(user) {
+      db.Podcast.update({_id: req.params.podcastId, _owner: user.id}, req.body)
+      .then(function(doc){
+        if (doc.nModified >0){
+          res.sendStatus(204);
+        } else {
+          res.status(401).send({"message" : "UnauthorizedError: Must be owner to update Podcast"});
+        }
+      }, function(err) {
+        console.log('error updating podcast', err)
+      });
+    }, function(err) {
+      console.log('podcastsController.update error', err);
+    });
+}
+
 function destroy(req, res) {
   controllers.users.currentUser(req)
     .then(function(user) {
@@ -86,10 +104,10 @@ function destroy(req, res) {
           res.status(401).send({"message" : "UnauthorizedError: Must be owner to delete Podcast"});
         }
       }, function(err) {
-        console.log('error updating podcast subscribers', err)
+        console.log('error deleting podcast ', err)
       });
     }, function(err) {
-      console.log('usersController.subscribe error', err);
+      console.log('podcastsController.destroy error', err);
     });
 }
 
@@ -107,7 +125,7 @@ function subscribe(req, res) {
         console.log('error updating podcast subscribers', err)
       });
     }, function(err) {
-      console.log('usersController.subscribe error', err);
+      console.log('podcastsController.subscribe error', err);
     });
 }
 
@@ -121,7 +139,7 @@ function unsubscribe(req, res) {
         console.log('error removing podcast subscriber', err)
       });
     }, function(err) {
-      console.log('usersController.unsubscribe error', err);
+      console.log('podcastsController.unsubscribe error', err);
     });
 }
 
@@ -130,6 +148,7 @@ module.exports = {
   index: index,
   show: show,
   create: create,
+  update: update,
   destroy: destroy,
   subscribe: subscribe,
   unsubscribe: unsubscribe

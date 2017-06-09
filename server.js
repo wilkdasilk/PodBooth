@@ -53,6 +53,7 @@ app.get('/api/podcasts', controllers.podcasts.index);
 app.get('/api/podcasts/:podcastId', controllers.podcasts.show);
 app.delete('/api/podcasts/:podcastId', auth, controllers.podcasts.destroy);
 app.post('/api/podcasts', auth, upload.single('image'), controllers.podcasts.create);
+app.put('/api/podcasts/:podcastId', auth, upload.single('image'), controllers.podcasts.update);
 app.post('/api/podcasts/:podcastId/subscribe', auth, controllers.podcasts.subscribe);
 app.delete('/api/podcasts/:podcastId/subscribe', auth, controllers.podcasts.unsubscribe);
 app.get('/api/podcasts/:podcastId/comments', auth, controllers.comments.index);
