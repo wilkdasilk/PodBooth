@@ -1,11 +1,15 @@
 <h2>{{ vm.user.name }}'s Profile</h2>
 <img ng-src="{{vm.user.avatar}}">
 <p>{{ vm.user.email }}</p>
-<h3>Your podcasts</h3>
-<div ng-repeat="podcast in vm.user.ownedPodcasts">
-  <podcast></podcast>
+<div ng-show="vm.user.ownedPodcasts.length>0">
+  <h3>Your podcasts</h3>
+  <div ng-repeat="podcast in vm.user.ownedPodcasts">
+    <podcast></podcast>
+  </div>
 </div>
-<h3>Subscriptions</h3>
-<div ng-repeat="podcast in vm.user.subscribedPodcasts">
-  <podcast></podcast>
+<div ng-show="vm.user.subscribedPodcasts.length>0">
+  <h3>Subscriptions</h3>
+  <div ng-repeat="podcast in vm.user.subscribedPodcasts">
+    <podcast></podcast>
+  </div>
 </div>
