@@ -80,8 +80,7 @@ function destroy(req, res) {
     .then(function(user) {
       db.Podcast.findOneAndRemove({_id: req.params.podcastId, _owner: user.id})
       .then(function(doc){
-        console.log(doc);
-        if (doc.nModified >0){
+        if (!!doc){
           res.sendStatus(204);
         } else {
           res.status(401).send({"message" : "UnauthorizedError: Must be owner to delete Podcast"});
