@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('podcastCtrl', podcastCtrl);
 
-  podcastCtrl.$inject = ['$http', 'authentication', '$rootScope', '$scope'];
-  function podcastCtrl(   $http,   authentication,   $rootScope,   $scope ) {
+  podcastCtrl.$inject = ['$http', 'authentication', '$rootScope', '$scope', '$location'];
+  function podcastCtrl(   $http,   authentication,   $rootScope,   $scope,   $location ) {
     var vm = this;
 
     vm.subscribe = function(podcast) {
@@ -29,7 +29,7 @@
         headers: {
           Authorization: 'Bearer ' + authentication.getToken()
         }
-      }). then(function(res){
+      }).then(function(res){
         var index = $scope.podcast.subscribers.indexOf($rootScope.currentUser._id);
         if (index > -1) {
           $scope.podcast.subscribers.splice(index,1);
@@ -43,6 +43,20 @@
 
     vm.isOwner = function(podcast) {
       return podcast._owner._id == $rootScope.currentUser._id;
+    }
+
+    vm.destroy = function(podcast) {
+      $http({
+        method: 'DELETE',
+        url: `/api/podcasts/${podcast._id}`,
+        headers: {
+          Authorization: 'Bearer ' + authentication.getToken()
+        }
+      }).then(function(){
+        $location.path('podcasts');
+      }, function(err){
+        console.log("an error occured while deleting", err);
+      })
     }
   }
 

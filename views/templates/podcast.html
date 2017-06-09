@@ -1,5 +1,6 @@
 <h3 class="header">{{podcast.name}}</h3>
 <h4>by {{podcast._owner.name}}</h4>
+<div ng-if="currentUser" ng-show="podcastvm.isOwner(podcast)"><button ng-click="podcastvm.destroy(podcast)"class="waves-effect waves-teal btn-flat"><i class="material-icons">delete</i></button></div>
 <div class="card horizontal">
   <div class="card-image">
     <img class="pod-image" ng-src="{{podcast.image}}">
