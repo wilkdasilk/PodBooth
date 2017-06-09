@@ -112,9 +112,10 @@ function update(req, res) {
         }, function(err) {
           console.log('err updating podcast', err);
         });
-      }, function(err) {
-        console.log('err retreiving current user', err);
-      });
+      }
+    }, function(err) {
+      console.log('err retreiving current user', err);
+    });
 }
 
 function destroy(req, res) {
