@@ -47,6 +47,7 @@
 
     var requireLogin = function() {
       if (!isLoggedIn()) {
+        $rootScope.userAlerts.push("You must be logged in!");
         $location.path('/');
       }
     }
@@ -59,9 +60,10 @@
         saveToken(response.data.token);
         $rootScope.isLoggedIn = true;
         $rootScope.currentUser = currentUser();
+        $rootScope.userAlerts.push(`Welcome, ${$rootScope.currentUser.name}!`);
       }, function(error){
         console.log(error);
-        //flash message
+        $rootScope.userAlerts.push("Uh oh, could not create your account.")
       });
 
     };
@@ -77,9 +79,10 @@
       }).then(function(response){
         saveToken(response.data.token);
         $rootScope.currentUser = currentUser();
+        $rootScope.userAlerts.push("Account updated successfully!");
       }, function(error){
         console.log("error updating account",error);
-        //flash message
+        $rootScope.userAlerts.push("Could not update your account");
       });
 
     };
@@ -89,8 +92,9 @@
         saveToken(response.data.token);
         $rootScope.isLoggedIn = true;
         $rootScope.currentUser = currentUser();
+        $rootScope.userAlerts.push(`Welcome back, ${$rootScope.currentUser.name}!`);
       }, function(error){
-        console.log(error);
+        $rootScope.userAlerts.push("Uh oh, couldn't log in!");
       });
     };
 
@@ -98,6 +102,7 @@
       $window.localStorage.removeItem('podbooth-token');
       $rootScope.isLoggedIn = false;
       $rootScope.currentUser = undefined;
+      $rootScope.userAlerts.push("Signed out!")
     };
 
     return {

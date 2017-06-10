@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('podcastNewCtrl', podcastNewCtrl);
 
-  podcastNewCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication', 'Upload', '$scope'];
-  function podcastNewCtrl(   $http,   $routeParams,   $location,   authentication,   Upload,   $scope) {
+  podcastNewCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication', 'Upload', '$scope', '$rootScope'];
+  function podcastNewCtrl(   $http,   $routeParams,   $location,   authentication,   Upload,   $scope,   $rootScope) {
 
     authentication.requireLogin();
 
@@ -42,11 +42,12 @@
           Authorization: 'Bearer ' + authentication.getToken()
         }
       }).then(function (res) {
+        $rootScope.userAlerts.push(`Successfully created "${res.data.name}"!`);
         $location.path(`/podcasts/${res.data._id}`);
       }, function (err) {
         console.log('There was an error posting the data', err);
+        $rootScope.userAlerts.push("Uh oh, couldn't create your podcast.");
         $location.path(`/podcasts/`);
-        //flash message
       });
     }
 
