@@ -69,12 +69,24 @@ console.log("Sanity check, we're connected!");
       if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
         $location.path('/');
       }
-    })
+    });
     $rootScope.currentUser = authentication.currentUser();
     if ($rootScope.currentUser) {
       $rootScope.isLoggedIn = true;
     }
-  }
+    $rootScope.userAlerts = [];
+    $rootScope.$watch(
+      function() {
+        return $rootScope.userAlerts;
+      },
+      function(){
+        if ($rootScope.userAlerts.length >0) {
+          $rootScope.userAlerts.forEach(function(alert){
+            Materialize.toast(`<p>${alert}</p>`, 5000);
+          });
+          $rootScope.userAlerts = [];
+        }
+    }, true);  }
 
   angular
     .module('podBooth')

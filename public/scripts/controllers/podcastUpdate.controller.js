@@ -4,8 +4,8 @@
     .module('podBooth')
     .controller('podcastUpdateCtrl', podcastUpdateCtrl);
 
-  podcastUpdateCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication', 'Upload', '$scope'];
-  function podcastUpdateCtrl(   $http,   $routeParams,   $location,   authentication,   Upload,   $scope) {
+  podcastUpdateCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication', 'Upload', '$scope', '$rootScope'];
+  function podcastUpdateCtrl(   $http,   $routeParams,   $location,   authentication,   Upload,   $scope,   $rootScope) {
 
     authentication.requireLogin();
 
@@ -47,11 +47,12 @@
           Authorization: 'Bearer ' + authentication.getToken()
         }
       }).then(function (res) {
+        $rootScope.userAlerts.push(`Successfully updated "${vm.revisedPodcast.name}"!`);
         $location.path(`/podcasts/${$routeParams.id}`);
       }, function (err) {
         console.log('There was an error udpating the podcast', err);
+        $rootScope.userAlerts.push("Uh oh, couldn't update your podcast.");
         $location.path(`/podcasts/`);
-        //flash message
       });
     }
 
