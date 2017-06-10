@@ -42,8 +42,8 @@ function index(req,res) {
 
 function create(comment) {
   comment.created_at = Date.now();
-  console.log("inside create comment is", comment);
   return db.Comment.create(comment)
+
 }
 
 function upvote(upvote) {
