@@ -36,10 +36,6 @@
 
     vm.sendComment = function() {
       socket.emit('event', { message: vm.newComment });
-      vm.newComment._owner.name = authentication.currentUser().name;
-      var now = new Date();
-      vm.newComment.created_at = now.toISOString();
-      vm.comments.push(angular.copy(vm.newComment));
       vm.newComment.body = '';
     }
 

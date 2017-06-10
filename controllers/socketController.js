@@ -22,9 +22,17 @@ function connect (io, socket) {
     console.log('A client sent us this message:', data.message);
     controllers.comments.create(data.message)
       .then(function(comment) {
-        console.log(comment);
-        socket.broadcast.to(socket.room).emit('message', { message: comment });
-        socket.emit('message', {message: {body: `You said... ${comment.body}`, _owner: {name: "Server echo"}, created_at: comment.created_at, broadcast: comment.broadcast }} );
+        comment
+          .populate('_owner', function(err, doc){
+            if (err){
+              console.log("error populating comment", err);
+              socket.broadcast.to(socket.room).emit('message', { message: comment });
+              socket.emit('message', { message: comment });
+            } else {
+              socket.broadcast.to(socket.room).emit('message', { message: doc });
+              socket.emit('message', { message: doc });
+            }
+          });
       });
   });
 
