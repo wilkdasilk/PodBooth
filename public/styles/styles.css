@@ -62,5 +62,8 @@ nav ul a:hover {
   height: 250px;
   object-fit: cover;
   overflow: hidden;
+}
 
+.hidden {
+  display: none;
 }

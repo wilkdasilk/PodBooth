@@ -8,6 +8,15 @@
   function podcastCtrl(   $http,   authentication,   $rootScope,   $scope,   $location ) {
     var vm = this;
 
+
+    $scope.$watch(
+      function(){
+        return $scope.podcast;
+      },
+      function(){
+        $('.hidden').fadeIn(1500);
+      }, true);
+
     vm.subscribe = function(podcast) {
       $http({
         method: 'POST',

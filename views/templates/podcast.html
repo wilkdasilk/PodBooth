@@ -1,24 +1,26 @@
-<h3 class="header">
-  <i ng-show="podcastvm.isLive()"class="material-icons">flash_on</i>
-  {{podcast.name}}
-</h3>
-<h4>by {{podcast._owner.name}}</h4>
-<p>{{podcast.subscribers.length}} subscribers</p>
-<div ng-if="currentUser" ng-show="podcastvm.isOwner(podcast)"><a ng-href="/podcasts/{{podcast._id}}/update" class="waves-effect waves-teal btn-flat"><i class="material-icons">mode_edit</i></a></div>
-<div ng-if="currentUser" ng-show="podcastvm.isOwner(podcast)"><button ng-click="podcastvm.destroy(podcast)"class="waves-effect waves-teal btn-flat"><i class="material-icons">delete</i></button></div>
-<div class="card horizontal">
-  <div class="card-image">
-    <img class="pod-image" ng-src="{{podcast.image}}">
-  </div>
-  <div class="card-stacked">
-    <div class="card-content">
-      <p class="short-description">{{podcast.description}}</p>
-      <button ng-if="currentUser" ng-hide="podcastvm.subscribed(podcast) || podcastvm.isOwner(podcast)" ng-click="podcastvm.subscribe(podcast)" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
-      <button ng-if="currentUser" ng-show="podcastvm.subscribed(podcast)" ng-click="podcastvm.unsubscribe(podcast)" class="btn-floating waves-effect waves-light red"><i class="material-icons">clear</i></a>
+<div class="hidden">
+  <h3 class="header">
+    <i ng-show="podcastvm.isLive()"class="material-icons">flash_on</i>
+    {{podcast.name}}
+  </h3>
+  <h4>by {{podcast._owner.name}}</h4>
+  <p>{{podcast.subscribers.length}} subscribers</p>
+  <div ng-if="currentUser" ng-show="podcastvm.isOwner(podcast)"><a ng-href="/podcasts/{{podcast._id}}/update" class="waves-effect waves-teal btn-flat"><i class="material-icons">mode_edit</i></a></div>
+  <div ng-if="currentUser" ng-show="podcastvm.isOwner(podcast)"><button ng-click="podcastvm.destroy(podcast)"class="waves-effect waves-teal btn-flat"><i class="material-icons">delete</i></button></div>
+  <div class="card horizontal">
+    <div class="card-image">
+      <img class="pod-image" ng-src="{{podcast.image}}">
     </div>
-    <div class="card-action">
-      <a ng-show="vm.clickThru" ng-href="/podcasts/{{podcast._id}}">See Page</a>
-      <a ng-hide="vm.clickThru" ng-href="{{podcast.website}}" target="_blank">View Website</a>
+    <div class="card-stacked">
+      <div class="card-content">
+        <p class="short-description">{{podcast.description}}</p>
+        <button ng-if="currentUser" ng-hide="podcastvm.subscribed(podcast) || podcastvm.isOwner(podcast)" ng-click="podcastvm.subscribe(podcast)" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
+        <button ng-if="currentUser" ng-show="podcastvm.subscribed(podcast)" ng-click="podcastvm.unsubscribe(podcast)" class="btn-floating waves-effect waves-light red"><i class="material-icons">clear</i></a>
+      </div>
+      <div class="card-action">
+        <a ng-show="vm.clickThru" ng-href="/podcasts/{{podcast._id}}">See Page</a>
+        <a ng-hide="vm.clickThru" ng-href="{{podcast.website}}" target="_blank">View Website</a>
+      </div>
     </div>
   </div>
 </div>
