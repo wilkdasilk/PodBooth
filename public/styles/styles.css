@@ -67,3 +67,14 @@ nav ul a:hover {
 .hidden {
   display: none;
 }
+
+.thumbnail {
+  height:64px;
+  width: 64px;
+}
+
+nav ul a {
+  display: flex;
+}
+nav .thumbnail {
+}
