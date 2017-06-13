@@ -1,10 +1,20 @@
+<div class="row search">
+  <div class="col s3 offset-s9 full-height">
+    <form class="col s12">
+      <div class="input-field searchbar">
+        <input type="search" class="form-control hidden" ng-model="searchText" placeholder="Search Podcasts">
+        <label class="label-icon right" for="search"><i class="material-icons left">search</i></label>
+        <i class="material-icons" ng-click="searchText=''">close</i>
+      </div>
+    </form>
+  </div>
+</div>
 <h2>Discover podcasts</h2>
 <div class="row">
   <div class="col s12">
-    <input type="text" class="form-control" ng-model="searchText" placeholder="Search Podcasts">
     <div ng-repeat="podcast in vm.podcasts | filter: searchText | orderBy: '-subscribers.length' | limitTo:vm.showAmount">
       <podcast></podcast>
     </div>
-    <button ng-click="vm.showMore()" ng-show="vm.showAmount<vm.podcasts.length" class="waves-effect waves-light btn">Show more</button>
+    <div ng-if="vm.podcasts.length>0 && vm.showAmount<vm.podcasts.length" infinite-scroll="vm.showMore()"></div>
   </div>
 </div>

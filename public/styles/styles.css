@@ -1,6 +1,8 @@
 body {
   color:black;
   text-align: center;
+  position: relative;
+  top: 64px;
 }
 
 .logo {
@@ -26,7 +28,10 @@ nav .logo {
 }
 
 nav {
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(0,0,0,1);
+  position: fixed;
+  top:0;
+  z-index:100;
 }
 
 nav ul a:hover {
@@ -62,5 +67,62 @@ nav ul a:hover {
   height: 250px;
   object-fit: cover;
   overflow: hidden;
+}
 
+.hidden {
+  display: none;
+}
+
+.thumbnail {
+  height:45px;
+  width: 45px;
+}
+.thumbail-wrapper {
+  height:64px;
+}
+
+nav ul a {
+  display: flex;
+}
+nav .thumbnail {
+}
+
+.full-height {
+  display:flex;
+}
+
+.search {
+  position: fixed;
+  top:64px;
+  right:0;
+  width: 100%;
+  z-index: 100;
+}
+
+.input-field input[type=search].hidden {
+  opacity: 0;
+  transition: all 0.5s;
+  position: relative;
+}
+
+.input-field:hover input[type=search].hidden {
+  opacity: 1;
+  background:white;
+
+}
+.input-field input[type=search].hidden:focus {
+  opacity: 1;
+  background: white;
+}
+
+.input-field label.right, .input-field input[type=search]+label {
+  right:0;
+  left: 200px;
+  transition: all 0.4s;
+}
+
+.input-field:hover label.right, .input-field input[type=search]:focus+label {
+  left:0;
+  right:200px;
+  z-index: 100;
 }
