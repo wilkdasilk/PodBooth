@@ -5,6 +5,6 @@
     <div ng-repeat="podcast in vm.podcasts | filter: searchText | orderBy: '-subscribers.length' | limitTo:vm.showAmount">
       <podcast></podcast>
     </div>
-    <button ng-click="vm.showMore()" ng-show="vm.showAmount<vm.podcasts.length" class="waves-effect waves-light btn">Show more</button>
+    <div ng-if="vm.podcasts.length>0" infinite-scroll="vm.showMore()" ng-show="vm.showAmount<vm.podcasts.length"></div>
   </div>
 </div>

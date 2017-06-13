@@ -20,6 +20,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/vendor', express.static(__dirname + '/bower_components'));
+app.use('/vendor2', express.static(__dirname + '/node_modules'));
 app.use(passport.initialize());
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
