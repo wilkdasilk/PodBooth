@@ -107,9 +107,12 @@ nav .thumbnail {
 
 .input-field:hover input[type=search].hidden {
   opacity: 1;
+  background:white;
+
 }
 .input-field input[type=search].hidden:focus {
   opacity: 1;
+  background: white;
 }
 
 .input-field label.right {
@@ -118,6 +121,6 @@ nav .thumbnail {
   transition: all 0.4s;
 }
 
-.input-field:hover label.right, .input-field:focus label.right {
+.input-field:hover label.right {
   left:0;
 }
