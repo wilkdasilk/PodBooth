@@ -6,18 +6,24 @@
     </div>
     <div class="card-stacked">
       <div class="card-content">
-        <h3 class="header">
+        <h4 class="header">
           <i ng-show="podcastvm.isLive()"class="material-icons">flash_on</i>
           {{podcast.name}}
-        </h3>
+        </h4>
         <p>
           <ng-pluralize count="podcast.subscribers.length"
                 when="{'0': 'No subscribers yet',
                        '1': '1 subscriber',
                        'other': '{} subscribers'}">
           </ng-pluralize>{{}}
+        </p><br>
+        <p ng-show="vm.clickThru" class="short-description">
+          {{podcastvm.showMore ? podcast.description : podcastvm.showDescription}}
+          <span ng-show="vm.clickThru && podcastvm.truncated">
+            <a ng-href="#" ng-click="podcastvm.showMore= !podcastvm.showMore">{{!podcastvm.showMore ? "Show more" : "Show less"}}</a>
+          </span>
         </p>
-        <p class="short-description">{{podcast.description}}</p>
+        <p ng-hide="vm.clickThru" class="short-description">{{podcast.description}}</p>
         <span class="side-buttons">
           <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><a ng-href="/podcasts/{{podcast._id}}/update" class="waves-effect waves-teal btn-flat"><i class="material-icons">mode_edit</i></a></div>
           <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><button ng-click="podcastvm.destroy(podcast)"class="waves-effect waves-teal btn-flat"><i class="material-icons">delete</i></button></div>
