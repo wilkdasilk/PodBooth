@@ -10,8 +10,13 @@
           <i ng-show="podcastvm.isLive()"class="material-icons">flash_on</i>
           {{podcast.name}}
         </h3>
-        <h5>by {{podcast._owner.name}}</h5>
-        <p>{{podcast.subscribers.length}} subscribers</p>
+        <p>
+          <ng-pluralize count="podcast.subscribers.length"
+                when="{'0': 'No subscribers yet',
+                       '1': '1 subscriber',
+                       'other': '{} subscribers'}">
+          </ng-pluralize>{{}}
+        </p>
         <p class="short-description">{{podcast.description}}</p>
         <span class="side-buttons">
           <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><a ng-href="/podcasts/{{podcast._id}}/update" class="waves-effect waves-teal btn-flat"><i class="material-icons">mode_edit</i></a></div>
