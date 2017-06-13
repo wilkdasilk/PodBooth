@@ -22,6 +22,8 @@
     }).then(function (res) {
       vm.podcasts = res.data;
       console.log(vm.podcasts);
+      var searchbar = $('.input-field.searchbar');
+      console.log(searchbar);
     }, function (err) {
       console.log('There was an error getting the data', err);
     });

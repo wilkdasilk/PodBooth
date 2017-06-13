@@ -14,7 +14,7 @@
         return $scope.podcast;
       },
       function(){
-        $('.hidden').fadeIn(1500);
+        $('.podcast.hidden').fadeIn(1500);
       }, true);
 
     vm.subscribe = function(podcast) {
