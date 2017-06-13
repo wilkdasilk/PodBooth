@@ -73,7 +73,7 @@ nav ul a:hover {
   display: none;
 }
 
-.thumbnail {
+.thumbnail, .card.horizontal .card-image img.pod-image.thumbnail {
   height:45px;
   width: 45px;
 }
@@ -83,8 +83,6 @@ nav ul a:hover {
 
 nav ul a {
   display: flex;
-}
-nav .thumbnail {
 }
 
 .full-height {
@@ -125,4 +123,14 @@ nav .thumbnail {
   left:0;
   right:200px;
   z-index: 100;
+}
+
+.side-buttons {
+  position: absolute;
+  top:0;
+  right:0;
+}
+
+.btn-flat:hover {
+  background-color: rgba(0,200,170,.5);
 }
