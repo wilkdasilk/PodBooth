@@ -115,12 +115,14 @@ nav .thumbnail {
   background: white;
 }
 
-.input-field label.right {
+.input-field label.right, .input-field input[type=search]+label {
   right:0;
   left: 200px;
   transition: all 0.4s;
 }
 
-.input-field:hover label.right {
+.input-field:hover label.right, .input-field input[type=search]:focus+label {
   left:0;
+  right:200px;
+  z-index: 100;
 }
