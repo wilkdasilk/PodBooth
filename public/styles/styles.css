@@ -73,10 +73,21 @@ nav ul a:hover {
   display: none;
 }
 
-.thumbnail, .card.horizontal .card-image img.pod-image.thumbnail {
+.thumbnail {
   height:45px;
   width: 45px;
 }
+
+.card.horizontal .card-image img.pod-image.thumbnail {
+  height:175px;
+  width:175px;
+}
+
+.card.horizontal .card-image img.pod-image{
+  padding:25px;
+  margin-top: 20px;
+}
+
 .thumbail-wrapper {
   height:64px;
 }
