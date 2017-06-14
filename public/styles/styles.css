@@ -63,8 +63,8 @@ nav ul a:hover {
 }
 
  .card.horizontal .card-image img.pod-image {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   overflow: hidden;
 }
@@ -77,14 +77,31 @@ nav ul a:hover {
   height:45px;
   width: 45px;
 }
+
+.card.horizontal .card-image img.pod-image.thumbnail {
+  height:175px;
+  width:175px;
+}
+
+.card.horizontal .card-image img.pod-image{
+  padding:10px;
+  margin-top: 24px;
+}
+
+.card.horizontal .card-image {
+  max-width: 100%;
+}
+
+.card .card-content {
+  padding: 24px 0;
+}
+
 .thumbail-wrapper {
   height:64px;
 }
 
 nav ul a {
   display: flex;
-}
-nav .thumbnail {
 }
 
 .full-height {
@@ -125,4 +142,26 @@ nav .thumbnail {
   left:0;
   right:200px;
   z-index: 100;
+}
+
+.side-buttons {
+  position: absolute;
+  top:24px;
+  right:0;
+}
+
+.btn-flat:hover {
+  background-color: rgba(0,200,170,.5);
+}
+
+.row .col.inside-card {
+  margin-left: 0;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.unclickable {
+  cursor: default;
 }

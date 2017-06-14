@@ -3,13 +3,17 @@
 <p>{{ vm.user.email }}</p>
 <div ng-show="vm.user.ownedPodcasts.length>0">
   <h3>Your podcasts</h3>
-  <div ng-repeat="podcast in vm.user.ownedPodcasts">
-    <podcast></podcast>
+  <div class="row">
+    <div ng-repeat="podcast in vm.user.ownedPodcasts">
+      <podcast></podcast>
+    </div>
   </div>
 </div>
 <div ng-show="vm.user.subscribedPodcasts.length>0">
   <h3>Subscriptions</h3>
-  <div ng-repeat="podcast in vm.user.subscribedPodcasts">
-    <podcast></podcast>
+  <div class="row">
+    <div ng-repeat="podcast in vm.user.subscribedPodcasts">
+      <podcast></podcast>
+    </div>
   </div>
 </div>

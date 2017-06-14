@@ -1,5 +1,7 @@
-<div ng-repeat="podcast in vm.podcast">
-  <podcast></podcast>
+<div class="row">
+  <div ng-repeat="podcast in vm.podcast">
+    <podcast></podcast>
+  </div>
 </div>
 <div>
   <button ng-show="vm.isOwner && !vm.isLive" ng-click="vm.createBroadcast()" class="waves-effect waves-light btn">Go live!</button>
