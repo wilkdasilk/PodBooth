@@ -1,6 +1,22 @@
-<h5>{{comment._owner.name}}</h5>
-<img ng-src="{{comment._owner.avatar}}">
-<p>{{comment.body}}</p>
-<p><span am-time-ago="comment.created_at"></p>
-<button ng-hide="commentvm.upvoted(comment)" ng-click="commentvm.upvote(comment)" class="waves-effect waves-light btn"><i class="material-icons left">thumb_up</i>{{comment.upvoters.length}}</a>
-<button ng-show="commentvm.upvoted(comment)" ng-click="commentvm.unvote(comment)" class="waves-effect waves-light btn"><i class="material-icons left">done</i>{{comment.upvoters.length}}</a>
+<li class="collection-item avatar comment">
+  <div class="col s3">
+    <img ng-src="{{comment._owner.avatar}}" alt="" class="circle">
+    <span class="title">{{comment._owner.name}}</span>
+    <br>
+    <span am-time-ago="comment.created_at">
+  </div>
+  <div class="col s8">
+    <p>
+      {{commentvm.showMore ? comment.body : commentvm.showBody}}
+      <span ng-show="commentvm.truncated">
+        <a ng-click="commentvm.toggleShowMore($event)">{{!commentvm.showMore ? "Show more" : "Show less"}}</a>
+      </span>
+    </p>
+    <div class="col s1">
+      <div class="side-buttons">
+        <div class="side-button"><button ng-hide="commentvm.upvoted(comment)" ng-click="commentvm.upvote(comment)" class="waves-effect waves-teal btn-flat"><i class="material-icons left">thumb_up</i>{{comment.upvoters.length}}</a></div>
+        <div class="side-button"><button ng-show="commentvm.upvoted(comment)" ng-click="commentvm.unvote(comment)" class="waves-effect waves-teal btn-flat subscribed"><i class="material-icons left">thumb_up</i>{{comment.upvoters.length}}</a></div>
+      </div>
+    </div>
+  </div>
+</li>

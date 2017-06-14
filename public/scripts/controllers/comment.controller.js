@@ -4,11 +4,20 @@
     .module('podBooth')
     .controller('commentCtrl', commentCtrl);
 
-  commentCtrl.$inject = ['$http', 'socket', 'authentication'];
-  function commentCtrl(   $http,   socket,   authentication) {
+  commentCtrl.$inject = ['$http', 'socket', 'authentication', '$scope', 'charactersFilter'];
+  function commentCtrl(   $http,   socket,   authentication,   $scope,   charactersFilter) {
 
     var vm = this;
     vm.user = authentication.currentUser()._id;
+
+    vm.showBody = charactersFilter($scope.comment.body, 100, false);
+    vm.truncated = (vm.showBody != $scope.comment.body);
+    vm.showMore = false;
+
+    vm.toggleShowMore = function(e) {
+      e.preventDefault();
+      vm.showMore= !vm.showMore;
+    }
 
     vm.upvote = function(comment) {
       socket.emit('upvote', {upvote: { comment: comment._id, user: vm.user }});
