@@ -8,6 +8,20 @@
   function podcastCtrl(   $http,   authentication,   $rootScope,   $scope,   $location,   charactersFilter ) {
     var vm = this;
 
+    vm.clickThruAction = function (){
+      if ($location.path() != `/podcasts/${$scope.podcast._id}`) {
+        $location.path(`/podcasts/${$scope.podcast._id}`);
+      }
+    };
+
+    vm.notClickThru = function(e) {
+      e.stopPropagation();
+    }
+
+    vm.toggleShowMore = function(e) {
+      e.preventDefault();
+      vm.showMore= !vm.showMore;
+    }
 
     $scope.$watch(
       function(){
