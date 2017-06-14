@@ -14,12 +14,19 @@
               <i ng-show="podcastvm.isLive()"class="material-icons">flash_on</i>
               {{podcast.name}}
             </h4>
-            <p>
-              <ng-pluralize count="podcast.subscribers.length"
+            <p ng-class={'subscribed':podcastvm.subscribed(podcast)}>
+              <i class="material-icons subscriber-icon">people</i>
+              <ng-pluralize ng-hide="podcastvm.subscribed(podcast)" count="podcast.subscribers.length"
                     when="{'0': 'No subscribers yet',
                            '1': '1 subscriber',
                            'other': '{} subscribers'}">
-              </ng-pluralize>{{}}
+              </ng-pluralize>
+              <ng-pluralize ng-show="podcastvm.subscribed(podcast)" count="podcast.subscribers.length"
+                    when="{'0': 'No subscribers yet',
+                           '1': 'You are subscribed',
+                           '2': 'You and 1 other subscriber',
+                           'other': 'You and {{podcast.subscribers.length-1}} other subscribers'}">
+              </ng-pluralize>
             </p><br>
             <div ng-click="podcastvm.notClickThru($event)" class="unclickable">
               <p ng-show="vm.clickThru" class="short-description">

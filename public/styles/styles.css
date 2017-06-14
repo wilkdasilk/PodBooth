@@ -165,3 +165,11 @@ nav ul a {
 .unclickable {
   cursor: default;
 }
+
+.card .card-content p.subscribed {
+  color: rgba(0,200,170,1);
+}
+
+.subscriber-icon {
+  vertical-align: bottom;
+}
