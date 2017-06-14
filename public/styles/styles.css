@@ -150,6 +150,10 @@ nav ul a {
   right:0;
 }
 
+.btn-flat {
+  padding: 0 1rem;
+}
+
 .btn-flat:hover {
   background-color: rgba(0,200,170,.5);
 }
@@ -166,10 +170,19 @@ nav ul a {
   cursor: default;
 }
 
-.card .card-content p.subscribed {
+.card .card-content p.subscribed, .subscribed {
   color: rgba(0,200,170,1);
 }
 
 .subscriber-icon {
   vertical-align: bottom;
+}
+
+.comment {
+  text-align: left;
+  overflow: auto;
+}
+
+.collection .collection-item:last-child {
+  border-bottom: 1px solid #e0e0e0;
 }
