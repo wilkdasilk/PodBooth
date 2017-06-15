@@ -25,6 +25,8 @@
       <li ng-hide="isLoggedIn"><a ng-href="/register">Sign Up</a></li>
       <li ng-show="isLoggedIn"><a ng-href="/profile">{{ currentUser.name }}'s Profile</a></li>
       <li ng-show="isLoggedIn"><a ng-href="/updateaccount">Update Account</a></li>
+      <li><a ng-href="/podcasts">Discover</a></li>
+      <li ng-show="isLoggedIn"><a ng-href="/podcast/new">Create Podcast</a></li>
       <li ng-show="isLoggedIn"><a ng-href="/logout">Logout</a></li>
     </ul>
   </div>
