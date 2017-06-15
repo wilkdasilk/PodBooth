@@ -15,9 +15,37 @@
       <img class="logo" ng-src="/images/podbooth-icon.png">
       PodBooth
     </a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <a href="#" data-activates="nav-mobile" data-sidenav="left" data-menuwidth="500" data-closeonclick="true" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
       <li><a class="dropdown-button" href="#" data-activates="dropdown2" dropdown ui-jq="dropdown" ui-options="navvm.dropDownConfig()">Podcasts<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a class="dropdown-button" href="#" data-activates="dropdown1" dropdown ui-jq="dropdown" ui-options="navvm.dropDownConfig()"><div ng-if="currentUser" class="thumbnail-wrapper valign-wrapper"><img class='thumbnail' ng-src='{{currentUser.avatar}}'></div><i ng-hide="currentUser" class="material-icons">perm_identity</i><i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+    <ul class="side-nav" id="nav-mobile">
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion" data-collapsible="accordion" watch>
+          <li>
+            <a class="collapsible-header">Account</a>
+            <div class="collapsible-body">
+              <ul>
+                <li ng-hide="isLoggedIn"><a ng-href="/login">Login</a></li>
+                <li ng-hide="isLoggedIn"><a ng-href="/register">Sign Up</a></li>
+                <li ng-show="isLoggedIn"><a ng-href="/profile">{{ currentUser.name }}'s Profile</a></li>
+                <li ng-show="isLoggedIn"><a ng-href="/updateaccount">Update Account</a></li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="collapsible-header">Podcasts</a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a ng-href="/podcasts">Discover</a></li>
+                <li ng-show="isLoggedIn"><a ng-href="/podcast/new">Create Podcast</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li ng-show="isLoggedIn"><a ng-href="/logout">Logout</a></li>
     </ul>
   </div>
 </nav>

@@ -31,12 +31,23 @@ nav {
   background-color: rgba(0,0,0,1);
   position: fixed;
   top:0;
-  z-index:101;
+  z-index:999;
 }
 
-nav ul a:hover {
+nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side-nav .collapsible-body li>a:hover, .side-nav.fixed .collapsible-body li>a:hover {
     background-color: rgba(0,200,170,1);
 }
+
+.side-nav.fixed .collapsible-header, .side-nav .collapsible-header, .side-nav li>a  {
+  background: rgba(0,0,0,1);
+  color:white;
+}
+
+.side-nav .collapsible-body li>a, .side-nav.fixed .collapsible-body li>a{
+  background: rgba(0,0,0,0.8);
+  color:white;
+}
+
 
 .short-description {
   overflow: hidden;
