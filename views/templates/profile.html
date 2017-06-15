@@ -1,19 +1,31 @@
-<h2>{{ vm.user.name }}'s Profile</h2>
-<img ng-src="{{vm.user.avatar}}">
-<p>{{ vm.user.email }}</p>
-<div ng-show="vm.user.ownedPodcasts.length>0">
-  <h3>Your podcasts</h3>
-  <div class="row">
-    <div ng-repeat="podcast in vm.user.ownedPodcasts">
-      <podcast></podcast>
+<div class="row">
+  <div class="col s8">
+    <div class="profile">
+      <h2>{{ vm.user.name }}'s Profile</h2>
+      <img ng-src="{{vm.user.avatar}}">
+      <p>{{ vm.user.email }}</p>
     </div>
   </div>
-</div>
-<div ng-show="vm.user.subscribedPodcasts.length>0">
-  <h3>Subscriptions</h3>
-  <div class="row">
-    <div ng-repeat="podcast in vm.user.subscribedPodcasts">
-      <podcast></podcast>
+  <div ng-show="vm.user.ownedPodcasts.length>0">
+    <div class="col s4">
+      <h3>Your podcasts</h3>
+      <div class="row">
+        <span ng-repeat="podcast in vm.user.ownedPodcasts" class="col s3 thumb-container">
+          <a ng-href="/podcasts/{{podcast._id}}" class="hoverable image-contained">
+            <img ng-src="{{podcast.image}}" class="thumbnail">
+          </a>
+        </span>
+      </div>
+      <div ng-show="vm.user.subscribedPodcasts.length>0">
+        <h3>Subscriptions</h3>
+        <div class="row">
+          <span ng-repeat="podcast in vm.user.subscribedPodcasts" class="col s3 thumb-container">
+            <a ng-href="/podcasts/{{podcast._id}}" class="hoverable image-contained">
+              <img ng-src="{{podcast.image}}" class="thumbnail">
+            </a>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

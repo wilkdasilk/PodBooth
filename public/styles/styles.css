@@ -197,3 +197,20 @@ nav ul a {
 .collection .collection-item:last-child {
   border-bottom: 1px solid #e0e0e0;
 }
+
+.profile {
+  text-align: left;
+}
+
+.image-contained {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+}
+
+.thumb-container, .col.s3.thumb-container {
+  height: 45px;
+  width:45px;
+  padding:0;
+  margin: 5%;
+}
