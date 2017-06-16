@@ -294,3 +294,39 @@ a.profile {
   margin-bottom:50px;
   padding-bottom:10px;
 }
+
+.parallax-container img {
+  width:100%;
+}
+
+.row.homepage {
+    display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+  .row.homepage {
+      display: block;
+  }
+}
+
+.col.homepage {
+  display:inline-block;
+  vertical-align: top;
+}
+
+.card.homepage {
+  height:100%;
+}
+
+.card.homepage .card-content {
+  padding: 24px;
+}
+
+.card.homepage .card-image {
+  height:100px;
+  padding-top: 20px;
+}
+
+.card.homepage .card-image .material-icons {
+  font-size: 60px;
+}
