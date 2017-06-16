@@ -14,17 +14,21 @@
     </a>
   </div>
   <div ng-show="vm.user.ownedPodcasts.length>0">
+    <div class="divider"></div>
     <div class="col s8">
-      <h3>Your podcasts</h3>
-      <div>
-        <span ng-repeat="podcast in vm.user.ownedPodcasts" class="thumb-container profile">
-          <a ng-href="/podcasts/{{podcast._id}}" class="hoverable image-contained">
-            <img ng-src="{{podcast.image}}" class="thumbnail">
-          </a>
-        </span>
+      <div ng-show="vm.user.ownedPodcasts.length>0" class="section">
+        <h4>Your Podcasts</h4>
+        <div>
+          <span ng-repeat="podcast in vm.user.ownedPodcasts" class="thumb-container profile">
+            <a ng-href="/podcasts/{{podcast._id}}" class="hoverable image-contained">
+              <img ng-src="{{podcast.image}}" class="thumbnail">
+            </a>
+          </span>
+        </div>
       </div>
-      <div ng-show="vm.user.subscribedPodcasts.length>0">
-        <h3>Subscriptions</h3>
+      <div ng-show="vm.user.subscribedPodcasts.length>0" class="section">
+        <div class="divider"></div>
+        <h4>Subscriptions</h4>
         <div>
           <span ng-repeat="podcast in vm.user.subscribedPodcasts" class="thumb-container profile">
             <a ng-href="/podcasts/{{podcast._id}}" class="hoverable image-contained">
