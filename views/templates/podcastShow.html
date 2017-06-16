@@ -12,7 +12,6 @@
       <stream ng-if="currentUser && vm.subscribed(vm.podcast[0]) && !vm.isOwner && vm.isLive" podcast="vm.podcast[0]" ></stream>
       <stream-controls ng-if="vm.isOwner && vm.isLive"></stream-controls>
     </div>
-
   </div>
   <comments ng-if="currentUser && vm.isLive && (vm.subscribed(vm.podcast[0]) || vm.isOwner)" podcast="vm.podcast[0]"></comments>
 
