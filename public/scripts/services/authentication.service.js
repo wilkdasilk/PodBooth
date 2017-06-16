@@ -52,6 +52,13 @@
       }
     }
 
+    var requireLoggedOut = function() {
+      if (isLoggedIn()) {
+        $rootScope.userAlerts.push("You're already logged in!");
+        $location.path('/profile');
+      }
+    }
+
     register = function(user) {
       return Upload.upload(
         {url: '/api/register',
@@ -114,7 +121,8 @@
       update : update,
       login : login,
       logout : logout,
-      requireLogin : requireLogin
+      requireLogin : requireLogin,
+      requireLoggedOut : requireLoggedOut
     };
   }
 

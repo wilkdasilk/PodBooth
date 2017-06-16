@@ -9,6 +9,8 @@
   function registerCtrl(  $location,    authentication,   $rootScope,   $scope) {
     var vm = this;
 
+    authentication.requireLoggedOut();
+
     vm.credentials = {
       name : "",
       email : "",

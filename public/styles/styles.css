@@ -279,6 +279,7 @@ a.profile {
 .sticky-bottom .controls {
   text-align: center;
   margin: 5px auto;
+  z-index:999;
 }
 
 .recording-symbol {
