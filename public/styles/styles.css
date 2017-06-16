@@ -265,3 +265,32 @@ a.profile {
   transition: opacity .3s;
   opacity: 0.9;
 }
+
+.sticky-bottom.valign-wrapper {
+  position: fixed;
+  left:0;
+  bottom: 0;
+  width: 100vw;
+  background: rgba(0,0,0,.8);
+  height:50px;
+  text-align: center;
+}
+
+.sticky-bottom .controls {
+  text-align: center;
+  margin: 5px auto;
+}
+
+.recording-symbol {
+  background-color:red;
+  color:red;
+  vertical-align: middle;
+  width:25px;
+  height:25px;
+  margin: 0 10px;
+}
+
+.lift-page {
+  margin-bottom:50px;
+  padding-bottom:10px;
+}
