@@ -23,10 +23,12 @@
         <div ng-hide="files || vm.credentials.avatar" ngf-drop="vm.fileSelected($files)" ngf-max-size="20MB" ngf-min-height="250" ngf-resize="{width:250, height: 250, centerCrop: true}" id="image" class="drop-box" ngf-drag-over-class="'dragover'" accept="'image/*'" ng-model="files">
           Drag image or click to select
         </div>
-        <img ng-if="files" ngf-thumbnail="files">
-        <img ng-if="!files" ng-show="vm.credentials.avatar" ng-src="{{vm.credentials.avatar}}">
-        <div>
-          <button ng-show="files || vm.credentials.avatar" class="btn btn-default" ng-click="vm.removeFile($event)">Remove</button>
+        <div class="preview">
+          <span ng-show="files || vm.credentials.avatar" ng-click="vm.removeFile($event)" class="clickable" >
+            <img ng-if="files" ngf-thumbnail="files">
+            <img ng-if="!files" ng-show="vm.credentials.avatar" ng-src="{{vm.credentials.avatar}}">
+            <i class="material-icons side-buttons subscribed">clear</i>
+          </span>
         </div>
       </div>
       <input type="hidden" ng-model="vm.credentials.avatar" ng-required="true">
