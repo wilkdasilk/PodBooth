@@ -3,6 +3,7 @@ body {
   text-align: center;
   position: relative;
   top: 64px;
+  min-width: 230px;
 }
 
 .logo {
