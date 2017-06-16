@@ -225,13 +225,13 @@ nav ul a {
   margin: 0 auto;
 }
 
-.card.profile .side-buttons {
+.card.profile .side-buttons, .preview .side-buttons {
   visibility: hidden;
   opacity: 0;
 
 }
 
-.card.profile:hover .side-buttons {
+.card.profile:hover .side-buttons, .preview:hover .side-buttons {
   opacity: 1.0;
   visibility: visible;
   top:0;
@@ -250,4 +250,18 @@ nav ul a {
 
 a.profile {
   color:black;
+}
+
+.preview {
+  position: relative;
+  display: inline-block;
+}
+
+.preview img {
+  opacity: 1.0;
+}
+
+.preview img:hover {
+  transition: opacity .3s;
+  opacity: 0.9;
 }
