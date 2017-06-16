@@ -19,6 +19,10 @@
       }
     };
 
+    vm.haveComments = function() {
+      return vm.comments.length>0
+    };
+
     vm.comments = [];
     vm.newComment = {
       body: '',

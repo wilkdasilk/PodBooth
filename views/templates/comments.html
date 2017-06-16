@@ -1,4 +1,4 @@
-<div ng-show="commentsvm.comments.length>0">
+<div ng-show="commentsvm.haveComments()">
   <h2 ng-show="commentsvm.sort=='-upvoters.length'">Top Comments</h2>
   <h2 ng-hide="commentsvm.sort=='-upvoters.length'">Recent Comments</h2>
   <button ng-show="commentsvm.sort=='-upvoters.length'" ng-click="commentsvm.sortByTime()" class="waves-effect waves-light btn">Recent comments</button>
@@ -13,7 +13,7 @@
     </div>
   </div>
 </div>
-<div ng-hide="commentsvm.comments.length>0">
+<div ng-hide="commentsvm.haveComments()">
   <div class="row">
     <div class="col s6 offset-s3">
       <ul class="collection">
