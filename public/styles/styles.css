@@ -275,7 +275,17 @@ a.profile {
   height:50px;
   text-align: center;
 }
+
 .sticky-bottom .controls {
   text-align: center;
   margin: 5px auto;
+}
+
+.recording-symbol {
+  background-color:red;
+  color:red;
+  vertical-align: middle;
+  width:25px;
+  height:25px;
+  margin: 0 10px;
 }
