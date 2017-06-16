@@ -265,3 +265,17 @@ a.profile {
   transition: opacity .3s;
   opacity: 0.9;
 }
+
+.sticky-bottom.valign-wrapper {
+  position: fixed;
+  left:0;
+  bottom: 0;
+  width: 100vw;
+  background: black;
+  height:50px;
+  text-align: center;
+}
+.sticky-bottom .controls {
+  text-align: center;
+  margin: 5px auto;
+}
