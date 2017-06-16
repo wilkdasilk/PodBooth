@@ -3,6 +3,7 @@ body {
   text-align: center;
   position: relative;
   top: 64px;
+  min-width: 230px;
 }
 
 .logo {
@@ -196,4 +197,57 @@ nav ul a {
 
 .collection .collection-item:last-child {
   border-bottom: 1px solid #e0e0e0;
+}
+
+.profile {
+  text-align: left;
+}
+
+
+.image-contained {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+}
+
+.thumb-container, .col.s3.thumb-container {
+  height: 45px;
+  width:45px;
+  padding:0;
+  margin: 5%;
+  display: inline-block;
+}
+
+.card.profile {
+  max-width: 230px;
+  box-shadow: none;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.card.profile .side-buttons {
+  visibility: hidden;
+  opacity: 0;
+
+}
+
+.card.profile:hover .side-buttons {
+  opacity: 1.0;
+  visibility: visible;
+  top:0;
+  transition: opacity .3s;
+}
+
+.card.profile:hover .card-image img {
+  transition: opacity .3s;
+  opacity: 0.9;
+}
+
+.card.profile .card-image img {
+  border-radius: 50%;
+  opacity: 1;
+}
+
+a.profile {
+  color:black;
 }
