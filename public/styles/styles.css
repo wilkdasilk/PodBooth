@@ -213,4 +213,5 @@ nav ul a {
   width:45px;
   padding:0;
   margin: 5%;
+  display: inline-block;
 }

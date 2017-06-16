@@ -9,8 +9,8 @@
   <div ng-show="vm.user.ownedPodcasts.length>0">
     <div class="col s4">
       <h3>Your podcasts</h3>
-      <div class="row">
-        <span ng-repeat="podcast in vm.user.ownedPodcasts" class="col s3 thumb-container">
+      <div>
+        <span ng-repeat="podcast in vm.user.ownedPodcasts" class="thumb-container profile">
           <a ng-href="/podcasts/{{podcast._id}}" class="hoverable image-contained">
             <img ng-src="{{podcast.image}}" class="thumbnail">
           </a>
@@ -18,8 +18,8 @@
       </div>
       <div ng-show="vm.user.subscribedPodcasts.length>0">
         <h3>Subscriptions</h3>
-        <div class="row">
-          <span ng-repeat="podcast in vm.user.subscribedPodcasts" class="col s3 thumb-container">
+        <div>
+          <span ng-repeat="podcast in vm.user.subscribedPodcasts" class="thumb-container profile">
             <a ng-href="/podcasts/{{podcast._id}}" class="hoverable image-contained">
               <img ng-src="{{podcast.image}}" class="thumbnail">
             </a>
