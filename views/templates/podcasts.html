@@ -9,7 +9,10 @@
     </form>
   </div>
 </div>
-<h2>Discover podcasts</h2>
+<div class="parallax-container hero-container">
+    <div parallax><img ng-src="/images/podcasting.jpg" class="hero"></div>
+</div>
+<h2 class="overlay">Discover podcasts</h2>
 <div class="row">
   <div class="col s12">
     <div ng-repeat="podcast in vm.podcasts | filter: searchText | orderBy: '-subscribers.length' | limitTo:vm.showAmount">

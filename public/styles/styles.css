@@ -331,3 +331,25 @@ a.profile {
 .card.homepage .card-image .material-icons {
   font-size: 60px;
 }
+
+.parallax-container.hero-container .parallax {
+  background-color:rgba(0,0,0,1);
+}
+
+.parallax-container.hero-container {
+  position: absolute;
+  left:0;
+  top:-40px;
+  margin:0;
+  height:350px;
+  width:100vw;
+}
+
+.parallax-container.hero-container img {
+  opacity: 0.8;
+}
+
+h2.overlay {
+  color:white;
+  padding: 50px 0;
+}
