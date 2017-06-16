@@ -1,14 +1,27 @@
-<h2 ng-show="commentsvm.sort=='-upvoters.length'">Top Comments</h2>
-<h2 ng-hide="commentsvm.sort=='-upvoters.length'">Recent Comments</h2>
-<button ng-show="commentsvm.sort=='-upvoters.length'" ng-click="commentsvm.sortByTime()" class="waves-effect waves-light btn">Recent comments</button>
-<button ng-hide="commentsvm.sort=='-upvoters.length'" ng-click="commentsvm.sortByVote()" class="waves-effect waves-light btn">Top comments</button>
-<div class="row">
-  <div class="col s10 offset-s1">
-    <ul class="collection">
-      <div ng-repeat="comment in commentsvm.comments | orderBy: commentsvm.sort ">
-        <comment></comment>
-      </div>
-    </ul>
+<div ng-show="commentsvm.comments.length>0">
+  <h2 ng-show="commentsvm.sort=='-upvoters.length'">Top Comments</h2>
+  <h2 ng-hide="commentsvm.sort=='-upvoters.length'">Recent Comments</h2>
+  <button ng-show="commentsvm.sort=='-upvoters.length'" ng-click="commentsvm.sortByTime()" class="waves-effect waves-light btn">Recent comments</button>
+  <button ng-hide="commentsvm.sort=='-upvoters.length'" ng-click="commentsvm.sortByVote()" class="waves-effect waves-light btn">Top comments</button>
+  <div class="row">
+    <div class="col s10 offset-s1">
+      <ul class="collection">
+        <div ng-repeat="comment in commentsvm.comments | orderBy: commentsvm.sort ">
+          <comment></comment>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+<div ng-hide="commentsvm.comments.length>0">
+  <div class="row">
+    <div class="col s6 offset-s3">
+      <ul class="collection">
+        <li class="collection-item">
+          No comments yet. Be the first!
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 <div class="row">
