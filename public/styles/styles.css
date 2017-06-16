@@ -203,6 +203,9 @@ nav ul a {
   text-align: left;
 }
 
+.profile-wrapper {
+  padding-top: 50px;
+}
 
 .image-contained {
   position: absolute;
