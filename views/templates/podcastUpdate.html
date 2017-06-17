@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col m6 offset-m3">
+  <div class="col m8 offset-m2 s12 form-container">
     <h2>Update Podcast</h2>
     <form name="revisedPodcast" ng-submit="vm.updatePodcast()">
       <div>
@@ -24,7 +24,7 @@
             <img ng-if="!files" ng-show="vm.revisedPodcast.image" ng-src="{{vm.revisedPodcast.image}}">
             <img ng-if="files" ngf-thumbnail="files">
             <i class="material-icons side-buttons subscribed">clear</i>
-          </span>    
+          </span>
         </div>
         </div>
       <input type="hidden" ng-model="vm.revisedPodcast.image" ng-required="true">

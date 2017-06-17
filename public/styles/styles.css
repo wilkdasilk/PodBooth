@@ -395,3 +395,7 @@ footer li {
   display: inline-block;
   padding: 0 8px;
 }
+
+.form-container {
+  min-width: 310px;
+}
