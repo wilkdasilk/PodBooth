@@ -83,7 +83,7 @@ nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side
 
 }
 .dragover {
-    border: 5px dashed blue;
+    border: 5px dashed rgba(0,200,170,1);
 }
 
  .card.horizontal .card-image img.pod-image {
