@@ -180,7 +180,7 @@ nav ul a {
   cursor: default;
 }
 
-.card .card-content p.subscribed, .subscribed {
+.card .card-content p.subscribed, .subscribed, .card .card-action a.subscribed:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
   color: rgba(0,200,170,1);
 }
 
@@ -301,7 +301,7 @@ a.profile {
   width:100%;
 }
 
-.row.homepage {
+.row.homepage, .row.podcastShow {
     display: flex;
 }
 
@@ -311,7 +311,7 @@ a.profile {
   }
 }
 
-.col.homepage {
+.col.homepage, .col.podcastShow {
   display:inline-block;
   vertical-align: top;
 }
@@ -366,4 +366,11 @@ h2.overlay {
 
 .public:hover {
   color: rgba(0,200,170,1);
+}
+
+.justify {
+  text-align: justify;
+}
+.text-center {
+  text-align: center;
 }
