@@ -63,6 +63,11 @@ nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side
   text-align: left;
 }
 
+.left.block {
+  display: block;
+  float: none !important
+}
+
 .drop-box {
     background: #F8F8F8;
     border: 5px dashed #DDD;
