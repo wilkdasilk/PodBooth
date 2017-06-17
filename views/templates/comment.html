@@ -9,7 +9,7 @@
     <p>
       {{commentvm.showMore ? comment.body : commentvm.showBody}}
       <span ng-show="commentvm.truncated">
-        <a ng-click="commentvm.toggleShowMore($event)">{{!commentvm.showMore ? "Show more" : "Show less"}}</a>
+        <a class="subscribed" ng-click="commentvm.toggleShowMore($event)">{{!commentvm.showMore ? "Show more" : "Show less"}}</a>
       </span>
     </p>
     <div class="col s1">
