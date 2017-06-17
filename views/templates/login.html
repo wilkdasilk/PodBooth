@@ -1,16 +1,21 @@
-<div class="row">
-  <div class="col m6 offset-m3">
-    <h2>Login</h2>
-    <form ng-submit="vm.onSubmit()">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="vm.credentials.email">
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="vm.credentials.password">
-      </div>
-      <button type="submit" class="btn btn-default">Sign in!</button>
-    </form>
+<div class="form-page">
+  <div class="parallax-container">
+      <div parallax><img ng-src="/images/engaging2.jpg"></div>
+  </div>
+  <div class="row">
+    <div class="col m8 s12 form-container">
+      <h2>Login</h2>
+      <form ng-submit="vm.onSubmit()">
+        <div class="form-group">
+          <label for="email" class="left">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="vm.credentials.email">
+        </div>
+        <div>
+          <label for="password" class="left">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password" ng-model="vm.credentials.password">
+        </div>
+        <button type="submit" class="btn btn-default">Sign in!</button>
+      </form>
+    </div>
   </div>
 </div>

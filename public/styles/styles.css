@@ -63,19 +63,27 @@ nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side
   text-align: left;
 }
 
+.left.block {
+  display: block;
+  float: none !important
+}
+
 .drop-box {
     background: #F8F8F8;
     border: 5px dashed #DDD;
-    width: 200px;
+    width: 70%;
     height: 65px;
     text-align: center;
     padding-top: 25px;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     color: #9e9e9e;
     font: inherit;
+    position: relative;
+    top:20px;
+
 }
 .dragover {
-    border: 5px dashed blue;
+    border: 5px dashed rgba(0,200,170,1);
 }
 
  .card.horizontal .card-image img.pod-image {
@@ -305,6 +313,11 @@ a.profile {
   width:100%;
 }
 
+.parallax-container {
+  min-width: 230px;
+  z-index: -1;
+}
+
 .row.homepage, .row.podcastShow {
     display: flex;
 }
@@ -313,6 +326,7 @@ a.profile {
   .row.homepage, .row.podcastShow {
       display: block;
   }
+
 }
 
 .col.homepage, .col.podcastShow {
@@ -352,6 +366,14 @@ a.profile {
 
 .parallax-container.hero-container img {
   opacity: 0.8;
+}
+
+.form-page .parallax-container {
+  position: absolute;
+  width: 100vw;
+  height:100%;
+  left:0;
+  top: 0;
 }
 
 h2.overlay {
@@ -394,4 +416,23 @@ footer li {
   font-size: 20px;
   display: inline-block;
   padding: 0 8px;
+}
+
+.form-container {
+  min-width: 310px;
+  margin-top:25px;
+  margin-bottom:25px;
+  background:white;
+}
+
+.form-container form input, .form-container form textarea {
+  text-align: center;
+}
+
+.form-container form button {
+  margin-bottom: 25px;
+}
+
+.form-page .row {
+  margin-bottom: 0px;
 }
