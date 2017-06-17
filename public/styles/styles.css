@@ -383,6 +383,8 @@ h2.overlay {
 .page-footer {
   height: 20vh;
   min-height: 220px;
+  display: table;
+  width: 100%;
 }
 .page-footer, .page-footer .footer-copyright {
   background-color: rgba(0,0,0,.9);
