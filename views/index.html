@@ -56,34 +56,39 @@
     <script src="/scripts/directives/streamControls.directive.js"></script>
   </head>
   <body>
-    <navigation></navigation>
+    <header>
+      <navigation></navigation>
+    </header>
+    <main>
+      <div class="container">
+        <div ng-view></div>
+      </div>
+    </main>
+    <footer class="page-footer">
     <div class="container">
-      <div ng-view></div>
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Want more awesomeness?</h5>
+          <p class="grey-text text-lighten-4">We're happy to develop apps to help content creators and fans alike. Connect with the developer online to keep the conversation going!</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Around the web</h5>
+          <ul>
+            <li><a ng-href="http://www.austonwilkinson.com/" target="_blank"><i class="fa fa-globe fa-lg subscribed"></i></a></li>
+            <li><a ng-href="http://www.twitter.com/austonwilkinson" target="_blank"><i class="fa fa-twitter fa-lg subscribed"></i></a></li>
+            <li><a ng-href="http://www.github.com/wilkdasilk" target="_blank"><i class="fa fa-github fa-lg subscribed"></i></a></li>
+            <li><a ng-href="http://www.linkedin.com/in/austonwilkinson" target="_blank"><i class="fa fa-linkedin fa-lg subscribed"></i></a></li>
+            <li><a ng-href="http://www.angel.co/austonwilkinson" target="_blank"><i class="fa fa-angellist fa-lg subscribed"></i></a></li>
+          </ul>
+        </div>
+      </div>
     </div>
+    <div class="footer-copyright">
+      <div class="container">
+      © 2017 Auston Wilkinson
+      </div>
+    </div>
+  </footer>
   </body>
-  <footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Want more awesomeness?</h5>
-        <p class="grey-text text-lighten-4">We're happy to develop apps to help content creators and fans alike. Connect with the developer online to keep the conversation going!</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 class="white-text">Around the web</h5>
-        <ul>
-          <li><a ng-href="http://www.austonwilkinson.com/" target="_blank"><i class="fa fa-globe fa-lg subscribed"></i></a></li>
-          <li><a ng-href="http://www.twitter.com/austonwilkinson" target="_blank"><i class="fa fa-twitter fa-lg subscribed"></i></a></li>
-          <li><a ng-href="http://www.github.com/wilkdasilk" target="_blank"><i class="fa fa-github fa-lg subscribed"></i></a></li>
-          <li><a ng-href="http://www.linkedin.com/in/austonwilkinson" target="_blank"><i class="fa fa-linkedin fa-lg subscribed"></i></a></li>
-          <li><a ng-href="http://www.angel.co/austonwilkinson" target="_blank"><i class="fa fa-angellist fa-lg subscribed"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-    © 2017 Auston Wilkinson
-    </div>
-  </div>
-</footer>
+
 </html>

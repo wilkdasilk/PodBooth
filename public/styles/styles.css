@@ -1,9 +1,13 @@
 body {
   color:black;
   text-align: center;
-  position: relative;
-  top: 64px;
   min-width: 230px;
+}
+
+main {
+  position: relative;
+  padding-top: 64px;
+  min-height:70vh;
 }
 
 .logo {
@@ -376,6 +380,10 @@ h2.overlay {
   text-align: center;
 }
 
+.page-footer {
+  height: 20vh;
+  min-height: 220px;
+}
 .page-footer, .page-footer .footer-copyright {
   background-color: rgba(0,0,0,.9);
 }
