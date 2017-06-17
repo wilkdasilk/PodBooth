@@ -8,7 +8,7 @@
         </div>
       </div>
       <div ng-class="{'row':!vm.clickThru, 'podcastShow':!vm.clickThru, 'text-center':!vm.clickThru}">
-        <div ng-class="{'col':!vm.clickThru, 'm11':!vm.clickThru, 's11':!vm.clickThru, 'podcastShow':!vm.clickThru}">
+        <div ng-class="{'col':!vm.clickThru, 'm11':!vm.clickThru, 's12':!vm.clickThru, 'podcastShow':!vm.clickThru}">
           <h4 class="header">
             <i ng-show="podcastvm.isLive()"class="material-icons">flash_on</i>
             {{podcast.name}}
@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div ng-show="!vm.clickThru" ng-class="{'col':!vm.clickThru, 'm1':!vm.clickThru, 's1':!vm.clickThru, 'podcastShow':!vm.clickThru}">
+        <div ng-show="!vm.clickThru" ng-class="{'col':!vm.clickThru, 'm1':!vm.clickThru, 's12':!vm.clickThru, 'podcastShow':!vm.clickThru}">
           <span class="side-buttons">
             <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><a ng-href="/podcasts/{{podcast._id}}/update" class="waves-effect waves-teal btn-flat"><i class="material-icons">mode_edit</i></a></div>
             <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><button ng-click="podcastvm.destroy(podcast)"class="waves-effect waves-teal btn-flat"><i class="material-icons">delete</i></button></div>

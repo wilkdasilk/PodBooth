@@ -306,7 +306,7 @@ a.profile {
 }
 
 @media only screen and (max-width: 600px) {
-  .row.homepage {
+  .row.homepage, .row.podcastShow {
       display: block;
   }
 }
