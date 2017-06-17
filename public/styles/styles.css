@@ -66,13 +66,16 @@ nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side
 .drop-box {
     background: #F8F8F8;
     border: 5px dashed #DDD;
-    width: 200px;
+    width: 70%;
     height: 65px;
     text-align: center;
     padding-top: 25px;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     color: #9e9e9e;
     font: inherit;
+    position: relative;
+    top:20px;
+
 }
 .dragover {
     border: 5px dashed blue;

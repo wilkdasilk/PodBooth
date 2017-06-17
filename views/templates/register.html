@@ -3,15 +3,15 @@
     <h2>Sign Up</h2>
     <form name="newUser" ng-submit="vm.onSubmit()">
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name" class="left">Name</label>
         <input type="text" class="form-control" id="name" placeholder="What's your name?" ng-model="vm.credentials.name" ng-required="true">
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email" class="left">Email</label>
         <input type="email" class="form-control" id="email" placeholder="What's your email?" ng-model="vm.credentials.email" ng-required="true">
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password" class="left">Password</label>
         <input type="password" class="form-control" id="password" placeholder="Choose a password" ng-model="vm.credentials.password" ng-required="true">
       </div>
       <div>
