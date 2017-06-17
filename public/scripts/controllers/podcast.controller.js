@@ -31,7 +31,12 @@
         $('.podcast.hidden').fadeIn(1500);
       }, true);
 
-    vm.showDescription = charactersFilter($scope.podcast.description, 250, false);
+    if ($location.path() == `/podcasts/${$scope.podcast._id}`) {
+      vm.showDescription = charactersFilter($scope.podcast.description, 500, false);
+    } else {
+      vm.showDescription = charactersFilter($scope.podcast.description, 250, false);
+    }
+
     vm.truncated = (vm.showDescription != $scope.podcast.description);
     vm.showMore = false;
 

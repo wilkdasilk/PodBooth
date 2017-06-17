@@ -75,10 +75,13 @@ nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side
 }
 
  .card.horizontal .card-image img.pod-image {
-  width: 200px;
-  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
   object-fit: cover;
   overflow: hidden;
+  padding:10px;
+  margin: 24px auto 0 auto;
+  width:100%;
 }
 
 .hidden {
@@ -93,11 +96,6 @@ nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side
 .card.horizontal .card-image img.pod-image.thumbnail {
   height:175px;
   width:175px;
-}
-
-.card.horizontal .card-image img.pod-image{
-  padding:10px;
-  margin-top: 24px;
 }
 
 .card.horizontal .card-image {
@@ -182,11 +180,11 @@ nav ul a {
   cursor: default;
 }
 
-.card .card-content p.subscribed, .subscribed {
+.card .card-content p.subscribed, .subscribed, .card .card-action a.subscribed:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
   color: rgba(0,200,170,1);
 }
 
-.subscriber-icon {
+.subscriber-icon, .public .material-icons {
   vertical-align: bottom;
 }
 
@@ -203,6 +201,9 @@ nav ul a {
   text-align: left;
 }
 
+.main-wrapper {
+  padding-top: 50px;
+}
 
 .image-contained {
   position: absolute;
@@ -300,17 +301,17 @@ a.profile {
   width:100%;
 }
 
-.row.homepage {
+.row.homepage, .row.podcastShow {
     display: flex;
 }
 
 @media only screen and (max-width: 600px) {
-  .row.homepage {
+  .row.homepage, .row.podcastShow {
       display: block;
   }
 }
 
-.col.homepage {
+.col.homepage, .col.podcastShow {
   display:inline-block;
   vertical-align: top;
 }
@@ -330,4 +331,46 @@ a.profile {
 
 .card.homepage .card-image .material-icons {
   font-size: 60px;
+}
+
+.parallax-container.hero-container .parallax {
+  background-color:rgba(0,0,0,1);
+}
+
+.parallax-container.hero-container {
+  position: absolute;
+  left:0;
+  top:-40px;
+  margin:0;
+  height:350px;
+  width:100vw;
+}
+
+.parallax-container.hero-container img {
+  opacity: 0.8;
+}
+
+h2.overlay {
+  color:white;
+  padding: 50px 0;
+}
+
+.borderless {
+  box-shadow: none;
+}
+
+.public {
+  color: black;
+  transition: color .25s;
+}
+
+.public:hover {
+  color: rgba(0,200,170,1);
+}
+
+.justify {
+  text-align: justify;
+}
+.text-center {
+  text-align: center;
 }

@@ -1,51 +1,70 @@
 <div class="podcast hidden" ng-class="{'hoverable':vm.clickThru}">
-  <div class="card horizontal">
-    <div ng-click="podcastvm.clickThruAction()" ng-class="{'clickable':vm.clickThru}" class="col s11 inside-card">
-      <div class="col s4">
+  <div class="card horizontal" ng-class="{'borderless':!vm.clickThru}">
+    <div ng-click="podcastvm.clickThruAction()" ng-class="{'clickable':vm.clickThru, 'm11':vm.clickThru, 's11':vm.clickThru, 'm12':!vm.clickThru, 's12':!vm.clickThru, 'justify':!vm.clickThru}" class="col inside-card">
+      <div class="col m4 s12">
         <div class="card-image">
           <img ng-show="vm.clickThru" class="pod-image thumbnail" ng-src="{{podcast.image}}">
           <img ng-hide="vm.clickThru" class="pod-image" ng-src="{{podcast.image}}">
         </div>
       </div>
-      <div class="col s8">
-        <div class="card-stacked">
-          <div class="card-content">
-            <h4 class="header">
-              <i ng-show="podcastvm.isLive()"class="material-icons">flash_on</i>
-              {{podcast.name}}
-            </h4>
-            <p ng-class={'subscribed':podcastvm.subscribed(podcast)}>
-              <i class="material-icons subscriber-icon">people</i>
-              <ng-pluralize ng-hide="podcastvm.subscribed(podcast)" count="podcast.subscribers.length"
-                    when="{'0': 'No subscribers yet',
-                           '1': '1 subscriber',
-                           'other': '{} subscribers'}">
-              </ng-pluralize>
-              <ng-pluralize ng-show="podcastvm.subscribed(podcast)" count="podcast.subscribers.length"
-                    when="{'0': 'No subscribers yet',
-                           '1': 'You are subscribed',
-                           '2': 'You and 1 other subscriber',
-                           'other': 'You and {{podcast.subscribers.length-1}} other subscribers'}">
-              </ng-pluralize>
-            </p><br>
-            <div ng-click="podcastvm.notClickThru($event)" class="unclickable">
-              <p ng-show="vm.clickThru" class="short-description">
-                {{podcastvm.showMore ? podcast.description : podcastvm.showDescription}}
-                <span ng-show="vm.clickThru && podcastvm.truncated">
-                  <a class="clickable" ng-click="podcastvm.toggleShowMore($event)">{{!podcastvm.showMore ? "Show more" : "Show less"}}</a>
+      <div ng-class="{'row':!vm.clickThru, 'podcastShow':!vm.clickThru, 'text-center':!vm.clickThru}">
+        <div ng-class="{'col':!vm.clickThru, 'm11':!vm.clickThru, 's12':!vm.clickThru, 'podcastShow':!vm.clickThru}">
+          <h4 class="header">
+            <i ng-show="podcastvm.isLive()"class="material-icons">flash_on</i>
+            {{podcast.name}}
+          </h4>
+          <div class="card-stacked">
+            <div ng-class="{'card-content':vm.clickThru}">
+              <p ng-class={'subscribed':podcastvm.subscribed(podcast)}>
+                <i class="material-icons subscriber-icon">people</i>
+                <ng-pluralize ng-hide="podcastvm.subscribed(podcast)" count="podcast.subscribers.length"
+                      when="{'0': 'No subscribers yet',
+                             '1': '1 subscriber',
+                             'other': '{} subscribers'}">
+                </ng-pluralize>
+                <ng-pluralize ng-show="podcastvm.subscribed(podcast)" count="podcast.subscribers.length"
+                      when="{'0': 'No subscribers yet',
+                             '1': 'You are subscribed',
+                             '2': 'You and 1 other subscriber',
+                             'other': 'You and {{podcast.subscribers.length-1}} other subscribers'}">
+                </ng-pluralize>
+                <span ng-hide="vm.clickThru">
+                  |
+                  <a ng-href="{{podcast.website}}" class="public" target="_blank">
+                    <i class="material-icons">public</i>
+                  </a>
                 </span>
-              </p>
-              <p ng-hide="vm.clickThru" class="short-description">{{podcast.description}}</p>
+              </p><br ng-show="vm.clickThru">
+              <div ng-show="vm.clickThru" ng-click="podcastvm.notClickThru($event)" class="unclickable">
+                <p class="short-description">
+                  {{podcastvm.showMore ? podcast.description : podcastvm.showDescription}}
+                  <span ng-show="vm.clickThru && podcastvm.truncated">
+                    <a class="clickable subscribed" ng-click="podcastvm.toggleShowMore($event)">{{!podcastvm.showMore ? "Show more" : "Show less"}}</a>
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div ng-show="vm.clickThru" class="card-action">
+              <a class="subscribed" ng-href="/podcasts/{{podcast._id}}">See Page</a>
             </div>
           </div>
-          <div class="card-action">
-            <a ng-show="vm.clickThru" ng-href="/podcasts/{{podcast._id}}">See Page</a>
-            <a ng-hide="vm.clickThru" ng-href="{{podcast.website}}" target="_blank">View Website</a>
-          </div>
+        </div>
+        <div ng-show="!vm.clickThru" ng-class="{'col':!vm.clickThru, 'm1':!vm.clickThru, 's12':!vm.clickThru, 'podcastShow':!vm.clickThru}">
+          <span class="side-buttons">
+            <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><a ng-href="/podcasts/{{podcast._id}}/update" class="waves-effect waves-teal btn-flat"><i class="material-icons">mode_edit</i></a></div>
+            <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><button ng-click="podcastvm.destroy(podcast)"class="waves-effect waves-teal btn-flat"><i class="material-icons">delete</i></button></div>
+            <div class="side-button"><button ng-if="currentUser" ng-hide="podcastvm.subscribed(podcast) || podcastvm.isOwner(podcast)" ng-click="podcastvm.subscribe(podcast)" class="waves-effect waves-teal btn-flat"><i class="material-icons">add</i></a></div>
+            <div class="side-button"><button ng-if="currentUser" ng-show="podcastvm.subscribed(podcast)" ng-click="podcastvm.unsubscribe(podcast)" class="waves-effect waves-teal btn-flat"><i class="material-icons">done</i></a></div>
+          </span>
         </div>
       </div>
+      <span ng-hide="vm.clickThru" class="short-description flow-text">{{podcastvm.showMore ? podcast.description : podcastvm.showDescription}}</span>
+      <div ng-show="!vm.clickThru && podcastvm.truncated" class="text-center">
+        <div class="divider"></div>
+        <a class="clickable subscribed" ng-click="podcastvm.toggleShowMore($event)">{{!podcastvm.showMore ? "Show more" : "Show less"}}</a>
+      </div>
     </div>
-    <div class="col s1 inside-card">
+    <div ng-show="vm.clickThru" class="col m1 s1 inside-card">
       <span class="side-buttons">
         <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><a ng-href="/podcasts/{{podcast._id}}/update" class="waves-effect waves-teal btn-flat"><i class="material-icons">mode_edit</i></a></div>
         <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><button ng-click="podcastvm.destroy(podcast)"class="waves-effect waves-teal btn-flat"><i class="material-icons">delete</i></button></div>
