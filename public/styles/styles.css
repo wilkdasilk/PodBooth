@@ -407,3 +407,7 @@ footer li {
 .form-container {
   min-width: 310px;
 }
+
+.form-container form input, .form-container form textarea {
+  text-align: center;
+}
