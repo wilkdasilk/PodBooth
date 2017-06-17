@@ -313,6 +313,11 @@ a.profile {
   width:100%;
 }
 
+.parallax-container {
+  min-width: 230px;
+  z-index: -1;
+}
+
 .row.homepage, .row.podcastShow {
     display: flex;
 }
@@ -321,6 +326,7 @@ a.profile {
   .row.homepage, .row.podcastShow {
       display: block;
   }
+
 }
 
 .col.homepage, .col.podcastShow {
@@ -360,6 +366,14 @@ a.profile {
 
 .parallax-container.hero-container img {
   opacity: 0.8;
+}
+
+.form-page .parallax-container {
+  position: absolute;
+  width: 100vw;
+  height:100%;
+  left:0;
+  top: 0;
 }
 
 h2.overlay {
@@ -406,8 +420,19 @@ footer li {
 
 .form-container {
   min-width: 310px;
+  margin-top:25px;
+  margin-bottom:25px;
+  background:white;
 }
 
 .form-container form input, .form-container form textarea {
   text-align: center;
+}
+
+.form-container form button {
+  margin-bottom: 25px;
+}
+
+.form-page .row {
+  margin-bottom: 0px;
 }
