@@ -9,7 +9,7 @@
     <div ng-if="currentUser" ng-show="vm.isOwner || (vm.subscribed(vm.podcast[0]) && vm.isLive )" ng-class="{'sticky':!scrolledLow}" class="valign-wrapper bottom">
       <div class="controls center-align">
         <a ng-show="vm.isOwner && vm.isLive" class="btn btn-floating recording-symbol pulse"></a>
-        <button ng-show="vm.isOwner && !vm.isLive"  class='waves-effect waves-light btn' data-target='demoModal' modal>Go Live</button>
+        <button ng-show="vm.isOwner && !vm.isLive"  class='waves-effect waves-light btn' data-target='readyModal' modal>Go Live</button>
         <button ng-show="vm.isOwner && vm.isLive" ng-click="vm.endBroadcast()" class="waves-effect waves-light btn">End Broadcast</button>
         <stream ng-if="currentUser && vm.subscribed(vm.podcast[0]) && !vm.isOwner && vm.isLive" podcast="vm.podcast[0]" ></stream>
         <stream-controls ng-if="vm.isOwner && vm.isLive"></stream-controls>
@@ -17,11 +17,8 @@
     </div>
   </div>
 </div>
-<!-- Modal Trigger -->
-<div class="col">
-</div>
 <!-- Modal Structure -->
-<div ng-if="currentUser" ng-show="vm.isOwner" id="demoModal" class="modal">
+<div ng-if="currentUser" ng-show="vm.isOwner" id="readyModal" class="modal">
     <div class="modal-content">
         <h4>Wear some headphones</h4>
         <div class="helpful"><i class="material-icons">headset</i> </div>
