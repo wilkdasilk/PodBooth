@@ -5,6 +5,7 @@
         <podcast></podcast>
       </div>
     </div>
+    <comments ng-if="currentUser && vm.isLive && (vm.subscribed(vm.podcast[0]) || vm.isOwner)" podcast="vm.podcast[0]"></comments>
     <div ng-if="currentUser" ng-show="vm.isOwner || (vm.subscribed(vm.podcast[0]) && vm.isLive )" ng-class="{'sticky':!scrolledLow}" class="valign-wrapper bottom">
       <div class="controls center-align">
         <a ng-show="vm.isOwner && vm.isLive" class="btn btn-floating recording-symbol pulse"></a>
@@ -14,6 +15,5 @@
         <stream-controls ng-if="vm.isOwner && vm.isLive"></stream-controls>
       </div>
     </div>
-    <comments ng-if="currentUser && vm.isLive && (vm.subscribed(vm.podcast[0]) || vm.isOwner)" podcast="vm.podcast[0]"></comments>
   </div>
 </div>
