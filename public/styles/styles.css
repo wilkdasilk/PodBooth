@@ -184,7 +184,7 @@ nav ul a {
   margin-left: 0;
 }
 
-.clickable {
+.clickable, .toast {
   cursor: pointer;
 }
 
@@ -435,4 +435,10 @@ footer li {
 
 .form-page .row {
   margin-bottom: 0px;
+}
+
+#toast-container .toast.hide-toast {
+  opacity: 0 !important;
+  margin-top: -40px;
+  transition: all 0.375s;
 }
