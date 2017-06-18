@@ -28,7 +28,7 @@ h1 {
 }
 
 nav .logo {
-  height: 55px;
+  height:54px;
   vertical-align: middle;
 }
 
@@ -37,6 +37,7 @@ nav {
   position: fixed;
   top:0;
   z-index:999;
+  min-width: 300px;
 }
 
 nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side-nav .collapsible-body li>a:hover, .side-nav.fixed .collapsible-body li>a:hover {
@@ -53,6 +54,11 @@ nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side
   color:white;
 }
 
+.side-nav {
+  width:90vw;
+  max-width: 500px;
+  min-width: 200px;
+}
 
 .short-description {
   overflow: hidden;
@@ -328,6 +334,9 @@ a.profile {
 @media only screen and (max-width: 600px) {
   .row.homepage, .row.podcastShow {
       display: block;
+  }
+  nav .logo {
+    height:50px;
   }
 
 }
