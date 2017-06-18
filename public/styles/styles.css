@@ -279,20 +279,24 @@ a.profile {
   opacity: 0.9;
 }
 
-.sticky-bottom.valign-wrapper {
-  position: fixed;
-  left:0;
-  bottom: 0;
-  width: 100vw;
+.bottom.valign-wrapper {
+  width: 100%;
   background: rgba(0,0,0,.8);
   height:50px;
   text-align: center;
+  left:0;
+  position: absolute;
 }
 
-.sticky-bottom .controls {
+.bottom .controls {
   text-align: center;
   margin: 5px auto;
   z-index:999;
+}
+
+.sticky.bottom.valign-wrapper {
+  position: fixed;
+  bottom: 0;
 }
 
 .recording-symbol {
@@ -305,8 +309,7 @@ a.profile {
 }
 
 .lift-page {
-  margin-bottom:50px;
-  padding-bottom:10px;
+  padding-bottom:50px;
 }
 
 .parallax-container img {

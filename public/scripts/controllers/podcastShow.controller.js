@@ -4,10 +4,13 @@
     .module('podBooth')
     .controller('podcastShowCtrl', podcastShowCtrl);
 
-  podcastShowCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication', '$rootScope'];
-  function podcastShowCtrl(   $http,   $routeParams,   $location,   authentication,   $rootScope ) {
+  podcastShowCtrl.$inject = ['$http', '$routeParams', '$location', 'authentication', '$rootScope', '$window', '$scope'];
+  function podcastShowCtrl(   $http,   $routeParams,   $location,   authentication,   $rootScope,   $window,   $scope) {
     var vm = this;
     vm.clickThru = false;
+
+    var windowEl = angular.element($window);
+    $scope.scrolledLow = (windowEl.scrollTop() + windowEl.innerHeight()>= $('footer').position().top);
 
     vm.podcast = [];
     vm.isOwner = (function() {
@@ -23,6 +26,11 @@
         return false;
       }
     };
+
+    windowEl.on('scroll', function(){
+      $scope.scrolledLow = (windowEl.scrollTop() + windowEl.innerHeight()>= $('footer').position().top);
+      $scope.$apply();
+    });
 
     vm.createBroadcast = function(){
       $http({
