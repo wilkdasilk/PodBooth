@@ -359,7 +359,7 @@ a.profile {
   padding-top: 20px;
 }
 
-.card.homepage .card-image .material-icons {
+.card.homepage .card-image .material-icons, .helpful .material-icons {
   font-size: 60px;
 }
 
