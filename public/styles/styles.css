@@ -357,6 +357,10 @@ a.profile {
   padding-bottom:50px;
 }
 
+.lift-page:not(.live) .row:not(.podcastShow) {
+  min-height: 46vh ;
+}
+
 .parallax-container img {
   width:100%;
 }
