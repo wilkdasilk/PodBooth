@@ -41,17 +41,23 @@
     });
 
     function handoffAudio(data) {
-      var currentChunk = data.liveStream;
-      audioCtx.decodeAudioData(currentChunk).then(function(buffer) {
-        console.log("we made it inside the success callback");
-        audioStack.push(buffer);
-        if ((init!=0) || (audioStack.length > 2)) {
-          init++;
-          scheduleBuffers();
-        }
-      }, function(err) {
-        console.log("Error decoding audio data", err);
-      });
+
+      //better solution, wrap socket off in socket service, call on 'liveStream'
+      if (audioCtx.state != "closed") {
+
+        var currentChunk = data.liveStream;
+        audioCtx.decodeAudioData(currentChunk).then(function(buffer) {
+          console.log("we made it inside the success callback");
+          audioStack.push(buffer);
+          if ((init!=0) || (audioStack.length > 2)) {
+            init++;
+            scheduleBuffers();
+          }
+        }, function(err) {
+          console.log("Error decoding audio data", err);
+        });
+      }
+
     }
 
     function scheduleBuffers() {
