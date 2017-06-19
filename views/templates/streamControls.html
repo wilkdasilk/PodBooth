@@ -1,4 +1,8 @@
 <span>
   <button ng-click="streamControlsvm.toggleMute()" class="waves-effect waves-light btn"><i ng-show="!streamControlsvm.muted" class="material-icons">mic_off</i><i ng-hide="!streamControlsvm.muted" class="material-icons">settings_voice</i></button>
-  <!-- Broadcast controls to come -->
+</span>
+<span class="no-break">
+  <i class="fa fa-volume-off fa-lg subscribed"></i>
+  <span id="nouislider" class="nouislider" nouislider ng-model="myVolume.volume" min="0" max="100" connect="streamControlsvm.connect"></span>
+  <i class="fa fa-volume-up fa-lg subscribed"></i>
 </span>

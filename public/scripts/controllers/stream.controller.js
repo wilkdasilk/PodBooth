@@ -4,10 +4,12 @@
     .module('podBooth')
     .controller('streamCtrl', streamCtrl);
 
-  streamCtrl.$inject = ['$http', 'socket', '$scope'];
-  function streamCtrl(   $http,   socket,   $scope) {
+  streamCtrl.$inject = ['$http', 'socket', '$scope', '$document', '$timeout'];
+  function streamCtrl(   $http,   socket,   $scope,   $document,   $timeout) {
 
     var vm = this;
+    $scope.myVolume = {volume:100};
+    vm.connect = [true, false];
 
     //for reference see https://stackoverflow.com/questions/20475982/choppy-inaudible-playback-with-chunked-audio-through-web-audio-api
     var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -15,6 +17,22 @@
     var init = 0;
     var audioStack = [];
     var nextTime = 0;
+    var volumeNode = audioCtx.createGain();
+
+    $document.ready(function(){
+      angular.element("#nouislider")[0].noUiSlider.on('update', function(values, input) {
+          $timeout(function() {
+              $scope.myVolume.volume = values;
+          });
+      });
+    });
+
+    $scope.$watch(function(){
+      return $scope.myVolume.volume;
+    }, function(){
+      volumeNode.gain.value = $scope.myVolume.volume/100;
+    }, true);
+
 
     socket.on('liveStream', handoffAudio);
 
@@ -39,13 +57,13 @@
     //major help via https://stackoverflow.com/questions/21288726/web-audio-playing-back-in-chrome-but-not-firefox
     function scheduleBuffers() {
       while (audioStack.length) {
-        console.log(audioStack);
         var chunk = audioStack.shift();
-        console.log(audioCtx);
         var source = audioCtx.createBufferSource();
 
         source.buffer = chunk;
-        source.connect(audioCtx.destination);
+        source.connect(volumeNode);
+        volumeNode.connect(audioCtx.destination);
+
         if (nextTime == 0) {
           nextTime = audioCtx.currentTime + 0.05;
         }
