@@ -19,7 +19,6 @@
                           navigator.msGetUserMedia);
 
     var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    var analyser = audioCtx.createAnalyser();
     var gainNode = audioCtx.createGain();
     var volumeNode = audioCtx.createGain();
 
@@ -54,8 +53,7 @@
         console.log("inside successful stream callback");
         var streamDestination = audioCtx.createMediaStreamDestination();
         source = audioCtx.createMediaStreamSource(stream);
-        source.connect(analyser);
-        analyser.connect(gainNode);
+        source.connect(gainNode);
         gainNode.connect(streamDestination);
         gainNode.connect(volumeNode);
         volumeNode.connect(audioCtx.destination);

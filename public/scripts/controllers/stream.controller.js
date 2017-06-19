@@ -54,7 +54,6 @@
       });
     }
 
-    //major help via https://stackoverflow.com/questions/21288726/web-audio-playing-back-in-chrome-but-not-firefox
     function scheduleBuffers() {
       while (audioStack.length) {
         var chunk = audioStack.shift();
