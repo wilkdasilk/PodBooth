@@ -4,7 +4,7 @@ console.log("Sanity check, we're connected!");
 
   angular.module('podBooth', ['ngRoute', 'ngFileUpload', 'angularMoment', 'ui.materialize', 'infinite-scroll', 'truncate']);
 
-  function config(   $routeProvider,   $locationProvider) {
+  function config(   $routeProvider,   $locationProvider,  $provide) {
     $routeProvider
       .when('/', {
         templateUrl:'/templates/home',
@@ -62,6 +62,14 @@ console.log("Sanity check, we're connected!");
       enabled: true,
       requireBase: false
     });
+
+    $provide.decorator('nouisliderDirective', function($delegate){
+      var directive = $delegate[0];
+      angular.extend(directive.scope, {
+        connect: '=?'
+      });
+      return $delegate;
+    });
   }
 
   function run($rootScope, $location, authentication) {
@@ -81,7 +89,7 @@ console.log("Sanity check, we're connected!");
 
   angular
     .module('podBooth')
-    .config(['$routeProvider', '$locationProvider', config])
+    .config(['$routeProvider', '$locationProvider', '$provide', config])
     .run(['$rootScope', '$location', 'authentication', run]);
 
 })();

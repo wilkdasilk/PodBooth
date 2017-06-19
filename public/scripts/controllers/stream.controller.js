@@ -8,6 +8,8 @@
   function streamCtrl(   $http,   socket,   $scope) {
 
     var vm = this;
+    vm.volume = 100;
+    vm.connect = [true, false];
 
     //for reference see https://stackoverflow.com/questions/20475982/choppy-inaudible-playback-with-chunked-audio-through-web-audio-api
     var audioCtx = new (window.AudioContext || window.webkitAudioContext)();

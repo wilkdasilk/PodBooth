@@ -1,4 +1,9 @@
-<span>
-  <button ng-click="streamControlsvm.toggleMute()" class="waves-effect waves-light btn"><i ng-show="!streamControlsvm.muted" class="material-icons">mic_off</i><i ng-hide="!streamControlsvm.muted" class="material-icons">settings_voice</i></button>
+<div class="row valign-wrapper">
+  <div class="col s6 unset">
+    <button ng-click="streamControlsvm.toggleMute()" class="waves-effect waves-light btn"><i ng-show="!streamControlsvm.muted" class="material-icons">mic_off</i><i ng-hide="!streamControlsvm.muted" class="material-icons">settings_voice</i></button>
+  </div>
+  <div class="col s6">
+    <div nouislider ng-model="streamControlsvm.volume" min="0" max="100" connect="streamControlsvm.connect"></div>
+  </div>
   <!-- Broadcast controls to come -->
-</span>
+</div>

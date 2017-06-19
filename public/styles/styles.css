@@ -296,8 +296,39 @@ a.profile {
 
 .bottom .controls {
   text-align: center;
-  margin: 5px auto;
+  margin: 0 auto;
   z-index:999;
+  height:100%;
+}
+
+.bottom .controls.live{
+  width:70vw;
+}
+
+.controls.center-align .row.valign-wrapper {
+  height: 100%;
+  margin-left: 0;
+}
+
+.controls .row.valign-wrapper .col.owner {
+  margin-left:0
+}
+
+.controls .row.valign-wrapper .col.shift-right{
+  margin-left: 15%;
+}
+
+.stream .row.valign-wrapper {
+  height: 100%;
+  margin:0;
+}
+
+.stream .row.valign-wrapper .col {
+  margin-left: 0;
+}
+
+.stream .row.valign-wrapper .col.unset {
+  width:unset;
 }
 
 .sticky.bottom.valign-wrapper {

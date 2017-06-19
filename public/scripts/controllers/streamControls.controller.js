@@ -9,6 +9,8 @@
 
     var vm = this;
     vm.muted = false;
+    vm.volume = 100;
+    vm.connect = [true, false];
     vm.toggleMute = function() {
       if(vm.muted) {
         gainNode.gain.value = 1; // gain set to 0 to mute sound
