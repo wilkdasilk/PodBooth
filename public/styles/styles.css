@@ -343,8 +343,9 @@ a.profile {
   margin: 0 10px;
 }
 
-.controls.live .owner {
+.controls .owner {
   padding: 8px 0;
+  display: contents;
 }
 
 .stream .no-break {
@@ -379,13 +380,13 @@ a.profile {
 }
 
 @media only screen and (max-width:719px) {
-    .owner, .stream {
+    .owner:not(.display-fix), .stream {
       display: block;
     }
-    .lift-page.owner {
+    .lift-page.owner.live {
       padding-bottom:100px;
     }
-    .bottom.valign-wrapper.owner {
+    .bottom.valign-wrapper.owner.live {
       height:100px;
     }
 
@@ -400,10 +401,10 @@ a.profile {
 }
 
 @media only screen and (max-width:474px) {
-  .bottom.valign-wrapper.owner {
+  .bottom.valign-wrapper.owner.live {
     height:150px;
   }
-  .lift-page.owner {
+  .lift-page.owner.live {
     padding-bottom:150px;
   }
   .owner span .stream span {

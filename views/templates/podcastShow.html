@@ -1,15 +1,15 @@
 <div class="main-wrapper">
-  <div class="lift-page" ng-class="{'owner':vm.isOwner}">
+  <div class="lift-page" ng-class="{'owner':vm.isOwner, 'live':vm.isLive}">
     <div class="row">
       <div ng-repeat="podcast in vm.podcast">
         <podcast></podcast>
       </div>
     </div>
     <comments ng-if="currentUser && vm.isLive && (vm.subscribed(vm.podcast[0]) || vm.isOwner)" podcast="vm.podcast[0]"></comments>
-    <div ng-if="currentUser" ng-show="vm.isOwner || (vm.subscribed(vm.podcast[0]) && vm.isLive )" ng-class="{'sticky':!scrolledLow, 'owner': vm.isOwner}" class="valign-wrapper bottom">
+    <div ng-if="currentUser" ng-show="vm.isOwner || (vm.subscribed(vm.podcast[0]) && vm.isLive )" ng-class="{'sticky':!scrolledLow, 'owner': vm.isOwner, 'live':vm.isLive}" class="valign-wrapper bottom">
       <div class="controls center-align" ng-class="{'live':vm.isLive, 'valign-wrapper':!vm.isOwner}">
         <div ng-class="{'owner': vm.isOwner}">
-          <span ng-if="vm.isOwner"class="owner">
+          <span ng-if="vm.isOwner"class="owner" ng-class="{'display-fix':!vm.isLive}">
             <a ng-show="vm.isOwner && vm.isLive" class="btn btn-floating recording-symbol pulse"></a>
             <button ng-show="vm.isOwner && !vm.isLive"  class='waves-effect waves-light btn' data-target='readyModal' modal>Go Live</button>
             <button ng-show="vm.isOwner && vm.isLive" ng-click="vm.endBroadcast()" class="waves-effect waves-light btn">End Broadcast</button>
