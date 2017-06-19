@@ -531,3 +531,7 @@ footer li {
 .col.unset .fa.subscribed {
   padding: 0 5px;
 }
+
+a.subscribed:hover, a .subscribed:hover {
+  color: rgba(0,200,170,.8);
+}
