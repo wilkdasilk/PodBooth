@@ -34,7 +34,7 @@ function currentUser (req) {
   if (!req.payload._id) {
     return null
   } else {
-    var promise = db.User.findById(req.payload._id).exec();
+    var promise = db.User.findById(req.payload._id, '-salt -hash').exec();
     return promise;
   }
 }

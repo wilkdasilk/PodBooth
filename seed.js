@@ -32,7 +32,8 @@ db.Podcast.remove({}, function(err, podcasts){
     if (err) { return console.log('ERROR', err); }
     console.log("all podcasts:", podcasts);
     console.log("created", podcasts.length, "podcasts");
-    process.exit();
   });
 
 });
+
+process.exit();
