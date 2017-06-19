@@ -1,24 +1,24 @@
 <div class="main-wrapper">
-  <div class="lift-page">
+  <div class="lift-page" ng-class="{'owner':vm.isOwner}">
     <div class="row">
       <div ng-repeat="podcast in vm.podcast">
         <podcast></podcast>
       </div>
     </div>
     <comments ng-if="currentUser && vm.isLive && (vm.subscribed(vm.podcast[0]) || vm.isOwner)" podcast="vm.podcast[0]"></comments>
-    <div ng-if="currentUser" ng-show="vm.isOwner || (vm.subscribed(vm.podcast[0]) && vm.isLive )" ng-class="{'sticky':!scrolledLow}" class="valign-wrapper bottom">
-      <div class="controls center-align" ng-class="{'live':vm.isLive}">
-        <div class="row valign-wrapper ">
-          <div ng-if="vm.isOwner" ng-class="{'col':vm.isLive, 's4':vm.isLive, 'shift-right':vm.isLive}" class="owner">
+    <div ng-if="currentUser" ng-show="vm.isOwner || (vm.subscribed(vm.podcast[0]) && vm.isLive )" ng-class="{'sticky':!scrolledLow, 'owner': vm.isOwner}" class="valign-wrapper bottom">
+      <div class="controls center-align" ng-class="{'live':vm.isLive, 'valign-wrapper':!vm.isOwner}">
+        <div ng-class="{'owner': vm.isOwner}">
+          <span ng-if="vm.isOwner"class="owner">
             <a ng-show="vm.isOwner && vm.isLive" class="btn btn-floating recording-symbol pulse"></a>
             <button ng-show="vm.isOwner && !vm.isLive"  class='waves-effect waves-light btn' data-target='readyModal' modal>Go Live</button>
             <button ng-show="vm.isOwner && vm.isLive" ng-click="vm.endBroadcast()" class="waves-effect waves-light btn">End Broadcast</button>
-          </div>
-          <div ng-if="vm.isOwner && vm.isLive" class="col s6 owner">
-            <stream-controls  class="stream"></stream-controls>
-          </div>
-          <div ng-if="currentUser && vm.subscribed(vm.podcast[0]) && !vm.isOwner && vm.isLive"  class="col s6 offset-s3">
-            <stream podcast="vm.podcast[0]" class="stream" ></stream>
+          </span>
+          <span ng-if="vm.isOwner && vm.isLive">
+            <stream-controls class="stream"></stream-controls>
+          </span>
+          <div ng-if="currentUser && vm.subscribed(vm.podcast[0]) && !vm.isOwner && vm.isLive">
+            <stream podcast="vm.podcast[0]" class="stream listening" ></stream>
           </div>
         </div>
       </div>

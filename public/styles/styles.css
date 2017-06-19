@@ -292,6 +292,7 @@ a.profile {
   text-align: center;
   left:0;
   position: absolute;
+  min-width: 380px;
 }
 
 .bottom .controls {
@@ -301,34 +302,31 @@ a.profile {
   height:100%;
 }
 
-.bottom .controls.live{
-  width:70vw;
-}
-
-.controls.center-align .row.valign-wrapper {
+.controls.center-align .valign-wrapper {
   height: 100%;
   margin-left: 0;
 }
 
-.controls .row.valign-wrapper .col.owner {
-  margin-left:0
-}
-
-.controls .row.valign-wrapper .col.shift-right{
-  margin-left: 15%;
-}
-
-.stream .row.valign-wrapper {
+.stream .valign-wrapper {
   height: 100%;
-  margin:0;
 }
 
-.stream .row.valign-wrapper .col {
-  margin-left: 0;
+.stream span, .stream i {
+  display: inline-block;
 }
 
-.stream .row.valign-wrapper .col.unset {
-  width:unset;
+.stream i.fa {
+  padding: 0 20px;
+  vertical-align: middle;
+}
+
+.owner button {
+  margin-right: 20px;
+}
+
+.stream .nouislider {
+  width: 250px;
+  vertical-align: middle;
 }
 
 .sticky.bottom.valign-wrapper {
@@ -343,6 +341,15 @@ a.profile {
   width:25px;
   height:25px;
   margin: 0 10px;
+}
+
+.controls.live .owner {
+  padding: 8px 0;
+}
+
+.stream .no-break {
+  min-width: 300px;
+  height:50px;
 }
 
 .lift-page {
@@ -369,8 +376,42 @@ a.profile {
   nav .logo {
     height:50px;
   }
+}
+
+@media only screen and (max-width:719px) {
+    .owner, .stream {
+      display: block;
+    }
+    .lift-page.owner {
+      padding-bottom:100px;
+    }
+    .bottom.valign-wrapper.owner {
+      height:100px;
+    }
+
+    .controls div.owner span.owner {
+      height: 50px;
+      margin-top: 8px;
+    }
+
+    .controls.live .owner {
+      padding: unset;
+    }
+}
+
+@media only screen and (max-width:474px) {
+  .bottom.valign-wrapper.owner {
+    height:150px;
+  }
+  .lift-page.owner {
+    padding-bottom:150px;
+  }
+  .owner span .stream span {
+    margin:4px 0;
+  }
 
 }
+
 
 .col.homepage, .col.podcastShow {
   display:inline-block;
@@ -484,4 +525,8 @@ footer li {
   opacity: 0 !important;
   margin-top: -40px;
   transition: all 0.375s;
+}
+
+.col.unset .fa.subscribed {
+  padding: 0 5px;
 }
