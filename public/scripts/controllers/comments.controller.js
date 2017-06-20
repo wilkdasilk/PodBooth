@@ -38,6 +38,10 @@
       }
     });
 
+    $scope.$on('$destroy', function(){
+      socket.emit('disconnect');
+    });
+
     vm.sendComment = function() {
       socket.emit('event', { message: vm.newComment });
       vm.newComment.body = '';
