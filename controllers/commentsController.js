@@ -22,20 +22,28 @@ function index(req,res) {
             //no broadcast yet, therefore no comments
             res.sendStatus(204);
           } else {
-            console.log("index found podcast with broadcast",podcast);
             db.Comment.find({broadcast: podcast.latestBroadcast})
               .populate('_owner').exec()
               .then(function(allComments) {
                  res.json(allComments);
                }, function(err) {
-                 console.log('commentsController.index error', err);
+                 res.status(500).json({
+                   "message" : "Server error loading comments",
+                   "data" : err
+                 });
                });
           }
         }, function(err) {
-            console.log("error finding Podcast", err);
-          })
+          res.status(500).json({
+            "message" : "Server error finding podcast",
+            "data" : err
+          });
+        })
       }, function(err){
-        console.log("error finding podcast in commentsController.index", err)
+        res.status(500).json({
+          "message" : "Server error finding podcast",
+          "data" : err
+        });
       });
 
   }

@@ -20,10 +20,7 @@
       method: 'GET',
       url: '/api/podcasts'
     }).then(function (res) {
-      vm.podcasts = res.data;
-      console.log(vm.podcasts);
-      var searchbar = $('.input-field.searchbar');
-      console.log(searchbar);
+      vm.podcasts = res.data;      
     }, function (err) {
       console.log('There was an error getting the data', err);
     });

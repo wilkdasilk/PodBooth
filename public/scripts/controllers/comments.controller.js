@@ -61,7 +61,6 @@
         console.log("error loading comments", err);
     })
     .then(function(){
-      console.log("scope.podcast is", $scope.podcast.latestBroadcast);
       socket.emit('room', $scope.podcast.latestBroadcast._id);
       socket.on('announcements', function(data) {
         console.log('Got announcement:', data.message);
@@ -70,7 +69,6 @@
         console.log('Connected clients:', data.numClients);
       });
       socket.on('message', function(data) {
-        console.log('got a message:', data.message);
         vm.comments.push(data.message);
       });
       socket.on('upvote', function(data) {

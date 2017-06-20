@@ -50,7 +50,6 @@
         $rootScope.userAlerts.push(`Successfully updated "${vm.revisedPodcast.name}"!`);
         $location.path(`/podcasts/${$routeParams.id}`);
       }, function (err) {
-        console.log('There was an error udpating the podcast', err);
         $rootScope.userAlerts.push("Uh oh, couldn't update your podcast.");
         $location.path(`/podcasts/`);
       });

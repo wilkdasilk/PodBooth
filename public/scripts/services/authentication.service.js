@@ -69,7 +69,6 @@
         $rootScope.currentUser = currentUser();
         $rootScope.userAlerts.push(`Welcome, ${$rootScope.currentUser.name}!`);
       }, function(error){
-        console.log(error);
         $rootScope.userAlerts.push("Uh oh, could not create your account.")
       });
 
@@ -88,7 +87,6 @@
         $rootScope.currentUser = currentUser();
         $rootScope.userAlerts.push("Account updated successfully!");
       }, function(error){
-        console.log("error updating account",error);
         $rootScope.userAlerts.push("Could not update your account");
       });
 

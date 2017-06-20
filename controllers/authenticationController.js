@@ -19,7 +19,6 @@ var register = function (req, res) {
     .then(function(result, error){
       if (result.url) {
         user.avatar = result.url;
-        console.log(result.url);
         del.sync([req.file.path]);
       } else {
         res.json(error);
@@ -60,7 +59,6 @@ var update = function (req, res) {
         .then(function(result, error){
           if (result.url) {
             user.avatar = result.url;
-            console.log(result.url);
             del.sync([req.file.path]);
           } else {
             res.json(error);
@@ -92,7 +90,6 @@ var update = function (req, res) {
          });
         }
       }, function(err) {
-      console.log('authenticationController.update error', err);
       res.status(401).json({"message" : "UnauthorizedError: Can only update your own account when logged in"});
     });
 }

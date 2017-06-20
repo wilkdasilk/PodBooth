@@ -45,7 +45,6 @@
         $rootScope.userAlerts.push(`Successfully created "${res.data.name}"!`);
         $location.path(`/podcasts/${res.data._id}`);
       }, function (err) {
-        console.log('There was an error posting the data', err);
         $rootScope.userAlerts.push("Uh oh, couldn't create your podcast.");
         $location.path(`/podcasts/`);
       });
