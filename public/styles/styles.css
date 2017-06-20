@@ -1,7 +1,7 @@
 body {
   color:black;
   text-align: center;
-  min-width: 230px;
+  min-width: 380px;
 }
 
 main {
@@ -37,7 +37,7 @@ nav {
   position: fixed;
   top:0;
   z-index:999;
-  min-width: 300px;
+  min-width: 380px;
 }
 
 nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side-nav .collapsible-body li>a:hover, .side-nav.fixed .collapsible-body li>a:hover {
@@ -320,7 +320,7 @@ a.profile {
   vertical-align: middle;
 }
 
-.owner button {
+.owner button:not(.btn-flat) {
   margin-right: 20px;
 }
 
@@ -366,7 +366,7 @@ a.profile {
 }
 
 .parallax-container {
-  min-width: 230px;
+  min-width: 380px;
   z-index: -1;
 }
 
@@ -508,7 +508,7 @@ footer li {
 }
 
 .form-container {
-  min-width: 310px;
+  min-width: 380px;
   margin-top:25px;
   margin-bottom:25px;
   background:white;
