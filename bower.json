@@ -24,5 +24,8 @@
     "angular-moment": "^1.0.1",
     "angular-materialize": "^0.2.2",
     "angular-truncate-2": "^0.4.2"
+  },
+  "resolutions": {
+    "materialize": "0.98.2"
   }
 }
