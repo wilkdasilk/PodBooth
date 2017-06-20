@@ -78,7 +78,11 @@
     }
 
     vm.subscribed = function(podcast) {
-      return podcast.subscribers.includes($rootScope.currentUser._id);
+      if ($rootScope.currentUser) {
+        return podcast.subscribers.includes($rootScope.currentUser._id);
+      } else {
+        return false;
+      }
     }
 
     vm.isOwner = function(podcast) {

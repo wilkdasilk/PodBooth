@@ -21,12 +21,10 @@
 
     vm.upvote = function(comment) {
       socket.emit('upvote', {upvote: { comment: comment._id, user: vm.user }});
-      console.log("upvote sent");
     };
 
     vm.unvote = function(comment) {
       socket.emit('unvote', {unvote: { comment: comment._id, user: vm.user }});
-      console.log("unvote sent");
     };
 
     vm.upvoted = function(comment) {

@@ -50,7 +50,6 @@
     navigator.getUserMedia(
       { audio: true },
       function(stream){
-        console.log("inside successful stream callback");
         var streamDestination = audioCtx.createMediaStreamDestination();
         source = audioCtx.createMediaStreamSource(stream);
         source.connect(gainNode);

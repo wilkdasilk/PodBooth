@@ -47,7 +47,6 @@
 
         var currentChunk = data.liveStream;
         audioCtx.decodeAudioData(currentChunk).then(function(buffer) {
-          console.log("we made it inside the success callback");
           audioStack.push(buffer);
           if ((init!=0) || (audioStack.length > 2)) {
             init++;
@@ -74,7 +73,6 @@
         }
         source.start(nextTime);
         nextTime += source.buffer.duration;
-        console.log(nextTime);
       };
     }
 

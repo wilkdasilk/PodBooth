@@ -23,7 +23,6 @@ function show(req, res) {
     .populate('latestBroadcast')
     .exec()
     .then(function(foundPodcast) {
-      console.log(foundPodcast);
       res.json(foundPodcast);
     }, function(err) {
       console.log('podcastsController.show error', err);
@@ -38,7 +37,6 @@ function create(req, res) {
     .then(function(user) {
       req.body._owner = user._id;
     }, function(err) {
-      console.log('podcastsController.create error', err);
       req.status(401).json({"message" : "UnauthorizedError: Must be logged in to create Podcast"});
     })
     .then(function(){
@@ -55,7 +53,6 @@ function create(req, res) {
         .then(function(){
           db.Podcast.create(req.body, function(err, podcast) {
           if (err) {
-             console.log('error', err);
              res.status(406).json(err);
            } else {
              res.json(podcast);
@@ -65,7 +62,6 @@ function create(req, res) {
      } else {
        db.Podcast.create(req.body, function(err, podcast) {
        if (err) {
-         console.log('error', err);
          res.status(406).json(err);
        } else {
          res.json(podcast);
