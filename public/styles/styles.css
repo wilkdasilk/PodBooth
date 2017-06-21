@@ -536,6 +536,10 @@ footer li {
   padding: 0 5px;
 }
 
+.helpful .fa {
+  padding: 0 5px;
+}
+
 a.subscribed:hover, a .subscribed:hover {
   color: rgba(0,200,170,.8);
 }
