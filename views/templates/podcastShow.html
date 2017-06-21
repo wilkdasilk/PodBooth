@@ -28,19 +28,17 @@
 <!-- Modal Structure -->
 <div ng-if="currentUser" ng-show="vm.isOwner" id="readyModal" class="modal">
     <div class="modal-content">
-        <h4>Get ready</h4>
-        <div>
-          <h5>Wear some headphones</h5>
-          <div class="helpful"><i class="material-icons">headset</i> </div>
-          <p>Unless you have an external mic set up, we're going to record using your built in microphone. To avoid a loud and unpleasant bit of feedback, be sure to wear headphones, or mute your speakers.</p>
-        </div>
-        <div>
-          <h5>Check your browser</h5>
-          <div class="helpful"><i class="fa fa-firefox fa-3x"></i><i class="fa fa-chrome fa-3x"></i></div>
-          <p>Broadcasting audio works best over Firefox or Chrome. On Heroku, please use Firefox due to Chrome disliking Heroku's non-secure connection (HTTP)</p>
-        </div>
-
-
+      <h4>Get ready</h4>
+      <div>
+        <h5>Wear some headphones</h5>
+        <div class="helpful"><i class="material-icons">headset</i> </div>
+        <p>Unless you have an external mic set up, we're going to record using your built in microphone. To avoid a loud and unpleasant bit of feedback, be sure to wear headphones, or mute your speakers.</p>
+      </div>
+      <div>
+        <h5>Check your browser</h5>
+        <div class="helpful"><i class="fa fa-firefox fa-3x"></i><i class="fa fa-chrome fa-3x"></i></div>
+        <p>Broadcasting audio works best over Firefox or Chrome. On Heroku, please use Firefox due to Chrome disliking Heroku's non-secure connection (HTTP). Whichever browser you choose, live commenting is supported.</p>
+      </div>
     </div>
     <div class="modal-footer">
         <button ng-click="vm.createBroadcast()" class="waves-effect waves-light btn modal-close">I'm Ready!</button>
