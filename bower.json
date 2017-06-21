@@ -26,6 +26,6 @@
     "angular-truncate-2": "^0.4.2"
   },
   "resolutions": {
-    "materialize": "0.98.1"
+    "materialize": "0.98.2"
   }
 }
