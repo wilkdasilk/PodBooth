@@ -1,7 +1,7 @@
 body {
   color:black;
   text-align: center;
-  min-width: 380px;
+  min-width: 320px;
 }
 
 main {
@@ -37,7 +37,7 @@ nav {
   position: fixed;
   top:0;
   z-index:999;
-  min-width: 380px;
+  min-width: 320px;
 }
 
 nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side-nav .collapsible-body li>a:hover, .side-nav.fixed .collapsible-body li>a:hover {
@@ -56,7 +56,7 @@ nav ul a:hover, .side-nav li>a:hover, .side-nav .collapsible-header:hover, .side
 
 .side-nav {
   width:90vw;
-  max-width: 500px;
+  max-width: 300px;
   min-width: 200px;
 }
 
@@ -366,7 +366,7 @@ a.profile {
 }
 
 .parallax-container {
-  min-width: 380px;
+  min-width: 320px;
   z-index: -1;
 }
 
@@ -508,7 +508,7 @@ footer li {
 }
 
 .form-container {
-  min-width: 380px;
+  min-width: 320px;
   margin-top:25px;
   margin-bottom:25px;
   background:white;
