@@ -162,14 +162,31 @@ nav ul a {
 
 .input-field label.right, .input-field input[type=search]+label {
   right:0;
-  left: 200px;
+  left: 80%;
   transition: all 0.4s;
+  height: 100%;
+  top:0;
+}
+
+.input-field input[type=search] {
+  padding-left: 2rem;
+  width: calc(100% - 2rem);
 }
 
 .input-field:hover label.right, .input-field input[type=search]:focus+label {
   left:0;
   right:200px;
   z-index: 100;
+}
+
+.searchbar label .material-icons.left {
+  background: white;
+  line-height: inherit;
+}
+
+.searchbar .material-icons {
+  height:100%;
+  padding-top: 5px;
 }
 
 .side-buttons {
