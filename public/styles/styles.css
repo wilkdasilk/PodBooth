@@ -310,7 +310,7 @@ a.profile {
   text-align: center;
   left:0;
   position: absolute;
-  min-width: 380px;
+  min-width: 320px;
 }
 
 .bottom .controls {
@@ -448,7 +448,7 @@ a.profile {
     }
 }
 
-@media only screen and (max-width:474px) {
+@media only screen and (max-width:459px) {
   .bottom.valign-wrapper.owner.live {
     height:150px;
   }
@@ -458,7 +458,12 @@ a.profile {
   .owner span .stream span {
     margin:4px 0;
   }
+}
 
+@media only screen and (max-width:365px) {
+  .stream .nouislider {
+    width: 200px;
+  }
 }
 
 
