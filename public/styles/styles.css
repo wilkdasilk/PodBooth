@@ -376,7 +376,7 @@ a.profile {
 }
 
 .lift-page:not(.live) .row:not(.podcastShow) {
-  min-height: 46vh ;
+  min-height: calc(80vh - 50px - 50px - 64px - 20px) ;
 }
 
 .parallax-container img {
