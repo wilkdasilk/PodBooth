@@ -75,6 +75,8 @@
       if ($location.path() === '/profile' && !authentication.isLoggedIn()) {
         $location.path('/');
       }
+      $rootScope.podcastIndex = ($location.path() === '/podcasts');
+
     });
 
     $rootScope.currentUser = authentication.currentUser();
