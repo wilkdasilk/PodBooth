@@ -24,7 +24,7 @@
         </div>
         <div>
           <label for="avatar" class="left block">Profile Picture</label>
-          <div ng-hide="files || vm.credentials.avatar" ngf-drop="vm.fileSelected($files)" ngf-max-size="20MB" ngf-min-height="250" ngf-resize="{width:250, height: 250, centerCrop: true}" id="image" class="drop-box" ngf-drag-over-class="'dragover'" accept="'image/*'" ng-model="files">
+          <div ng-hide="files || vm.credentials.avatar" ngf-drop="vm.fileSelected($files)" ngf-select="vm.fileSelected($files)" ngf-max-size="20MB" ngf-min-height="250" ngf-resize="{width:250, height: 250, centerCrop: true}" id="image" class="drop-box" ngf-drag-over-class="'dragover'" accept="'image/*'" ng-model="files">
             Drag image or click to select
           </div>
           <div class="preview">

@@ -1,6 +1,6 @@
 <div class="podcast hidden" ng-class="{'hoverable':vm.clickThru}">
   <div class="card horizontal" ng-class="{'borderless':!vm.clickThru}">
-    <div ng-click="podcastvm.clickThruAction()" ng-class="{'clickable':vm.clickThru, 'm11':vm.clickThru, 's11':vm.clickThru, 'm12':!vm.clickThru, 's12':!vm.clickThru, 'justify':!vm.clickThru}" class="col inside-card">
+    <div ng-click="podcastvm.clickThruAction()" ng-class="{'clickable':vm.clickThru, 'm11':vm.clickThru && currentUser, 's11':vm.clickThru && currentUser, 'm12':!vm.clickThru || !currentUser, 's12':!vm.clickThru || !currentUser, 'justify':!vm.clickThru}" class="col inside-card">
       <div class="col m4 s12">
         <div class="card-image">
           <img ng-show="vm.clickThru" class="pod-image thumbnail" ng-src="{{podcast.image}}">
@@ -64,7 +64,7 @@
         <a class="clickable subscribed" ng-click="podcastvm.toggleShowMore($event)">{{!podcastvm.showMore ? "Show more" : "Show less"}}</a>
       </div>
     </div>
-    <div ng-show="vm.clickThru" class="col m1 s1 inside-card">
+    <div ng-show="vm.clickThru && currentUser" class="col m1 s1 inside-card">
       <span class="side-buttons">
         <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><a ng-href="/podcasts/{{podcast._id}}/update" class="waves-effect waves-teal btn-flat"><i class="material-icons">mode_edit</i></a></div>
         <div ng-if="currentUser" class="side-button" ng-show="podcastvm.isOwner(podcast)"><button ng-click="podcastvm.destroy(podcast)"class="waves-effect waves-teal btn-flat"><i class="material-icons">delete</i></button></div>
