@@ -381,11 +381,13 @@ a.profile {
 
 .parallax-container img {
   width:100%;
+  object-fit: cover;
 }
 
 .parallax-container {
-  min-width: 320px;
   z-index: -1;
+  height:40vw;
+  min-height: 250px;
 }
 
 .row.homepage, .row.podcastShow {
